@@ -16,29 +16,23 @@ export function Hero() {
       id="home"
       className="relative min-h-[100svh] flex items-center justify-center overflow-hidden bg-hades-hero"
     >
-      {/* Layer 1: Galaxy gradient background — not pure black */}
+      {/* Layer 1: Video background — space animation */}
       <div className="absolute inset-0 z-0">
-        {/* Deep space gradient with subtle blue glow */}
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              "radial-gradient(ellipse 100% 80% at 50% 0%, oklch(0.15 0.04 250 / 0.9), oklch(0.08 0.02 250) 60%, oklch(0.06 0.015 250) 100%)",
-          }}
-        />
-        {/* Aurora gradient orbs — give depth and color */}
-        <div
-          className="absolute -top-1/4 -left-1/4 w-[600px] h-[600px] rounded-full opacity-30 blur-3xl animate-aurora"
-          style={{ background: "radial-gradient(circle, oklch(0.50 0.18 260 / 0.3), transparent 70%)" }}
-        />
-        <div
-          className="absolute top-1/3 -right-1/4 w-[500px] h-[500px] rounded-full opacity-25 blur-3xl animate-aurora"
-          style={{ background: "radial-gradient(circle, oklch(0.55 0.15 240 / 0.25), transparent 70%)", animationDelay: "4s" }}
-        />
-        <div
-          className="absolute -bottom-1/4 left-1/4 w-[550px] h-[550px] rounded-full opacity-20 blur-3xl animate-aurora"
-          style={{ background: "radial-gradient(circle, oklch(0.45 0.12 280 / 0.2), transparent 70%)", animationDelay: "8s" }}
-        />
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="auto"
+          className="absolute inset-0 w-full h-full object-cover"
+          style={{ opacity: 0.4 }}
+        >
+          <source src="/videos/bg.mp4" type="video/mp4" />
+        </video>
+        {/* Dark overlay */}
+        <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse 70% 60% at 50% 50%, oklch(0.06 0.02 250 / 0.5), transparent 70%)" }} />
+        <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-background to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-background to-transparent" />
       </div>
 
       {/* Cursor glow removed — was causing crashes */}
