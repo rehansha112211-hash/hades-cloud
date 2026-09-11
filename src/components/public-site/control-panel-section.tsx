@@ -17,6 +17,8 @@ import {
 } from "lucide-react";
 import { Reveal } from "@/components/brand/reveal";
 import { SectionEyebrow } from "@/components/public-site/why-hades-cloud";
+import { LiveConsole } from "@/components/enhanced/live-console";
+import { AnimatedStatBar } from "@/components/enhanced/animated-stat-bar";
 import { cn } from "@/lib/utils";
 
 /**
@@ -162,71 +164,50 @@ function PanelMockup() {
 
           {/* Stat cards */}
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
-            <StatCard
+            <AnimatedStatBar
               icon={Cpu}
               label="CPU"
               value="23%"
               detail="Ryzen 9 · 6 vCPU"
-              bar={23}
+              percent={23}
             />
-            <StatCard
+            <AnimatedStatBar
               icon={MemoryStick}
               label="Memory"
               value="5.8 GB"
               detail="of 8 GB"
-              bar={72}
+              percent={72}
+              delay={100}
             />
-            <StatCard
+            <AnimatedStatBar
               icon={HardDrive}
               label="Storage"
               value="142 GB"
               detail="of 180 GB"
-              bar={78}
+              percent={78}
+              delay={200}
             />
-            <StatCard
+            <AnimatedStatBar
               icon={Wifi}
               label="Network"
               value="↑ 14 ↓ 89"
               detail="Mbps · 6 players"
-              bar={32}
+              percent={32}
+              delay={300}
             />
           </div>
 
-          {/* Console preview */}
+          {/* Console preview — live typing */}
           <div className="glass-card rounded-lg overflow-hidden">
             <div className="flex items-center gap-2 px-3 py-2 border-b border-border/40 bg-foreground/[0.03]">
               <Terminal className="size-3.5 text-primary" />
               <span className="text-xs font-medium">Console</span>
-              <span className="ml-auto text-[10px] text-muted-foreground">
+              <span className="ml-auto text-[10px] text-muted-foreground flex items-center gap-1.5">
+                <span className="size-1.5 rounded-full bg-primary animate-pulse" />
                 Live tail
               </span>
             </div>
-            <div className="p-3 font-mono text-[11px] leading-relaxed space-y-1 max-h-44 overflow-y-auto">
-              <ConsoleLine ts="14:32:01" type="info">
-                Server started in 8.4s
-              </ConsoleLine>
-              <ConsoleLine ts="14:32:02" type="info">
-                Loaded 487 advancements
-              </ConsoleLine>
-              <ConsoleLine ts="14:32:03" type="info">
-                Preparing level "world" (seed: -893421984)
-              </ConsoleLine>
-              <ConsoleLine ts="14:33:14" type="join">
-                Player Aarav joined the game
-              </ConsoleLine>
-              <ConsoleLine ts="14:34:51" type="join">
-                Player Priya joined the game
-              </ConsoleLine>
-              <ConsoleLine ts="14:35:02" type="warn">
-                Can't keep up! 1420ms behind, skipping 28 tick(s)
-              </ConsoleLine>
-              <ConsoleLine ts="14:36:18" type="info">
-                Auto-save complete in 218ms
-              </ConsoleLine>
-              <ConsoleLine ts="14:36:42" type="join">
-                Player Rohan joined the game
-              </ConsoleLine>
-            </div>
+            <LiveConsole />
           </div>
         </div>
       </div>
@@ -287,59 +268,5 @@ function MockButton({
       <Icon className="size-3.5" />
       {label}
     </button>
-  );
-}
-
-function StatCard({
-  icon: Icon,
-  label,
-  value,
-  detail,
-  bar,
-}: {
-  icon: typeof Cpu;
-  label: string;
-  value: string;
-  detail: string;
-  bar: number;
-}) {
-  return (
-    <div className="glass-card rounded-lg p-3">
-      <div className="flex items-center gap-1.5 text-xs text-muted-foreground mb-2">
-        <Icon className="size-3.5 text-primary" />
-        {label}
-      </div>
-      <div className="font-display font-bold text-lg leading-tight">{value}</div>
-      <div className="text-[10px] text-muted-foreground mb-2">{detail}</div>
-      <div className="h-1 rounded-full bg-foreground/10 overflow-hidden">
-        <div
-          className="h-full rounded-full bg-gradient-to-r from-primary to-accent"
-          style={{ width: `${bar}%` }}
-        />
-      </div>
-    </div>
-  );
-}
-
-function ConsoleLine({
-  ts,
-  type,
-  children,
-}: {
-  ts: string;
-  type: "info" | "join" | "warn";
-  children: React.ReactNode;
-}) {
-  const color =
-    type === "info"
-      ? "text-muted-foreground"
-      : type === "join"
-      ? "text-primary"
-      : "text-amber";
-  return (
-    <div className="flex gap-2">
-      <span className="text-muted-foreground/50 shrink-0">[{ts}]</span>
-      <span className={color}>{children}</span>
-    </div>
   );
 }

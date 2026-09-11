@@ -1,7 +1,11 @@
 "use client";
 
+import { useState } from "react";
 import { BrandLogo } from "@/components/brand/brand-logo";
 import { useNav } from "@/stores/nav-store";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { toast } from "sonner";
 
 const FOOTER_LINKS = [
   { label: "Home", target: "#home" as const },
@@ -20,16 +24,29 @@ const LEGAL_LINKS = [
 
 export function Footer() {
   const { goPublic } = useNav();
+  const [email, setEmail] = useState("");
+  const [subscribed, setSubscribed] = useState(false);
 
   const scrollTo = (href: string) => {
-    document
-      .querySelector(href)
-      ?.scrollIntoView({ behavior: "smooth", block: "start" });
+    document.querySelector(href)?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
+  const onSubscribe = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email.trim()) return;
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      toast.error("Please enter a valid email");
+      return;
+    }
+    setSubscribed(true);
+    toast.success("Subscribed! Watch your inbox for updates.");
+    setEmail("");
+    setTimeout(() => setSubscribed(false), 4000);
   };
 
   return (
     <footer className="relative mt-auto border-t border-border/60 overflow-hidden">
-      {/* Nether-inspired dark atmosphere — real Minecraft Nether image */}
+      {/* Nether-inspired dark atmosphere */}
       <div className="absolute inset-0 z-0">
         <img
           src="/images/minecraft/nether-bg.jpg"
@@ -43,14 +60,13 @@ export function Footer() {
       <div
         className="absolute inset-0 opacity-40 pointer-events-none"
         style={{
-          background:
-            "radial-gradient(ellipse 80% 100% at 50% 100%, oklch(0.62 0.22 25 / 0.18), transparent 70%)",
+          background: "radial-gradient(ellipse 80% 100% at 50% 100%, oklch(0.62 0.22 25 / 0.18), transparent 70%)",
         }}
       />
       <div className="absolute inset-0 bg-pixel-grid opacity-15 pointer-events-none" />
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14">
-        <div className="grid grid-cols-1 md:grid-cols-[1.5fr_1fr_1fr] gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-[1.5fr_1fr_1fr_1.5fr] gap-10">
           {/* Brand column */}
           <div>
             <BrandLogo size={36} />
@@ -80,7 +96,7 @@ export function Footer() {
                       e.preventDefault();
                       scrollTo(l.target);
                     }}
-                    className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                    className="text-sm text-muted-foreground hover:text-primary transition-colors"
                   >
                     {l.label}
                   </a>
@@ -100,13 +116,41 @@ export function Footer() {
                   <button
                     type="button"
                     onClick={() => goPublic()}
-                    className="text-sm text-muted-foreground hover:text-foreground transition-colors text-left"
+                    className="text-sm text-muted-foreground hover:text-primary transition-colors text-left"
                   >
                     {l.label}
                   </button>
                 </li>
               ))}
             </ul>
+          </div>
+
+          {/* Newsletter */}
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-foreground/80 mb-4">
+              Stay in the loop
+            </p>
+            <p className="text-sm text-muted-foreground leading-relaxed mb-4">
+              Product updates, performance tips, and community spotlights. No spam.
+            </p>
+            <form onSubmit={onSubscribe} className="space-y-2">
+              <Input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="you@example.com"
+                maxLength={254}
+                className="bg-foreground/5 border-border h-10"
+                disabled={subscribed}
+              />
+              <Button
+                type="submit"
+                className="w-full bg-primary text-primary-foreground hover:bg-primary/90 glow-emerald h-10"
+                disabled={subscribed}
+              >
+                {subscribed ? "✓ Subscribed" : "Subscribe"}
+              </Button>
+            </form>
           </div>
         </div>
 

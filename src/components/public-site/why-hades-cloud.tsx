@@ -9,6 +9,7 @@ import {
   Headset,
 } from "lucide-react";
 import { Reveal } from "@/components/brand/reveal";
+import { TiltCard } from "@/components/enhanced/tilt-card";
 import { cn } from "@/lib/utils";
 
 const FEATURES = [
@@ -91,12 +92,14 @@ export function WhyHadesCloud() {
         <div className="mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
           {FEATURES.map((f, i) => (
             <Reveal key={f.title} delay={i * 60}>
-              <FeatureCard
-                icon={f.icon}
-                title={f.title}
-                description={f.description}
-                accent={f.accent}
-              />
+              <TiltCard maxTilt={5} scale={1.02} className="h-full">
+                <FeatureCard
+                  icon={f.icon}
+                  title={f.title}
+                  description={f.description}
+                  accent={f.accent}
+                />
+              </TiltCard>
             </Reveal>
           ))}
         </div>

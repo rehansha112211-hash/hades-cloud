@@ -7,25 +7,31 @@ import { OrderPage } from "@/components/public-site/order-page";
 import { OrderSuccessPage } from "@/components/public-site/order-success-page";
 import { AdminLogin } from "@/components/admin/admin-login";
 import { AdminShell } from "@/components/admin/admin-shell";
+import { ScrollProgressBar } from "@/components/enhanced/scroll-progress-bar";
 
 export default function Home() {
   const { view } = useNav();
   const [hydrated, setHydrated] = useState(false);
 
-  // Sync nav store from URL on first client render
   useEffect(() => {
     initNavFromUrl();
     setHydrated(true);
-
-    // Listen for browser back/forward
     const onPop = () => initNavFromUrl();
     window.addEventListener("popstate", onPop);
     return () => window.removeEventListener("popstate", onPop);
   }, []);
 
+  // Show scroll progress only on public site
+  const showProgress = !hydrated || view.name === "public";
+
   // SSR-safe: render public site initially (matches server output)
   if (!hydrated || view.name === "public") {
-    return <PublicSite />;
+    return (
+      <>
+        {showProgress && <ScrollProgressBar />}
+        <PublicSite />
+      </>
+    );
   }
 
   if (view.name === "order") {
@@ -44,5 +50,10 @@ export default function Home() {
     return <AdminShell />;
   }
 
-  return <PublicSite />;
+  return (
+    <>
+      <ScrollProgressBar />
+      <PublicSite />
+    </>
+  );
 }

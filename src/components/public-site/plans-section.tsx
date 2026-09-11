@@ -1,10 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Loader2, Zap, AlertCircle } from "lucide-react";
+import { Loader2, Zap, AlertCircle, Check, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Reveal } from "@/components/brand/reveal";
 import { SectionEyebrow } from "@/components/public-site/why-hades-cloud";
+import { TiltCard } from "@/components/enhanced/tilt-card";
 import { api, type PublicPlan } from "@/lib/api/client";
 import { useNav } from "@/stores/nav-store";
 import { formatPrice } from "@/lib/helpers";
@@ -142,67 +143,92 @@ function PlanCard({
     plan.name.toUpperCase() === "IRON";
 
   return (
-    <article
-      className={cn(
-        "group relative h-full glass-card rounded-2xl p-6 flex flex-col",
-        "hover-lift transition-all duration-300",
-        "hover:border-primary/40",
-        isFeatured && "ring-1 ring-primary/30"
-      )}
-    >
-      {isFeatured && (
-        <span className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-primary/15 border border-primary/30 backdrop-blur-md text-[10px] font-bold tracking-[0.2em] uppercase text-primary">
-          Popular
-        </span>
-      )}
-
-      {/* Header */}
-      <div className="flex items-start justify-between mb-5">
-        <div>
-          <p className="text-[10px] tracking-[0.3em] uppercase text-muted-foreground mb-1">
-            {plan.category}
-          </p>
-          <h3 className="font-display font-bold text-2xl tracking-wide">
-            {plan.name}
-          </h3>
-        </div>
-        <PlanCategoryBadge category={plan.category} />
-      </div>
-
-      {/* Price */}
-      <div className="mb-6">
-        <div className="flex items-baseline gap-1">
-          <span className="font-display font-bold text-4xl">
-            {formatPrice(plan.price)}
-          </span>
-          <span className="text-sm text-muted-foreground">/ {plan.duration.toLowerCase().replace("1 ", "")}</span>
-        </div>
-        <p className="text-xs text-muted-foreground mt-1">
-          Billed {plan.duration.toLowerCase()}
-        </p>
-      </div>
-
-      {/* Specs */}
-      <dl className="space-y-3 mb-8 flex-1">
-        <SpecRow label="RAM" value={plan.ram} highlight />
-        <SpecRow label="Storage" value={`${plan.storage} ${plan.storageType}`} />
-        <SpecRow label="CPU" value={plan.cpu} />
-        <SpecRow label="Processor" value={plan.processor} />
-      </dl>
-
-      <Button
-        onClick={onOrder}
+    <TiltCard maxTilt={4} scale={1.015} className="h-full">
+      <article
         className={cn(
-          "w-full h-11",
+          "group relative h-full glass-card rounded-2xl p-6 flex flex-col overflow-hidden",
+          "transition-all duration-300",
+          "hover:border-primary/40",
           isFeatured
-            ? "bg-primary text-primary-foreground hover:bg-primary/90 glow-emerald"
-            : "bg-foreground/10 text-foreground hover:bg-foreground/15 border border-border"
+            ? "ring-1 ring-primary/40 animate-glow-pulse"
+            : "border-border/40"
         )}
       >
-        <Zap className="size-4" />
-        Order Now
-      </Button>
-    </article>
+        {/* Gradient corner glow on hover */}
+        <div className="absolute -top-20 -right-20 w-40 h-40 rounded-full bg-primary/0 group-hover:bg-primary/10 blur-3xl transition-all duration-700 pointer-events-none" />
+
+        {isFeatured && (
+          <span className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-primary/20 border border-primary/40 backdrop-blur-md text-[10px] font-bold tracking-[0.2em] uppercase text-primary z-10 flex items-center gap-1.5">
+            <span className="size-1.5 rounded-full bg-primary animate-pulse-glow" />
+            Most Popular
+          </span>
+        )}
+
+        {/* Header */}
+        <div className="flex items-start justify-between mb-5 relative">
+          <div>
+            <p className="text-[10px] tracking-[0.3em] uppercase text-muted-foreground mb-1">
+              {plan.category}
+            </p>
+            <h3 className="font-display font-bold text-2xl tracking-wide">
+              {plan.name}
+            </h3>
+          </div>
+          <PlanCategoryBadge category={plan.category} />
+        </div>
+
+        {/* Price */}
+        <div className="mb-6 relative">
+          <div className="flex items-baseline gap-1.5">
+            <span className="text-2xl text-muted-foreground font-display">₹</span>
+            <span className="font-display font-bold text-5xl tracking-tight">
+              {Math.floor(plan.price)}
+            </span>
+            <span className="text-sm text-muted-foreground">
+              /{plan.duration.toLowerCase().replace("1 ", "")}
+            </span>
+          </div>
+          <p className="text-xs text-muted-foreground mt-1.5 flex items-center gap-1.5">
+            <Check className="size-3 text-primary" />
+            Billed {plan.duration.toLowerCase()}
+          </p>
+        </div>
+
+        {/* Specs */}
+        <dl className="space-y-2.5 mb-8 flex-1">
+          <SpecRow label="RAM" value={plan.ram} highlight />
+          <SpecRow label="Storage" value={`${plan.storage} ${plan.storageType}`} />
+          <SpecRow label="CPU" value={plan.cpu} />
+          <SpecRow label="Processor" value={plan.processor} />
+        </dl>
+
+        {/* Inclusion strip */}
+        <div className="flex flex-wrap gap-2 mb-5 text-[10px]">
+          {["DDoS", "NVMe", "24/7"].map((t) => (
+            <span
+              key={t}
+              className="px-2 py-0.5 rounded-md bg-foreground/5 border border-border/40 text-muted-foreground uppercase tracking-wider"
+            >
+              {t}
+            </span>
+          ))}
+        </div>
+
+        <Button
+          onClick={onOrder}
+          className={cn(
+            "w-full h-11 group/btn relative overflow-hidden",
+            isFeatured
+              ? "bg-primary text-primary-foreground hover:bg-primary/90 glow-emerald"
+              : "bg-foreground/10 text-foreground hover:bg-foreground/15 border border-border hover:border-primary/40"
+          )}
+        >
+          <Zap className="size-4 transition-transform group-hover/btn:scale-110" />
+          Order Now
+          <ChevronRight className="size-4 transition-transform group-hover/btn:translate-x-0.5" />
+        </Button>
+      </article>
+    </TiltCard>
   );
 }
 

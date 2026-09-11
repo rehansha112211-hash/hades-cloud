@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import { Reveal } from "@/components/brand/reveal";
 import { SectionEyebrow } from "@/components/public-site/why-hades-cloud";
+import { TiltCard } from "@/components/enhanced/tilt-card";
 import { cn } from "@/lib/utils";
 
 const FEATURES = [
@@ -101,12 +102,14 @@ export function FeaturesSection() {
         <div className="mt-14 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
           {FEATURES.map((f, i) => (
             <Reveal key={f.title} delay={i * 60}>
-              <FeatureBlock
-                icon={f.icon}
-                title={f.title}
-                description={f.description}
-                accent={f.accent}
-              />
+              <TiltCard maxTilt={5} className="h-full">
+                <FeatureBlock
+                  icon={f.icon}
+                  title={f.title}
+                  description={f.description}
+                  accent={f.accent}
+                />
+              </TiltCard>
             </Reveal>
           ))}
         </div>
