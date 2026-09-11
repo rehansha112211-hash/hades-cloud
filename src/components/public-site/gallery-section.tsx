@@ -59,16 +59,16 @@ export function GallerySection() {
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 z-10">
         <Reveal className="max-w-2xl mx-auto text-center mb-12">
           <div className="flex justify-center">
-            <SectionEyebrow>World Gallery</SectionEyebrow>
+            <SectionEyebrow>Space Gallery</SectionEyebrow>
           </div>
           <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mt-4 leading-tight">
-            Worlds your players
+            Explore the
             <br />
-            <span className="text-gradient-hades">will build.</span>
+            <span className="text-gradient-hades">cosmos.</span>
           </h2>
           <p className="mt-4 text-muted-foreground text-base sm:text-lg leading-relaxed">
-            Every world runs on dedicated Ryzen 9 hardware with NVMe storage.
-            Your community&apos;s next home.
+            Pure CSS-rendered cosmic scenes — galaxies, nebulae, and star fields.
+            Every card is generated in real-time, no images needed.
           </p>
         </Reveal>
 
