@@ -56,6 +56,26 @@ export function Hero() {
       {/* Layer 5: Particle stars */}
       {/* Particle stars handled by global AnimatedStarfield */}
 
+      {/* Layer 5: Steve & Alex — floating character decorations */}
+      <div className="absolute inset-0 z-[3] pointer-events-none overflow-hidden">
+        <div className="absolute top-[12%] right-[5%] hidden lg:block animate-float-block" style={{ "--rot": "10deg" } as React.CSSProperties}>
+          <img
+            src="/images/characters/steve.png"
+            alt="Steve — Minecraft character"
+            className="w-36 h-auto object-contain opacity-45 pixelated"
+            style={{ filter: "drop-shadow(0 16px 40px oklch(0.65 0.20 240 / 35%))" }}
+          />
+        </div>
+        <div className="absolute bottom-[18%] left-[5%] hidden lg:block animate-float-block" style={{ "--rot": "-8deg", animationDelay: "2s" } as React.CSSProperties}>
+          <img
+            src="/images/characters/alex.png"
+            alt="Alex — Minecraft character"
+            className="w-32 h-auto object-contain opacity-40 pixelated"
+            style={{ filter: "drop-shadow(0 14px 32px oklch(0.55 0.15 260 / 30%))" }}
+          />
+        </div>
+      </div>
+
       {/* Layer 6: Content */}
       <div className="relative z-10 mx-auto max-w-5xl px-4 sm:px-6 text-center pt-24 pb-20">
         {/* Badge */}

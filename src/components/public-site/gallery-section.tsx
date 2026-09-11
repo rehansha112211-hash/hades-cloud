@@ -6,8 +6,8 @@ import { TiltCard } from "@/components/enhanced/tilt-card";
 import { cn } from "@/lib/utils";
 
 /**
- * Gallery section — cosmic cards with pure CSS gradients (no images).
- * Each card has a unique space-themed gradient + animated star dots.
+ * World Gallery section — Minecraft world showcase with CSS cosmic cards
+ * + Steve and Alex character PNGs as decorative elements.
  */
 const COSMIC_CARDS = [
   {
@@ -50,24 +50,51 @@ const COSMIC_CARDS = [
 export function GallerySection() {
   return (
     <section id="gallery" className="relative py-20 sm:py-28 overflow-hidden">
+      {/* Background */}
+      <div className="absolute inset-0 z-0"
+        style={{ background: "radial-gradient(ellipse 60% 50% at 70% 30%, oklch(0.20 0.10 260 / 0.1), transparent 70%)" }}
+      />
       <div className="absolute inset-0 bg-pixel-grid opacity-15 pointer-events-none" />
 
-      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      {/* Steve & Alex — floating character decorations */}
+      <div className="absolute inset-0 z-[2] pointer-events-none overflow-hidden">
+        {/* Steve — right side */}
+        <div className="absolute top-[10%] right-[3%] hidden lg:block animate-float-block" style={{ "--rot": "8deg" } as React.CSSProperties}>
+          <img
+            src="/images/characters/steve.png"
+            alt="Steve — Minecraft character"
+            className="w-32 h-auto object-contain opacity-40 pixelated"
+            style={{ filter: "drop-shadow(0 12px 28px oklch(0.65 0.20 240 / 30%))" }}
+          />
+        </div>
+        {/* Alex — left side */}
+        <div className="absolute bottom-[15%] left-[3%] hidden lg:block animate-float-block" style={{ "--rot": "-6deg", animationDelay: "1.5s" } as React.CSSProperties}>
+          <img
+            src="/images/characters/alex.png"
+            alt="Alex — Minecraft character"
+            className="w-28 h-auto object-contain opacity-35 pixelated"
+            style={{ filter: "drop-shadow(0 10px 24px oklch(0.55 0.15 260 / 25%))" }}
+          />
+        </div>
+      </div>
+
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 z-10">
         <Reveal className="max-w-2xl mx-auto text-center mb-12">
           <div className="flex justify-center">
-            <SectionEyebrow>Space Gallery</SectionEyebrow>
+            <SectionEyebrow>World Gallery</SectionEyebrow>
           </div>
           <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mt-4 leading-tight">
-            Explore the
+            Worlds your players
             <br />
-            <span className="text-gradient-hades">cosmos.</span>
+            <span className="text-gradient-hades">will build.</span>
           </h2>
           <p className="mt-4 text-muted-foreground text-base sm:text-lg leading-relaxed">
-            Pure CSS-rendered cosmic scenes — galaxies, nebulae, and star fields.
-            Every card is generated in real-time, no images needed.
+            Every world runs on dedicated Ryzen 9 hardware with NVMe storage.
+            Your community&apos;s next home.
           </p>
         </Reveal>
 
+        {/* Bento-style gallery grid */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 auto-rows-[180px] sm:auto-rows-[220px]">
           {COSMIC_CARDS.map((card, i) => (
             <Reveal key={card.title} delay={i * 80} className={cn("group", card.span)}>
@@ -76,7 +103,7 @@ export function GallerySection() {
                   {/* Cosmic gradient background */}
                   <div className="absolute inset-0" style={{ background: card.gradient }} />
 
-                  {/* CSS star dots — pseudo-random positions */}
+                  {/* CSS star dots */}
                   <div className="absolute inset-0">
                     {Array.from({ length: card.stars }).map((_, si) => {
                       const left = ((si * 73 + 17) % 100);
@@ -101,15 +128,13 @@ export function GallerySection() {
                     })}
                   </div>
 
-                  {/* Hover zoom glow */}
+                  {/* Hover glow */}
                   <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700"
                     style={{ background: "radial-gradient(circle at 50% 50%, oklch(0.65 0.20 240 / 0.08), transparent 70%)" }}
                   />
 
-                  {/* Gradient overlay for text */}
+                  {/* Title overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-background/95 via-background/20 to-transparent" />
-
-                  {/* Title */}
                   <div className="absolute bottom-0 left-0 right-0 p-4">
                     <p className="text-[10px] font-medium tracking-[0.2em] uppercase text-primary mb-1">
                       {card.biome}
