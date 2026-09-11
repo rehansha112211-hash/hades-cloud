@@ -8,7 +8,6 @@ import { OrderSuccessPage } from "@/components/public-site/order-success-page";
 import { AdminLogin } from "@/components/admin/admin-login";
 import { AdminShell } from "@/components/admin/admin-shell";
 import { ScrollProgressBar } from "@/components/enhanced/scroll-progress-bar";
-import { ErrorBoundary } from "@/components/enhanced/error-boundary";
 
 export default function Home() {
   const { view } = useNav();
@@ -26,49 +25,33 @@ export default function Home() {
 
   if (!hydrated || view.name === "public") {
     return (
-      <ErrorBoundary>
+      <>
         {showProgress && <ScrollProgressBar />}
         <PublicSite />
-      </ErrorBoundary>
+      </>
     );
   }
 
   if (view.name === "order") {
-    return (
-      <ErrorBoundary>
-        <OrderPage planId={view.planId} />
-      </ErrorBoundary>
-    );
+    return <OrderPage planId={view.planId} />;
   }
 
   if (view.name === "order-success") {
-    return (
-      <ErrorBoundary>
-        <OrderSuccessPage orderNumber={view.orderNumber} />
-      </ErrorBoundary>
-    );
+    return <OrderSuccessPage orderNumber={view.orderNumber} />;
   }
 
   if (view.name === "login") {
-    return (
-      <ErrorBoundary>
-        <AdminLogin />
-      </ErrorBoundary>
-    );
+    return <AdminLogin />;
   }
 
   if (view.name === "admin") {
-    return (
-      <ErrorBoundary>
-        <AdminShell />
-      </ErrorBoundary>
-    );
+    return <AdminShell />;
   }
 
   return (
-    <ErrorBoundary>
+    <>
       <ScrollProgressBar />
       <PublicSite />
-    </ErrorBoundary>
+    </>
   );
 }
