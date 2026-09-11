@@ -382,3 +382,60 @@ Stage Summary:
 - Text remains readable via radial gradient overlays
 - All images sourced from internet (NO AI generation)
 - 100% lint clean, no console errors
+
+---
+Task ID: 7
+Agent: Super Z (main)
+Task: Scroll-driven background photo change with animation + fix admin login + Discord redirect on buy with ticket message
+
+Work Log:
+- Diagnosed admin login failure: .env file was reset to ONLY contain DATABASE_URL — all AUTH_SECRET, NEXTAUTH_URL, seed creds, payment vars, Discord URL were missing. Without AUTH_SECRET, NextAuth couldn't encrypt/decrypt JWT sessions consistently → JWEDecryptionFailed error → login silently failed.
+- Restored full .env with all required vars including stable AUTH_SECRET.
+- Restarted dev server to pick up new env.
+
+- Created ScrollBackgroundChanger component (src/components/enhanced/scroll-background-changer.tsx):
+  - Fixed full-screen background layer behind all content
+  - Maps each named section (home/hosting/plans/panel/features/gallery/faq/contact) to a specific Minecraft photo
+  - On scroll, detects which section is in view (via offsetTop) and crossfades to that section's photo
+  - Uses requestAnimationFrame throttling for performance
+  - 900ms ease-in-out crossfade transition
+  - Radial dark spotlight overlay in center for text readability
+  - Top/bottom fade gradients for navbar/footer transitions
+  - Respects prefers-reduced-motion (disables on reduced-motion devices)
+- Updated PublicSite to wrap content in ScrollBackgroundChanger (fixed layer) + relative z-10 content wrapper
+- Removed per-section background images from 8 sections (WhyHadesCloud, PlansSection, ControlPanelSection, FeaturesSection, TestimonialsSection, FaqSection, ContactSection, MetricsSection, GallerySection, Footer) since the global scroll bg now handles it — sections are now transparent with just subtle overlays (pixel grid, gradients)
+- Section bg mapping:
+  - #home → hero-epic.jpg (4K Minecraft night landscape)
+  - #hosting → forest-bg.jpg (dark forest)
+  - #plans → village.jpg (Minecraft village)
+  - #panel → cave-bg.jpg (underground cave)
+  - #features → landscape.jpg (epic landscape)
+  - #gallery → survival.jpg (survival world)
+  - #faq → panorama.jpg (mountain panorama)
+  - #contact → hero-bg-2.jpg (night sky)
+
+- Discord redirect on "Order Now" / "Buy":
+  - Updated goOrder() in nav-store.ts to open Discord URL in new tab (window.open) instead of internal order page
+  - Discord URL: https://discord.gg/R8dR4t4qWf (from NEXT_PUBLIC_DISCORD_URL env var)
+  - Added toast notification on Order Now click: "Opening Discord — open a ticket to complete your purchase!" with plan name + price
+  - Updated PlansSection "Need something bigger?" link to "Join our Discord and open a ticket →"
+- Updated Contact section:
+  - "Join Discord" button now real — opens Discord URL in new tab with Discord brand color (#5865F2)
+  - Added "Found a bug? Open a ticket." info box with link to Discord #support channel
+- Updated Footer:
+  - Added "Join our Discord" button (Discord brand color) in brand column
+- Lint clean (0 errors)
+- Verified working:
+  - Admin login works via curl: credentials accepted, session created, role=OWNER returned
+  - Admin login works via browser: filled email/password, clicked Sign in, navigated to admin dashboard with all sidebar items (Dashboard/Plans/Categories/Orders/Customers/Settings)
+  - Scroll background changer works: verified bg image changes as user scrolls (hero-epic → village → landscape)
+  - Discord redirect works: clicked Order Now on a plan → new tab opened to discord.com/invite/R8dR4t4qWf
+  - No console errors
+
+Stage Summary:
+- Scroll-driven background photo changer: as user scrolls through the site, the fixed full-screen Minecraft background crossfades to match each section (8 different Minecraft photos)
+- Admin login FIXED: restored missing .env vars (AUTH_SECRET was the root cause)
+- Buy/Order flow now redirects to Discord (https://discord.gg/R8dR4t4qWf) with toast notification
+- Contact section + Footer now have real Discord buttons + "open a ticket" message for bug reports
+- All 3 user requests completed
+- 100% lint clean

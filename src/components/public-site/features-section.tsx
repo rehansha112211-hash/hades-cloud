@@ -71,16 +71,6 @@ const STRIP = [
 export function FeaturesSection() {
   return (
     <section id="features" className="relative py-20 sm:py-28 overflow-hidden">
-      {/* Cave / underground Minecraft atmosphere — VISIBLE */}
-      <div className="absolute inset-0 z-0">
-        <img
-          src="/images/minecraft/landscape.jpg"
-          alt="Minecraft epic landscape"
-          className="w-full h-full object-cover opacity-35"
-          loading="lazy"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/85 via-background/75 to-background" />
-      </div>
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <Reveal className="max-w-2xl mx-auto text-center">
           <div className="flex justify-center">

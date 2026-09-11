@@ -12,24 +12,30 @@ import { TestimonialsSection } from "@/components/public-site/testimonials-secti
 import { FaqSection } from "@/components/public-site/faq-section";
 import { ContactSection } from "@/components/public-site/contact-section";
 import { Footer } from "@/components/public-site/footer";
+import { ScrollBackgroundChanger } from "@/components/enhanced/scroll-background-changer";
 
 export function PublicSite() {
   return (
-    <div className="min-h-screen flex flex-col">
-      <PublicNavbar />
-      <main className="flex-1">
-        <Hero />
-        <WhyHadesCloud />
-        <MetricsSection />
-        <PlansSection />
-        <ControlPanelSection />
-        <FeaturesSection />
-        <GallerySection />
-        <TestimonialsSection />
-        <FaqSection />
-        <ContactSection />
-      </main>
-      <Footer />
+    <div className="min-h-screen flex flex-col relative">
+      {/* Fixed scroll-driven Minecraft background — crossfades as you scroll */}
+      <ScrollBackgroundChanger />
+
+      <div className="relative z-10 flex flex-col flex-1">
+        <PublicNavbar />
+        <main className="flex-1">
+          <Hero />
+          <WhyHadesCloud />
+          <MetricsSection />
+          <PlansSection />
+          <ControlPanelSection />
+          <FeaturesSection />
+          <GallerySection />
+          <TestimonialsSection />
+          <FaqSection />
+          <ContactSection />
+        </main>
+        <Footer />
+      </div>
     </div>
   );
 }

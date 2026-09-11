@@ -9,6 +9,7 @@ import { TiltCard } from "@/components/enhanced/tilt-card";
 import { api, type PublicPlan } from "@/lib/api/client";
 import { useNav } from "@/stores/nav-store";
 import { formatPrice } from "@/lib/helpers";
+import { toast } from "sonner";
 import { cn } from "@/lib/utils";
 
 export function PlansSection() {
@@ -38,23 +39,13 @@ export function PlansSection() {
       id="plans"
       className="relative py-20 sm:py-28 overflow-hidden"
     >
-      {/* Stone block texture atmosphere — VISIBLE Minecraft */}
-      <div className="absolute inset-0 z-0">
-        <img
-          src="/images/minecraft/village.jpg"
-          alt="Minecraft village at night"
-          className="w-full h-full object-cover opacity-30"
-          loading="lazy"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/85 via-background/75 to-background" />
-      </div>
-      {/* Top stone border strip */}
-      <div className="absolute top-0 left-0 right-0 h-2 bg-stone-mc opacity-50 pixelated" aria-hidden="true" />
+      {/* Top stone border strip — subtle Minecraft texture accent */}
+      <div className="absolute top-0 left-0 right-0 h-2 bg-stone-mc opacity-40 pixelated" aria-hidden="true" />
       <div
-        className="absolute inset-0 opacity-30 pointer-events-none"
+        className="absolute inset-0 opacity-20 pointer-events-none"
         style={{
           backgroundImage:
-            "radial-gradient(circle at 20% 30%, oklch(0.26 0.015 245 / 0.4) 0%, transparent 50%), radial-gradient(circle at 80% 70%, oklch(0.22 0.02 280 / 0.3) 0%, transparent 50%)",
+            "radial-gradient(circle at 20% 30%, oklch(0.26 0.015 245 / 0.3) 0%, transparent 50%), radial-gradient(circle at 80% 70%, oklch(0.22 0.02 280 / 0.2) 0%, transparent 50%)",
         }}
       />
 
@@ -105,7 +96,16 @@ export function PlansSection() {
           <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
             {plans.map((plan, i) => (
               <Reveal key={plan.id} delay={i * 50}>
-                <PlanCard plan={plan} onOrder={() => goOrder(plan.id)} />
+                <PlanCard
+                  plan={plan}
+                  onOrder={() => {
+                    goOrder(plan.id);
+                    toast.success("Opening Discord — open a ticket to complete your purchase!", {
+                      description: `Plan: ${plan.name} · ${formatPrice(plan.price)}`,
+                      duration: 5000,
+                    });
+                  }}
+                />
               </Reveal>
             ))}
           </div>
@@ -118,13 +118,11 @@ export function PlansSection() {
               href="#contact"
               onClick={(e) => {
                 e.preventDefault();
-                document
-                  .querySelector("#contact")
-                  ?.scrollIntoView({ behavior: "smooth", block: "start" });
+                document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth", block: "start" });
               }}
               className="text-primary hover:underline font-medium"
             >
-              Contact us for a custom plan →
+              Join our Discord and open a ticket →
             </a>
           </p>
         </Reveal>

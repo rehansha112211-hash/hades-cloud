@@ -41,16 +41,6 @@ const SCREENSHOTS = [
 export function GallerySection() {
   return (
     <section id="gallery" className="relative py-20 sm:py-28 overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0 z-0">
-        <img
-          src="/images/minecraft/survival.jpg"
-          alt="Minecraft survival world"
-          className="w-full h-full object-cover opacity-20"
-          loading="lazy"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-background via-background/85 to-background" />
-      </div>
       <div className="absolute inset-0 bg-pixel-grid opacity-15 pointer-events-none" />
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

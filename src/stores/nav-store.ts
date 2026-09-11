@@ -41,10 +41,11 @@ export const useNav = create<NavState>((set) => ({
     }
   },
   goOrder: (planId) => {
-    set({ view: { name: "order", planId } });
+    // Instead of an internal order page, redirect the user to our Discord
+    // where they can open a ticket to complete their purchase.
+    const discordUrl = process.env.NEXT_PUBLIC_DISCORD_URL || "https://discord.gg/R8dR4t4qWf";
     if (typeof window !== "undefined") {
-      window.history.replaceState(null, "", "/?view=order&plan=" + planId);
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      window.open(discordUrl, "_blank", "noopener,noreferrer");
     }
   },
   goOrderSuccess: (orderNumber) => {

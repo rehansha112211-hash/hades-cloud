@@ -1,11 +1,14 @@
 "use client";
 
 import { useState } from "react";
+import { MessageCircle } from "lucide-react";
 import { BrandLogo } from "@/components/brand/brand-logo";
 import { useNav } from "@/stores/nav-store";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
+
+const DISCORD_URL = process.env.NEXT_PUBLIC_DISCORD_URL || "https://discord.gg/R8dR4t4qWf";
 
 const FOOTER_LINKS = [
   { label: "Home", target: "#home" as const },
@@ -46,20 +49,11 @@ export function Footer() {
 
   return (
     <footer className="relative mt-auto border-t border-border/60 overflow-hidden">
-      {/* Nether-inspired dark atmosphere — VISIBLE */}
-      <div className="absolute inset-0 z-0">
-        <img
-          src="/images/minecraft/nether-bg.jpg"
-          alt="Minecraft Nether dimension"
-          className="w-full h-full object-cover opacity-35"
-          loading="lazy"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/70 to-background" />
-      </div>
+      {/* Nether-inspired dark atmosphere */}
       <div
         className="absolute inset-0 opacity-40 pointer-events-none"
         style={{
-          background: "radial-gradient(ellipse 80% 100% at 50% 100%, oklch(0.62 0.22 25 / 0.18), transparent 70%)",
+          background: "radial-gradient(ellipse 80% 100% at 50% 100%, oklch(0.62 0.22 25 / 0.15), transparent 70%)",
         }}
       />
       <div className="absolute inset-0 bg-pixel-grid opacity-15 pointer-events-none" />
@@ -79,6 +73,15 @@ export function Footer() {
               independent hosting provider and is not affiliated with Mojang AB
               or Microsoft.
             </p>
+            <a
+              href={DISCORD_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-5 inline-flex items-center gap-2 h-9 px-4 text-sm font-semibold rounded-lg bg-[#5865F2] text-white hover:bg-[#4752C4] transition-colors"
+            >
+              <MessageCircle className="size-4" />
+              Join our Discord
+            </a>
           </div>
 
           {/* Navigation */}

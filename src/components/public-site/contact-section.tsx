@@ -40,16 +40,6 @@ export function ContactSection() {
 
   return (
     <section id="contact" className="relative py-20 sm:py-28 overflow-hidden">
-      {/* Minecraft survival world atmosphere — VISIBLE */}
-      <div className="absolute inset-0 z-0">
-        <img
-          src="/images/minecraft/survival.jpg"
-          alt="Minecraft survival world"
-          className="w-full h-full object-cover opacity-30"
-          loading="lazy"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/85 via-background/75 to-background" />
-      </div>
       <div
         className="absolute inset-0 opacity-40 pointer-events-none"
         style={{
@@ -95,21 +85,43 @@ export function ContactSection() {
             </div>
 
             <div className="mt-8 flex flex-wrap gap-3">
-              <Button
-                variant="outline"
-                onClick={() => toast.info("Discord link coming soon — ask us via the form!")}
-                className="bg-foreground/5 border-border"
+              <a
+                href={process.env.NEXT_PUBLIC_DISCORD_URL || "https://discord.gg/R8dR4t4qWf"}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 h-10 px-5 text-sm font-semibold rounded-xl bg-[#5865F2] text-white hover:bg-[#4752C4] transition-colors glow-emerald"
               >
                 <MessageCircle className="size-4" />
                 Join Discord
-              </Button>
+              </a>
               <a
                 href="mailto:support@hadescloud.local"
-                className="inline-flex items-center gap-2 h-9 px-3 text-sm rounded-md border border-border bg-foreground/5 hover:bg-foreground/10 transition-colors"
+                className="inline-flex items-center gap-2 h-10 px-3 text-sm rounded-xl border border-border bg-foreground/5 hover:bg-foreground/10 transition-colors"
               >
                 <Mail className="size-4" />
                 support@hadescloud.local
               </a>
+            </div>
+
+            {/* Ticket CTA box */}
+            <div className="mt-6 rounded-xl border border-primary/30 bg-primary/5 p-4">
+              <p className="text-sm font-semibold text-foreground mb-1 flex items-center gap-2">
+                <MessageCircle className="size-4 text-primary" />
+                Found a bug? Open a ticket.
+              </p>
+              <p className="text-xs text-muted-foreground leading-relaxed">
+                Join our Discord server and open a support ticket — our team
+                responds fast and we'll get your issue sorted. Just click
+                <a
+                  href={process.env.NEXT_PUBLIC_DISCORD_URL || "https://discord.gg/R8dR4t4qWf"}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-primary font-medium hover:underline mx-1"
+                >
+                  Join Discord
+                </a>
+                and head to the #support channel.
+              </p>
             </div>
           </Reveal>
 

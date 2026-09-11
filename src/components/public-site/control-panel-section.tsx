@@ -31,24 +31,15 @@ export function ControlPanelSection() {
       id="panel"
       className="relative py-20 sm:py-28 overflow-hidden"
     >
-      {/* Cave / cloud infrastructure atmosphere — VISIBLE Minecraft cave */}
-      <div className="absolute inset-0 z-0">
-        <img
-          src="/images/minecraft/cave-bg.jpg"
-          alt="Minecraft underground cave"
-          className="w-full h-full object-cover opacity-35"
-          loading="lazy"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/85 via-background/75 to-background" />
-      </div>
+      {/* Subtle purple glow for panel section */}
       <div
-        className="absolute inset-0 opacity-50 pointer-events-none"
+        className="absolute inset-0 opacity-40 pointer-events-none"
         style={{
           backgroundImage:
-            "radial-gradient(ellipse 80% 50% at 50% 100%, oklch(0.65 0.22 280 / 0.15), transparent 70%)",
+            "radial-gradient(ellipse 80% 50% at 50% 100%, oklch(0.65 0.22 280 / 0.12), transparent 70%)",
         }}
       />
-      <div className="absolute inset-0 bg-pixel-grid opacity-20 pointer-events-none" />
+      <div className="absolute inset-0 bg-pixel-grid opacity-15 pointer-events-none" />
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <Reveal className="max-w-2xl">

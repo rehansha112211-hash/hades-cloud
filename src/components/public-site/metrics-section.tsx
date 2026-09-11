@@ -43,16 +43,8 @@ const METRICS = [
 export function MetricsSection() {
   return (
     <section className="relative py-14 sm:py-16 overflow-hidden border-y border-border/40">
-      {/* Background atmosphere — VISIBLE Minecraft */}
-      <div className="absolute inset-0 z-0">
-        <img
-          src="/images/minecraft/landscape.jpg"
-          alt="Minecraft epic landscape"
-          className="w-full h-full object-cover opacity-25"
-          loading="lazy"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/85 via-background/80 to-background" />
-      </div>
+      {/* Background atmosphere */}
+      <div className="absolute inset-0 z-0 bg-gradient-to-b from-background/40 via-background/60 to-background/40 pointer-events-none" />
 
       {/* Animated gradient line top */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent" />

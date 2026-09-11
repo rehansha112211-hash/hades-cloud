@@ -81,16 +81,6 @@ export function FaqSection() {
 
   return (
     <section id="faq" className="relative py-20 sm:py-28 overflow-hidden">
-      {/* Minecraft panorama atmosphere — VISIBLE */}
-      <div className="absolute inset-0 z-0">
-        <img
-          src="/images/minecraft/panorama.jpg"
-          alt="Minecraft mountain panorama"
-          className="w-full h-full object-cover opacity-30"
-          loading="lazy"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/85 via-background/80 to-background" />
-      </div>
       <div className="absolute inset-0 bg-pixel-grid opacity-15 pointer-events-none" />
 
       <div className="relative mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
