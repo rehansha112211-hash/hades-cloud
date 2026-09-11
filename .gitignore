@@ -57,3 +57,4 @@ agent-browser-*
 
 # scripts temp
 /tmp/
+.env*
