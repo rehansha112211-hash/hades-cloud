@@ -2,9 +2,6 @@
 
 import { ChevronRight, Cloud, Server, Zap, Shield, Globe, Cpu } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { AnimatedHeading } from "@/components/enhanced/animated-heading";
-import { CursorGlow } from "@/components/enhanced/cursor-glow";
-import { MagneticButton } from "@/components/enhanced/magnetic-button";
 import { AnimatedCounter } from "@/components/enhanced/animated-counter";
 
 /**
@@ -46,8 +43,7 @@ export function Hero() {
         />
       </div>
 
-      {/* Layer 2: Cursor glow */}
-      <CursorGlow size={500} color="oklch(0.65 0.20 240 / 0.05)" />
+      {/* Cursor glow removed — was causing crashes */}
 
       {/* Layer 3: Dark vignette for text readability — center spotlight */}
       <div className="absolute inset-0 z-[2] pointer-events-none">
@@ -75,21 +71,10 @@ export function Hero() {
         </div>
 
         {/* Headline */}
-        <h1 className="font-display text-4xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tight leading-[1.05]">
-          <AnimatedHeading
-            text="POWER YOUR WORLD."
-            delay={100}
-            stagger={80}
-            className="block"
-          />
-          <span className="block mt-3">
-            <AnimatedHeading
-              text="WITHOUT LIMITS."
-              delay={700}
-              stagger={80}
-              wordClassName="text-gradient-hades"
-            />
-          </span>
+        <h1 className="font-display text-4xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tight leading-[1.05] animate-fade-in-up" style={{ animationDelay: "0.1s" }}>
+          POWER YOUR WORLD.
+          <br />
+          <span className="text-gradient-hades">WITHOUT LIMITS.</span>
         </h1>
 
         {/* Supporting text */}
@@ -107,14 +92,14 @@ export function Hero() {
           className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-3 animate-fade-in-up"
           style={{ animationDelay: "1.6s", animationFillMode: "forwards" }}
         >
-          <MagneticButton
+          <button
             onClick={scrollToPlans}
             className="w-full sm:w-auto h-12 px-8 text-base font-sans font-semibold bg-primary text-primary-foreground hover:bg-primary/90 glow-emerald rounded-xl inline-flex items-center justify-center gap-2 transition-colors"
           >
             <Zap className="size-4" />
             View Plans
             <ChevronRight className="size-4" />
-          </MagneticButton>
+          </button>
           <Button
             size="lg"
             variant="outline"
