@@ -26,16 +26,16 @@ export function Hero() {
       id="home"
       className="relative min-h-[100svh] flex items-center justify-center overflow-hidden bg-hades-hero"
     >
-      {/* Layer 1: Galaxy background with parallax */}
-      <ParallaxLayer depth={0.04} className="absolute inset-0 z-0">
+      {/* Layer 1: Galaxy background image — subtle, below starfield */}
+      <div className="absolute inset-0 z-0">
         <img
           src={HERO_BG}
           alt="Deep space galaxy with stars and nebula"
-          className="w-full h-full object-cover opacity-50 scale-110"
+          className="w-full h-full object-cover opacity-35 scale-110"
           loading="eager"
           fetchPriority="high"
         />
-      </ParallaxLayer>
+      </div>
 
       {/* Layer 2: Aurora gradient orbs */}
       <div className="absolute inset-0 z-[1] overflow-hidden pointer-events-none">
