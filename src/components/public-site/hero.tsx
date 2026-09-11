@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { ChevronRight, Cloud, Server, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ParticleField } from "@/components/brand/particle-field";
@@ -8,34 +7,19 @@ import { ParticleField } from "@/components/brand/particle-field";
 /**
  * Cinematic Minecraft-themed hero.
  *
- * Background approach (per spec: "USE IMAGES FROM THE INTERNET ONLY"):
- * - A curated set of stable Wikimedia Commons landscape images
- *   (Minecraft-related, freely usable press/generic block-art images)
+ * Background approach:
+ * - Real Minecraft night landscape image, downloaded from the internet
+ *   and stored locally at /public/images/minecraft/hero-bg.jpg
  * - Layered with a heavy dark gradient so text stays readable
  * - CSS pixel grid + animated embers add subtle motion
  * - On reduced-motion devices, particles auto-disable
  *
- * If any image fails to load, the dark gradient background remains —
+ * If the image fails to load, the dark gradient background remains —
  * the hero always looks intentional.
  */
-const HERO_BG_IMAGES = [
-  // Minecraft night landscape (Mojang press / wiki commons)
-  "https://upload.wikimedia.org/wikipedia/en/5/51/Minecraft_cover.png",
-  // Backup: a known stable dark Minecraft landscape screenshot from wiki
-  "https://static.wikia.nocookie.net/minecraft_gamepedia/images/7/7a/Sunrise_over_a_village.jpg",
-];
+const HERO_BG = "/images/minecraft/hero-bg.jpg";
 
 export function Hero() {
-  const [bgIndex, setBgIndex] = useState(0);
-  const [bgOk, setBgOk] = useState(true);
-
-  useEffect(() => {
-    if (!bgOk && bgIndex < HERO_BG_IMAGES.length - 1) {
-      setBgIndex((i) => i + 1);
-      setBgOk(true);
-    }
-  }, [bgOk, bgIndex]);
-
   const scrollToPlans = () => {
     document
       .querySelector("#plans")
@@ -53,18 +37,17 @@ export function Hero() {
       id="home"
       className="relative min-h-[100svh] flex items-center justify-center overflow-hidden bg-hades-hero"
     >
-      {/* Background image layer */}
+      {/* Background image layer — real Minecraft night landscape */}
       <div className="absolute inset-0 z-0">
         <img
-          src={HERO_BG_IMAGES[bgIndex]}
-          alt=""
-          aria-hidden="true"
-          onError={() => setBgOk(false)}
-          className="w-full h-full object-cover opacity-25"
+          src={HERO_BG}
+          alt="Minecraft dark night landscape with mountains"
+          className="w-full h-full object-cover opacity-30"
           loading="eager"
+          fetchPriority="high"
         />
         {/* Dark vignette to ensure text contrast */}
-        <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/60 to-background" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/75 via-background/65 to-background" />
         <div className="absolute inset-0 bg-gradient-to-r from-background/80 via-transparent to-background/80" />
         {/* Pixel grid overlay */}
         <div className="absolute inset-0 bg-pixel-grid opacity-40" />
@@ -80,6 +63,28 @@ export function Hero() {
             background:
               "radial-gradient(ellipse 80% 60% at 50% 100%, oklch(0.74 0.18 145 / 8%), transparent 70%)",
           }}
+        />
+      </div>
+
+      {/* Decorative floating grass block — real Minecraft image */}
+      <div className="absolute top-1/4 right-8 hidden xl:block z-5 pointer-events-none animate-fade-in-up" style={{ animationDelay: "0.5s" }}>
+        <img
+          src="/images/minecraft/block-grass.png"
+          alt=""
+          aria-hidden="true"
+          className="w-24 h-24 object-contain opacity-40 rotate-12"
+          style={{ filter: "drop-shadow(0 0 24px oklch(0.74 0.18 145 / 30%))" }}
+        />
+      </div>
+
+      {/* Decorative grass block on left — real Minecraft image */}
+      <div className="absolute top-1/3 left-8 hidden xl:block z-5 pointer-events-none animate-fade-in-up" style={{ animationDelay: "0.6s" }}>
+        <img
+          src="/images/minecraft/block-grass.png"
+          alt=""
+          aria-hidden="true"
+          className="w-16 h-16 object-contain opacity-30 -rotate-12"
+          style={{ filter: "drop-shadow(0 0 16px oklch(0.78 0.16 75 / 25%))" }}
         />
       </div>
 

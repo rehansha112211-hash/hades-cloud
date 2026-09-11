@@ -29,12 +29,22 @@ export function Footer() {
 
   return (
     <footer className="relative mt-auto border-t border-border/60 overflow-hidden">
-      {/* Nether-inspired dark atmosphere */}
+      {/* Nether-inspired dark atmosphere — real Minecraft Nether image */}
+      <div className="absolute inset-0 z-0">
+        <img
+          src="/images/minecraft/nether-bg.jpg"
+          alt=""
+          aria-hidden="true"
+          className="w-full h-full object-cover opacity-15"
+          loading="lazy"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-background via-background/85 to-background" />
+      </div>
       <div
-        className="absolute inset-0 opacity-50 pointer-events-none"
+        className="absolute inset-0 opacity-40 pointer-events-none"
         style={{
           background:
-            "radial-gradient(ellipse 80% 100% at 50% 100%, oklch(0.62 0.22 25 / 0.12), transparent 70%)",
+            "radial-gradient(ellipse 80% 100% at 50% 100%, oklch(0.62 0.22 25 / 0.18), transparent 70%)",
         }}
       />
       <div className="absolute inset-0 bg-pixel-grid opacity-15 pointer-events-none" />

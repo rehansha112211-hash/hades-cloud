@@ -29,8 +29,17 @@ export function ControlPanelSection() {
       id="panel"
       className="relative py-20 sm:py-28 overflow-hidden"
     >
-      {/* Cave / cloud infrastructure atmosphere */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-background/95 to-background" />
+      {/* Cave / cloud infrastructure atmosphere — real Minecraft image */}
+      <div className="absolute inset-0 z-0">
+        <img
+          src="/images/minecraft/cave-bg.jpg"
+          alt=""
+          aria-hidden="true"
+          className="w-full h-full object-cover opacity-15"
+          loading="lazy"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-background via-background/90 to-background" />
+      </div>
       <div
         className="absolute inset-0 opacity-50 pointer-events-none"
         style={{

@@ -76,11 +76,10 @@ export function AdminLogin() {
       {/* Minecraft-themed background image (low opacity, decorative) */}
       <div className="absolute inset-0 z-0">
         <img
-          src="https://upload.wikimedia.org/wikipedia/en/5/51/Minecraft_cover.png"
-          alt=""
-          aria-hidden="true"
-          className="w-full h-full object-cover opacity-10"
-          onError={(e) => ((e.currentTarget.style.display = "none"))}
+          src="/images/minecraft/login-bg.jpg"
+          alt="Minecraft dark landscape"
+          className="w-full h-full object-cover opacity-15"
+          fetchPriority="high"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/70 to-background" />
         <div className="absolute inset-0 bg-pixel-grid opacity-30" />

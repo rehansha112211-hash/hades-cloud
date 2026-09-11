@@ -39,8 +39,18 @@ export function ContactSection() {
   };
 
   return (
-    <section id="contact" className="relative py-20 sm:py-28">
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-background/95 to-background" />
+    <section id="contact" className="relative py-20 sm:py-28 overflow-hidden">
+      {/* Minecraft night sky atmosphere — real image */}
+      <div className="absolute inset-0 z-0">
+        <img
+          src="/images/minecraft/hero-bg.jpg"
+          alt=""
+          aria-hidden="true"
+          className="w-full h-full object-cover opacity-10"
+          loading="lazy"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-background via-background/92 to-background" />
+      </div>
       <div
         className="absolute inset-0 opacity-40 pointer-events-none"
         style={{

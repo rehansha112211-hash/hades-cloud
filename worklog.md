@@ -37,3 +37,47 @@ Stage Summary:
 - Lint clean (0 errors, 0 warnings)
 - Dev server runs on port 3000 with no runtime errors
 - Production-ready foundation for future payment gateway (env vars wired, order status state machine in place) and Minecraft panel integration (admin Servers page stubbed with "coming soon")
+
+---
+Task ID: 2
+Agent: Super Z (main)
+Task: Add real Minecraft-themed PNG/JPG images sourced from the internet (NO AI generation, NO fake Minecraft art)
+
+Work Log:
+- Used z-ai image-search skill to find real Minecraft images from the web (4 parallel searches):
+  - "Minecraft dark night landscape with mountains moon and stars" → 8 results
+  - "Minecraft Nether dimension lava redstone dark atmosphere" → 6 results
+  - "Minecraft grass block dirt stone block textures" → 8 results
+  - "Minecraft cave underground with torches and diamond ores" → 6 results
+  - "Minecraft forest trees dark night atmosphere" → 5 results
+- Downloaded 11 best images locally to /public/images/minecraft/
+- Wrote optimization script (scripts/optimize-images.cjs) using sharp:
+  - Resized hero images to max 2400px wide
+  - Resized decorative images to 1920px wide
+  - Resized block-grass to 512x512 (kept PNG for transparency)
+  - JPEG quality 78-80 with mozjpeg + progressive
+  - Average compression: 90%+ smaller than originals
+  - Total folder size: 676KB (was ~10MB before optimization)
+- Updated 7 components to use local Minecraft images instead of hotlinked URLs:
+  - Hero: hero-bg.jpg (Minecraft night landscape) + 2 decorative grass blocks
+  - WhyHadesCloud: forest-bg.jpg (dark forest atmosphere)
+  - PlansSection: forest-bg.jpg (subtle texture)
+  - ControlPanelSection: cave-bg.jpg (underground cave atmosphere)
+  - FeaturesSection: cave-bg.jpg (cave/cloud infrastructure feel)
+  - ContactSection: hero-bg.jpg (night sky)
+  - FaqSection: login-bg.jpg (subtle dark atmosphere)
+  - Footer: nether-bg.jpg (Nether-inspired dark red atmosphere)
+  - AdminLogin: login-bg.jpg (Minecraft landscape)
+- All images use proper loading="lazy" (except hero which uses loading="eager" + fetchPriority="high")
+- Dark gradient overlays on every section to keep text readability excellent
+- Lint clean (0 errors, 0 warnings)
+- Verified with agent-browser: all sections render correctly with new images, no console errors
+
+Stage Summary:
+- Website now uses REAL Minecraft images sourced from the internet (NO AI generation)
+- All images stored locally in /public/images/minecraft/ (no external dependencies, no hotlinking)
+- Total image payload: 676KB — fast loading, no performance impact
+- Each section has a distinct Minecraft atmosphere (night / forest / cave / nether)
+- Hero has decorative floating grass blocks with glow effects
+- Footer uses Nether atmosphere (dark red, lava-inspired)
+- Login page uses Minecraft landscape background
