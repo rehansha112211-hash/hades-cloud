@@ -35,9 +35,21 @@ export const authOptions: NextAuthOptions = {
         const password = credentials?.password ?? "";
         if (!email || !password) return null;
 
-        const ip =
-          (req.headers?.["x-forwarded-for"] as string)?.split(",")[0] ||
-          "unknown";
+        // Safely extract IP — req may be undefined in some NextAuth setups
+        let ip = "unknown";
+        try {
+          const headers = req?.headers;
+          if (headers) {
+            // Headers can be a Headers object or a plain object
+            const xff =
+              typeof headers.get === "function"
+                ? headers.get("x-forwarded-for")
+                : (headers as Record<string, string>)["x-forwarded-for"];
+            if (xff) ip = xff.split(",")[0].trim();
+          }
+        } catch {
+          // ignore header access errors
+        }
 
         const rl = rateLimit(`login:${ip}`, LOGIN_RATE_LIMIT, LOGIN_RATE_WINDOW);
         if (!rl.ok) {

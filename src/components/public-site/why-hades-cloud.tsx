@@ -63,7 +63,16 @@ export function WhyHadesCloud() {
       id="hosting"
       className="relative py-20 sm:py-28 overflow-hidden"
     >
-      {/* Subtle pixel grid overlay */}
+      {/* Minecraft forest atmosphere */}
+      <div className="absolute inset-0 z-0">
+        <img
+          src="/images/minecraft/forest-bg.jpg"
+          alt="Minecraft dark forest"
+          className="w-full h-full object-cover opacity-25"
+          loading="lazy"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/85 via-background/75 to-background" />
+      </div>
       <div className="absolute inset-0 bg-pixel-grid opacity-20 pointer-events-none" />
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <Reveal className="max-w-2xl">

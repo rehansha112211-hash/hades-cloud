@@ -39,8 +39,16 @@ export function PlansSection() {
       id="plans"
       className="relative py-20 sm:py-28 overflow-hidden"
     >
-      {/* Top stone border strip — subtle Minecraft texture accent */}
-      <div className="absolute top-0 left-0 right-0 h-2 bg-stone-mc opacity-40 pixelated" aria-hidden="true" />
+      {/* Minecraft village atmosphere */}
+      <div className="absolute inset-0 z-0">
+        <img
+          src="/images/minecraft/village.jpg"
+          alt="Minecraft village"
+          className="w-full h-full object-cover opacity-25"
+          loading="lazy"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/85 via-background/75 to-background" />
+      </div>
       <div
         className="absolute inset-0 opacity-20 pointer-events-none"
         style={{
