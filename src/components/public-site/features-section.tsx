@@ -87,10 +87,10 @@ export function FeaturesSection() {
           <div className="flex justify-center">
             <SectionEyebrow>Features</SectionEyebrow>
           </div>
-          <h2 className="font-pixel text-2xl sm:text-3xl lg:text-4xl font-normal tracking-tight mt-4 leading-tight">
+          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mt-4 leading-tight">
             Every layer tuned
             <br />
-            <span className="text-gradient-hades text-xl sm:text-2xl lg:text-3xl">for Minecraft.</span>
+            <span className="text-gradient-hades">for Minecraft.</span>
           </h2>
           <p className="mt-4 text-muted-foreground text-base sm:text-lg leading-relaxed">
             We obsess over the things most hosting companies skip — kernel
@@ -160,7 +160,7 @@ function FeatureBlock({
           >
             <Icon className="size-5" />
           </div>
-          <h3 className="font-pixel text-[11px] tracking-[0.1em] pt-3 leading-relaxed">{title}</h3>
+          <h3 className="font-display font-bold text-lg pt-2">{title}</h3>
         </div>
       <p className="text-sm text-muted-foreground leading-relaxed">
         {description}

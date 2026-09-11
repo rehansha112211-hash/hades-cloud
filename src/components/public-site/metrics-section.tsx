@@ -60,10 +60,10 @@ export function MetricsSection() {
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <Reveal className="text-center mb-10">
-          <p className="font-pixel text-[9px] tracking-[0.2em] uppercase text-primary mb-3">
+          <p className="text-xs font-medium tracking-[0.3em] uppercase text-primary mb-2 font-sans">
             Trusted by the community
           </p>
-          <h2 className="font-pixel text-xl sm:text-2xl lg:text-3xl font-normal tracking-tight">
+          <h2 className="font-display text-2xl sm:text-3xl font-bold tracking-tight">
             Numbers that build trust.
           </h2>
         </Reveal>
@@ -109,16 +109,16 @@ function MetricCard({
       : "text-accent bg-accent/10 border-accent/30";
 
   return (
-    <div className="glass-card rounded-none p-5 sm:p-6 text-center hover-lift hover:border-primary/30 transition-all group mc-border">
+    <div className="glass-card rounded-xl p-5 sm:p-6 text-center hover-lift hover:border-primary/30 transition-all group">
       <div
-        className={`inline-flex items-center justify-center size-12 mb-4 ${colorClass} border group-hover:scale-110 transition-transform`}
+        className={`inline-flex items-center justify-center size-12 rounded-lg border mb-4 ${colorClass} group-hover:scale-110 transition-transform`}
       >
         <Icon className="size-5" />
       </div>
-      <div className="font-pixel text-xl sm:text-2xl tracking-tight">
+      <div className="font-display font-bold text-3xl sm:text-4xl tracking-tight">
         <AnimatedCounter value={value} decimals={decimals ?? 0} suffix={suffix ?? ""} />
       </div>
-      <p className="font-vt323 text-sm text-muted-foreground uppercase tracking-wider mt-2">
+      <p className="text-[11px] sm:text-xs text-muted-foreground uppercase tracking-wider mt-2 font-sans">
         {label}
       </p>
     </div>

@@ -99,8 +99,8 @@ export function FaqSection() {
           <div className="flex justify-center">
             <SectionEyebrow>FAQ</SectionEyebrow>
           </div>
-          <h2 className="font-pixel text-2xl sm:text-3xl lg:text-4xl font-normal tracking-tight mt-4 leading-tight">
-            Questions, <span className="text-gradient-hades text-xl sm:text-2xl lg:text-3xl">answered.</span>
+          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mt-4 leading-tight">
+            Questions, <span className="text-gradient-hades">answered.</span>
           </h2>
           <p className="mt-4 text-muted-foreground text-base sm:text-lg leading-relaxed">
             Everything you need to know about hosting with Hades Cloud.

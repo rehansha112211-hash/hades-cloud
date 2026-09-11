@@ -133,24 +133,24 @@ export function Hero() {
       {/* ===== Layer 7: Content ===== */}
       <div className="relative z-10 mx-auto max-w-5xl px-4 sm:px-6 text-center pt-24 pb-20">
         {/* Badge */}
-        <div className="inline-flex items-center gap-2 rounded-none mc-border bg-primary/5 backdrop-blur-md px-4 py-1.5 text-xs font-medium text-primary mb-8 animate-fade-in-up">
+        <div className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/5 backdrop-blur-md px-4 py-1.5 text-sm font-medium text-primary mb-8 animate-fade-in-up glow-emerald">
           <span className="relative flex size-2">
             <span className="absolute inline-flex h-full w-full rounded-full bg-primary opacity-75 animate-ping" />
             <span className="relative inline-flex size-2 rounded-full bg-primary" />
           </span>
-          <span className="font-vt323 text-base">NVMe storage now standard on every plan</span>
+          <span className="font-sans">NVMe storage now standard on every plan</span>
           <span className="text-primary/40">→</span>
         </div>
 
-        {/* Headline — pixel font, word-by-word reveal */}
-        <h1 className="font-pixel text-3xl sm:text-5xl lg:text-6xl xl:text-7xl font-normal tracking-tight leading-[1.15]">
+        {/* Headline — Poppins display font, word-by-word reveal */}
+        <h1 className="font-display text-4xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tight leading-[1.05]">
           <AnimatedHeading
             text="POWER YOUR WORLD."
             delay={100}
             stagger={80}
             className="block"
           />
-          <span className="block mt-4">
+          <span className="block mt-3">
             <AnimatedHeading
               text="WITHOUT LIMITS."
               delay={700}
@@ -177,20 +177,20 @@ export function Hero() {
         >
           <MagneticButton
             onClick={scrollToPlans}
-            className="w-full sm:w-auto h-12 px-8 text-sm font-pixel tracking-wider mc-btn-primary text-primary-foreground hover:mc-btn-primary rounded-none inline-flex items-center justify-center gap-2"
+            className="w-full sm:w-auto h-12 px-8 text-base font-sans font-semibold bg-primary text-primary-foreground hover:bg-primary/90 glow-emerald rounded-xl inline-flex items-center justify-center gap-2 transition-colors"
           >
             <Zap className="size-4" />
-            VIEW PLANS
+            View Plans
             <ChevronRight className="size-4" />
           </MagneticButton>
           <Button
             size="lg"
             variant="outline"
             onClick={scrollToFeatures}
-            className="w-full sm:w-auto h-12 px-8 text-sm font-pixel tracking-wider mc-btn text-foreground rounded-none border-border"
+            className="w-full sm:w-auto h-12 px-8 text-base font-sans font-medium bg-foreground/5 backdrop-blur-md border-border/60 hover:bg-foreground/10 rounded-xl"
           >
             <Cloud className="size-4" />
-            EXPLORE
+            Explore Features
           </Button>
         </div>
 
@@ -202,23 +202,23 @@ export function Hero() {
           <TrustStat
             icon={<Server className="size-4" />}
             value={<AnimatedCounter value={99.9} decimals={1} suffix="%" />}
-            label="UPTIME SLA"
+            label="Uptime SLA"
           />
           <TrustStat
             icon={<Zap className="size-4" />}
             value={<><AnimatedCounter value={60} suffix="s" /></>}
-            label="AVG DEPLOY"
+            label="Avg deploy"
           />
           <TrustStat
             icon={<Shield className="size-4" />}
             value={<><AnimatedCounter value={24} />/<AnimatedCounter value={7} /></>}
-            label="PROTECTED"
+            label="Protected"
           />
         </div>
 
         {/* Bottom mini stats bar */}
         <div
-          className="mt-12 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs text-muted-foreground animate-fade-in-up font-vt323 text-sm"
+          className="mt-12 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-muted-foreground animate-fade-in-up font-sans"
           style={{ animationDelay: "2s", animationFillMode: "forwards" }}
         >
           <span className="inline-flex items-center gap-1.5">
@@ -239,7 +239,7 @@ export function Hero() {
       </div>
 
       {/* Dirt block texture strip at bottom — Minecraft ground */}
-      <div className="absolute bottom-0 left-0 right-0 h-3 bg-dirt opacity-40 z-[4] pixelated" aria-hidden="true" />
+      <div className="absolute bottom-0 left-0 right-0 h-3 bg-dirt opacity-30 z-[4] pixelated" aria-hidden="true" />
 
       {/* Scroll cue */}
       <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 hidden sm:flex flex-col items-center gap-2 text-muted-foreground/70 animate-fade-in-up" style={{ animationDelay: "2.2s", animationFillMode: "forwards" }}>
@@ -265,9 +265,9 @@ function TrustStat({
     <div className="flex flex-col items-center gap-1 group">
       <div className="flex items-center gap-1.5 text-primary group-hover:scale-110 transition-transform">
         {icon}
-        <span className="font-pixel text-xl sm:text-2xl">{value}</span>
+        <span className="font-display font-bold text-2xl sm:text-3xl">{value}</span>
       </div>
-      <span className="font-pixel text-[8px] sm:text-[9px] text-muted-foreground uppercase tracking-wider">
+      <span className="text-xs sm:text-sm text-muted-foreground uppercase tracking-wider font-sans">
         {label}
       </span>
     </div>

@@ -54,10 +54,10 @@ export function ControlPanelSection() {
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <Reveal className="max-w-2xl">
           <SectionEyebrow>Control Panel</SectionEyebrow>
-          <h2 className="font-pixel text-2xl sm:text-3xl lg:text-4xl font-normal tracking-tight mt-4 leading-tight">
+          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mt-4 leading-tight">
             One panel.
             <br />
-            <span className="text-gradient-hades text-xl sm:text-2xl lg:text-3xl">Total control.</span>
+            <span className="text-gradient-hades">Total control.</span>
           </h2>
           <p className="mt-4 text-muted-foreground text-base sm:text-lg leading-relaxed">
             Start, stop, restart, manage files and roll back to backups — all
