@@ -38,17 +38,19 @@ export function PlansSection() {
       id="plans"
       className="relative py-20 sm:py-28 overflow-hidden"
     >
-      {/* Stone / block texture atmosphere — real Minecraft block image */}
+      {/* Stone block texture atmosphere — real Minecraft image */}
       <div className="absolute inset-0 z-0">
         <img
-          src="/images/minecraft/forest-bg.jpg"
+          src="/images/minecraft/stone-block.jpg"
           alt=""
           aria-hidden="true"
-          className="w-full h-full object-cover opacity-12"
+          className="w-full h-full object-cover opacity-12 pixelated"
           loading="lazy"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-background via-background/92 to-background" />
       </div>
+      {/* Top stone border strip */}
+      <div className="absolute top-0 left-0 right-0 h-2 bg-stone-mc opacity-50 pixelated" aria-hidden="true" />
       <div
         className="absolute inset-0 opacity-30 pointer-events-none"
         style={{
@@ -62,8 +64,10 @@ export function PlansSection() {
           <div className="flex justify-center">
             <SectionEyebrow>Minecraft Hosting Plans</SectionEyebrow>
           </div>
-          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mt-3">
-            Pick a plan. <span className="text-gradient-hades">Conquer the world.</span>
+          <h2 className="font-pixel text-2xl sm:text-3xl lg:text-4xl font-normal tracking-tight mt-3 leading-tight">
+            Pick a plan.
+            <br />
+            <span className="text-gradient-hades text-xl sm:text-2xl lg:text-3xl">Conquer the world.</span>
           </h2>
           <p className="mt-4 text-muted-foreground text-base sm:text-lg leading-relaxed">
             Every plan ships with NVMe storage, DDoS protection and instant
@@ -146,31 +150,31 @@ function PlanCard({
     <TiltCard maxTilt={4} scale={1.015} className="h-full">
       <article
         className={cn(
-          "group relative h-full glass-card rounded-2xl p-6 flex flex-col overflow-hidden",
+          "group relative h-full glass-card rounded-none p-6 flex flex-col overflow-hidden mc-border",
           "transition-all duration-300",
           "hover:border-primary/40",
           isFeatured
-            ? "ring-1 ring-primary/40 animate-glow-pulse"
-            : "border-border/40"
+            ? "mc-border-emerald animate-glow-pulse"
+            : ""
         )}
       >
         {/* Gradient corner glow on hover */}
         <div className="absolute -top-20 -right-20 w-40 h-40 rounded-full bg-primary/0 group-hover:bg-primary/10 blur-3xl transition-all duration-700 pointer-events-none" />
 
         {isFeatured && (
-          <span className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-primary/20 border border-primary/40 backdrop-blur-md text-[10px] font-bold tracking-[0.2em] uppercase text-primary z-10 flex items-center gap-1.5">
+          <span className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 mc-border bg-primary/20 backdrop-blur-md text-[9px] font-pixel tracking-[0.15em] uppercase text-primary z-10 flex items-center gap-1.5">
             <span className="size-1.5 rounded-full bg-primary animate-pulse-glow" />
-            Most Popular
+            Popular
           </span>
         )}
 
         {/* Header */}
         <div className="flex items-start justify-between mb-5 relative">
           <div>
-            <p className="text-[10px] tracking-[0.3em] uppercase text-muted-foreground mb-1">
+            <p className="font-vt323 text-sm tracking-[0.2em] uppercase text-muted-foreground mb-1">
               {plan.category}
             </p>
-            <h3 className="font-display font-bold text-2xl tracking-wide">
+            <h3 className="font-pixel text-xl tracking-wide">
               {plan.name}
             </h3>
           </div>
@@ -180,15 +184,15 @@ function PlanCard({
         {/* Price */}
         <div className="mb-6 relative">
           <div className="flex items-baseline gap-1.5">
-            <span className="text-2xl text-muted-foreground font-display">₹</span>
-            <span className="font-display font-bold text-5xl tracking-tight">
+            <span className="text-2xl text-muted-foreground font-vt323">₹</span>
+            <span className="font-pixel text-4xl tracking-tight">
               {Math.floor(plan.price)}
             </span>
-            <span className="text-sm text-muted-foreground">
+            <span className="font-vt323 text-sm text-muted-foreground">
               /{plan.duration.toLowerCase().replace("1 ", "")}
             </span>
           </div>
-          <p className="text-xs text-muted-foreground mt-1.5 flex items-center gap-1.5">
+          <p className="font-vt323 text-sm text-muted-foreground mt-1.5 flex items-center gap-1.5">
             <Check className="size-3 text-primary" />
             Billed {plan.duration.toLowerCase()}
           </p>
@@ -203,11 +207,11 @@ function PlanCard({
         </dl>
 
         {/* Inclusion strip */}
-        <div className="flex flex-wrap gap-2 mb-5 text-[10px]">
+        <div className="flex flex-wrap gap-2 mb-5">
           {["DDoS", "NVMe", "24/7"].map((t) => (
             <span
               key={t}
-              className="px-2 py-0.5 rounded-md bg-foreground/5 border border-border/40 text-muted-foreground uppercase tracking-wider"
+              className="px-2 py-0.5 mc-slot text-[10px] font-pixel text-muted-foreground uppercase tracking-wider"
             >
               {t}
             </span>
@@ -217,14 +221,14 @@ function PlanCard({
         <Button
           onClick={onOrder}
           className={cn(
-            "w-full h-11 group/btn relative overflow-hidden",
+            "w-full h-12 group/btn relative overflow-hidden rounded-none font-pixel text-xs tracking-wider",
             isFeatured
-              ? "bg-primary text-primary-foreground hover:bg-primary/90 glow-emerald"
-              : "bg-foreground/10 text-foreground hover:bg-foreground/15 border border-border hover:border-primary/40"
+              ? "mc-btn-primary text-primary-foreground"
+              : "mc-btn text-foreground"
           )}
         >
           <Zap className="size-4 transition-transform group-hover/btn:scale-110" />
-          Order Now
+          ORDER NOW
           <ChevronRight className="size-4 transition-transform group-hover/btn:translate-x-0.5" />
         </Button>
       </article>
@@ -243,12 +247,12 @@ function SpecRow({
 }) {
   return (
     <div className="flex items-center justify-between py-2 border-b border-border/40 last:border-0">
-      <dt className="text-xs uppercase tracking-wider text-muted-foreground">
+      <dt className="font-vt323 text-sm tracking-wider text-muted-foreground uppercase">
         {label}
       </dt>
       <dd
         className={cn(
-          "text-sm font-medium",
+          "font-vt323 text-base font-medium",
           highlight && "text-primary"
         )}
       >

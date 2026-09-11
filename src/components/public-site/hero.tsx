@@ -74,9 +74,9 @@ export function Hero() {
       {/* ===== Layer 5: Particle embers ===== */}
       <ParticleField count={32} />
 
-      {/* ===== Layer 6: Decorative floating grass blocks ===== */}
+      {/* ===== Layer 6: Decorative floating grass blocks + creeper ===== */}
       <div className="absolute inset-0 z-[3] pointer-events-none overflow-hidden">
-        {/* Large block right */}
+        {/* Large grass block right */}
         <div
           className="absolute top-[18%] right-[6%] hidden lg:block animate-float-block"
           style={{ "--rot": "12deg" } as React.CSSProperties}
@@ -85,11 +85,11 @@ export function Hero() {
             src="/images/minecraft/block-grass.png"
             alt=""
             aria-hidden="true"
-            className="w-28 h-28 object-contain opacity-50"
+            className="w-28 h-28 object-contain opacity-50 pixelated"
             style={{ filter: "drop-shadow(0 12px 32px oklch(0.74 0.18 145 / 35%))" }}
           />
         </div>
-        {/* Small block left */}
+        {/* Small grass block left */}
         <div
           className="absolute top-[35%] left-[5%] hidden lg:block animate-float-block"
           style={{ "--rot": "-15deg", animationDelay: "1.5s" } as React.CSSProperties}
@@ -98,21 +98,34 @@ export function Hero() {
             src="/images/minecraft/block-grass.png"
             alt=""
             aria-hidden="true"
-            className="w-20 h-20 object-contain opacity-35"
+            className="w-20 h-20 object-contain opacity-35 pixelated"
             style={{ filter: "drop-shadow(0 8px 20px oklch(0.78 0.16 75 / 30%))" }}
           />
         </div>
-        {/* Tiny block far right */}
+        {/* Diamond ore decoration bottom right */}
         <div
-          className="absolute bottom-[28%] right-[12%] hidden xl:block animate-float-block"
+          className="absolute bottom-[20%] right-[8%] hidden xl:block animate-float-block"
           style={{ "--rot": "8deg", animationDelay: "3s" } as React.CSSProperties}
         >
           <img
-            src="/images/minecraft/block-grass.png"
+            src="/images/minecraft/diamond-ore.png"
             alt=""
             aria-hidden="true"
-            className="w-14 h-14 object-contain opacity-30"
-            style={{ filter: "drop-shadow(0 4px 12px oklch(0.65 0.22 280 / 30%))" }}
+            className="w-24 h-24 object-cover opacity-30 pixelated clip-mc"
+            style={{ filter: "drop-shadow(0 4px 16px oklch(0.7 0.15 220 / 35%))" }}
+          />
+        </div>
+        {/* Creeper peeking from bottom left */}
+        <div
+          className="absolute bottom-[8%] left-[4%] hidden lg:block animate-float-block"
+          style={{ "--rot": "-5deg", animationDelay: "2s" } as React.CSSProperties}
+        >
+          <img
+            src="/images/minecraft/creeper.jpg"
+            alt=""
+            aria-hidden="true"
+            className="w-20 h-24 object-cover opacity-25 pixelated clip-mc"
+            style={{ filter: "drop-shadow(0 4px 12px oklch(0.4 0.15 145 / 30%))" }}
           />
         </div>
       </div>
@@ -120,24 +133,24 @@ export function Hero() {
       {/* ===== Layer 7: Content ===== */}
       <div className="relative z-10 mx-auto max-w-5xl px-4 sm:px-6 text-center pt-24 pb-20">
         {/* Badge */}
-        <div className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/5 backdrop-blur-md px-4 py-1.5 text-xs font-medium text-primary mb-8 animate-fade-in-up glow-emerald">
+        <div className="inline-flex items-center gap-2 rounded-none mc-border bg-primary/5 backdrop-blur-md px-4 py-1.5 text-xs font-medium text-primary mb-8 animate-fade-in-up">
           <span className="relative flex size-2">
             <span className="absolute inline-flex h-full w-full rounded-full bg-primary opacity-75 animate-ping" />
             <span className="relative inline-flex size-2 rounded-full bg-primary" />
           </span>
-          NVMe storage now standard on every plan
+          <span className="font-vt323 text-base">NVMe storage now standard on every plan</span>
           <span className="text-primary/40">→</span>
         </div>
 
-        {/* Headline — word-by-word reveal */}
-        <h1 className="font-display text-4xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tight leading-[1.02]">
+        {/* Headline — pixel font, word-by-word reveal */}
+        <h1 className="font-pixel text-3xl sm:text-5xl lg:text-6xl xl:text-7xl font-normal tracking-tight leading-[1.15]">
           <AnimatedHeading
             text="POWER YOUR WORLD."
             delay={100}
             stagger={80}
             className="block"
           />
-          <span className="block mt-2">
+          <span className="block mt-4">
             <AnimatedHeading
               text="WITHOUT LIMITS."
               delay={700}
@@ -164,20 +177,20 @@ export function Hero() {
         >
           <MagneticButton
             onClick={scrollToPlans}
-            className="w-full sm:w-auto h-12 px-8 text-base bg-primary text-primary-foreground hover:bg-primary/90 glow-emerald rounded-md inline-flex items-center justify-center gap-2 font-medium"
+            className="w-full sm:w-auto h-12 px-8 text-sm font-pixel tracking-wider mc-btn-primary text-primary-foreground hover:mc-btn-primary rounded-none inline-flex items-center justify-center gap-2"
           >
             <Zap className="size-4" />
-            View Plans
+            VIEW PLANS
             <ChevronRight className="size-4" />
           </MagneticButton>
           <Button
             size="lg"
             variant="outline"
             onClick={scrollToFeatures}
-            className="w-full sm:w-auto h-12 px-8 text-base bg-foreground/5 backdrop-blur-md border-border/60 hover:bg-foreground/10"
+            className="w-full sm:w-auto h-12 px-8 text-sm font-pixel tracking-wider mc-btn text-foreground rounded-none border-border"
           >
             <Cloud className="size-4" />
-            Explore Features
+            EXPLORE
           </Button>
         </div>
 
@@ -189,23 +202,23 @@ export function Hero() {
           <TrustStat
             icon={<Server className="size-4" />}
             value={<AnimatedCounter value={99.9} decimals={1} suffix="%" />}
-            label="Uptime SLA"
+            label="UPTIME SLA"
           />
           <TrustStat
             icon={<Zap className="size-4" />}
             value={<><AnimatedCounter value={60} suffix="s" /></>}
-            label="Avg deploy"
+            label="AVG DEPLOY"
           />
           <TrustStat
             icon={<Shield className="size-4" />}
             value={<><AnimatedCounter value={24} />/<AnimatedCounter value={7} /></>}
-            label="Protected"
+            label="PROTECTED"
           />
         </div>
 
         {/* Bottom mini stats bar */}
         <div
-          className="mt-12 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs text-muted-foreground animate-fade-in-up"
+          className="mt-12 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs text-muted-foreground animate-fade-in-up font-vt323 text-sm"
           style={{ animationDelay: "2s", animationFillMode: "forwards" }}
         >
           <span className="inline-flex items-center gap-1.5">
@@ -224,6 +237,9 @@ export function Hero() {
           </span>
         </div>
       </div>
+
+      {/* Dirt block texture strip at bottom — Minecraft ground */}
+      <div className="absolute bottom-0 left-0 right-0 h-3 bg-dirt opacity-40 z-[4] pixelated" aria-hidden="true" />
 
       {/* Scroll cue */}
       <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 hidden sm:flex flex-col items-center gap-2 text-muted-foreground/70 animate-fade-in-up" style={{ animationDelay: "2.2s", animationFillMode: "forwards" }}>
@@ -249,9 +265,9 @@ function TrustStat({
     <div className="flex flex-col items-center gap-1 group">
       <div className="flex items-center gap-1.5 text-primary group-hover:scale-110 transition-transform">
         {icon}
-        <span className="font-display font-bold text-2xl sm:text-3xl">{value}</span>
+        <span className="font-pixel text-xl sm:text-2xl">{value}</span>
       </div>
-      <span className="text-[11px] sm:text-xs text-muted-foreground uppercase tracking-wider">
+      <span className="font-pixel text-[8px] sm:text-[9px] text-muted-foreground uppercase tracking-wider">
         {label}
       </span>
     </div>

@@ -9,6 +9,8 @@
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --font-display: var(--font-display);
+  --font-pixel: var(--font-pixel);
+  --font-vt323: var(--font-vt323);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -351,5 +353,120 @@
   }
   .animate-aurora {
     animation: aurora-shift 18s ease-in-out infinite;
+  }
+
+  /* ===== MINECRAFT UI UTILITIES ===== */
+
+  /* Pixel font utility — for headings, badges, labels */
+  .font-pixel {
+    font-family: var(--font-pixel), monospace;
+  }
+  .font-vt323 {
+    font-family: var(--font-vt323), monospace;
+  }
+
+  /* Crisp pixel rendering for block textures / icons */
+  .pixelated {
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+  }
+
+  /* Minecraft-style hard pixel border (no anti-aliasing) */
+  .mc-border {
+    border: 2px solid oklch(1 0 0 / 12%);
+    border-image: linear-gradient(135deg, oklch(1 0 0 / 18%), oklch(0 0 0 / 30%)) 1;
+    box-shadow:
+      inset 2px 2px 0 0 oklch(1 0 0 / 8%),
+      inset -2px -2px 0 0 oklch(0 0 0 / 40%);
+  }
+
+  .mc-border-emerald {
+    border: 2px solid oklch(0.74 0.18 145 / 50%);
+    box-shadow:
+      inset 2px 2px 0 0 oklch(0.74 0.18 145 / 15%),
+      inset -2px -2px 0 0 oklch(0 0 0 / 50%),
+      0 0 24px oklch(0.74 0.18 145 / 25%);
+  }
+
+  /* Minecraft button — 3D beveled block */
+  .mc-btn {
+    position: relative;
+    border: 2px solid oklch(0 0 0 / 60%);
+    background: linear-gradient(180deg, oklch(0.22 0.012 245) 0%, oklch(0.16 0.012 245) 100%);
+    box-shadow:
+      inset 2px 2px 0 0 oklch(1 0 0 / 10%),
+      inset -2px -2px 0 0 oklch(0 0 0 / 50%);
+    transition: all 120ms ease-out;
+  }
+  .mc-btn:hover {
+    background: linear-gradient(180deg, oklch(0.26 0.012 245) 0%, oklch(0.20 0.012 245) 100%);
+    transform: translateY(-1px);
+    box-shadow:
+      inset 2px 2px 0 0 oklch(1 0 0 / 14%),
+      inset -2px -2px 0 0 oklch(0 0 0 / 50%),
+      0 4px 0 0 oklch(0 0 0 / 60%);
+  }
+  .mc-btn:active {
+    transform: translateY(1px);
+    box-shadow:
+      inset 2px 2px 0 0 oklch(0 0 0 / 40%),
+      inset -2px -2px 0 0 oklch(1 0 0 / 8%);
+  }
+  .mc-btn-primary {
+    border: 2px solid oklch(0 0 0 / 70%);
+    background: linear-gradient(180deg, oklch(0.74 0.18 145 / 0.95) 0%, oklch(0.6 0.18 145 / 0.95) 100%);
+    box-shadow:
+      inset 2px 2px 0 0 oklch(1 0 0 / 25%),
+      inset -2px -2px 0 0 oklch(0 0 0 / 50%),
+      0 0 32px oklch(0.74 0.18 145 / 30%);
+  }
+  .mc-btn-primary:hover {
+    background: linear-gradient(180deg, oklch(0.8 0.18 145 / 1) 0%, oklch(0.66 0.18 145 / 1) 100%);
+    box-shadow:
+      inset 2px 2px 0 0 oklch(1 0 0 / 30%),
+      inset -2px -2px 0 0 oklch(0 0 0 / 50%),
+      0 0 48px oklch(0.74 0.18 145 / 50%),
+      0 4px 0 0 oklch(0 0 0 / 60%);
+  }
+
+  /* Dirt block texture background — tiled */
+  .bg-dirt {
+    background-image: url("/images/minecraft/dirt-block.jpg");
+    background-size: 256px 256px;
+    background-repeat: repeat;
+  }
+  /* Stone block texture background — tiled */
+  .bg-stone-mc {
+    background-image: url("/images/minecraft/stone-block.jpg");
+    background-size: 256px 256px;
+    background-repeat: repeat;
+  }
+
+  /* Pixel grid overlay — for Minecraft-y feel */
+  .bg-mc-grid {
+    background-image:
+      linear-gradient(oklch(1 0 0 / 4%) 1px, transparent 1px),
+      linear-gradient(90deg, oklch(1 0 0 / 4%) 1px, transparent 1px);
+    background-size: 16px 16px;
+  }
+
+  /* Minecraft inventory slot style */
+  .mc-slot {
+    background: linear-gradient(180deg, oklch(0.13 0.012 245 / 0.9), oklch(0.18 0.012 245 / 0.9));
+    border: 2px solid oklch(0 0 0 / 60%);
+    box-shadow:
+      inset 2px 2px 0 0 oklch(1 0 0 / 6%),
+      inset -2px -2px 0 0 oklch(0 0 0 / 50%);
+  }
+
+  /* Pixel-corner clip — for blocky cards */
+  .clip-mc {
+    clip-path: polygon(
+      0 4px, 4px 4px, 4px 0,
+      calc(100% - 4px) 0, calc(100% - 4px) 4px, 100% 4px,
+      100% calc(100% - 4px), calc(100% - 4px) calc(100% - 4px), calc(100% - 4px) 100%,
+      4px 100%, 4px calc(100% - 4px), 0 calc(100% - 4px)
+    );
   }
 }

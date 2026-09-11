@@ -55,10 +55,10 @@ export function TestimonialsSection() {
           <div className="flex justify-center">
             <SectionEyebrow>From the community</SectionEyebrow>
           </div>
-          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mt-3">
+          <h2 className="font-pixel text-2xl sm:text-3xl lg:text-4xl font-normal tracking-tight mt-4 leading-tight">
             Loved by server owners.
             <br />
-            <span className="text-gradient-hades">Built for the long run.</span>
+            <span className="text-gradient-hades text-xl sm:text-2xl lg:text-3xl">Built for the long run.</span>
           </h2>
           <p className="mt-4 text-muted-foreground text-base sm:text-lg leading-relaxed">
             Real stories from communities running on Hades Cloud — from small

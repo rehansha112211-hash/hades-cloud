@@ -61,10 +61,10 @@ export function BrandLogo({
         <circle cx="32" cy="30" r="3" fill="url(#hades-amber)" />
       </svg>
       <span className="flex flex-col leading-none">
-        <span className="font-display text-[15px] font-bold tracking-[0.18em] text-foreground">
+        <span className="font-pixel text-[13px] tracking-[0.18em] text-foreground">
           HADES
         </span>
-        <span className="font-display text-[10px] font-medium tracking-[0.42em] text-muted-foreground">
+        <span className="font-pixel text-[8px] tracking-[0.42em] text-primary mt-1">
           CLOUD
         </span>
       </span>

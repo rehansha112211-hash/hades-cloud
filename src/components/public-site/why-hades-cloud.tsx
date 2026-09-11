@@ -78,10 +78,10 @@ export function WhyHadesCloud() {
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <Reveal className="max-w-2xl">
           <SectionEyebrow>Why Hades Cloud</SectionEyebrow>
-          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mt-3">
+          <h2 className="font-pixel text-2xl sm:text-3xl lg:text-4xl font-normal tracking-tight mt-4 leading-tight">
             Built for serious servers,
             <br />
-            <span className="text-gradient-hades">tuned for players.</span>
+            <span className="text-gradient-hades text-xl sm:text-2xl lg:text-3xl">tuned for players.</span>
           </h2>
           <p className="mt-4 text-muted-foreground text-base sm:text-lg leading-relaxed">
             Every layer of our stack — from the kernel to the network edge —
@@ -137,7 +137,7 @@ function FeatureCard({
       >
         <Icon className="size-5" />
       </div>
-      <h3 className="font-display font-bold text-base tracking-[0.05em] mb-2">
+      <h3 className="font-pixel text-[11px] tracking-[0.1em] mb-3 leading-relaxed">
         {title}
       </h3>
       <p className="text-sm text-muted-foreground leading-relaxed">
@@ -158,8 +158,8 @@ function FeatureCard({
 
 export function SectionEyebrow({ children }: { children: React.ReactNode }) {
   return (
-    <div className="inline-flex items-center gap-2 text-xs font-medium tracking-[0.25em] uppercase text-primary">
-      <span className="w-6 h-px bg-primary/60" />
+    <div className="inline-flex items-center gap-2 font-pixel text-[9px] tracking-[0.2em] uppercase text-primary">
+      <span className="w-6 h-0.5 bg-primary/60" />
       {children}
     </div>
   );

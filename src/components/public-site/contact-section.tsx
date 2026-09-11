@@ -64,10 +64,10 @@ export function ContactSection() {
           {/* Left — copy + support info */}
           <Reveal>
             <SectionEyebrow>Contact / Support</SectionEyebrow>
-            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mt-3">
+            <h2 className="font-pixel text-2xl sm:text-3xl lg:text-4xl font-normal tracking-tight mt-4 leading-tight">
               Talk to a human.
               <br />
-              <span className="text-gradient-hades">Anytime.</span>
+              <span className="text-gradient-hades text-xl sm:text-2xl lg:text-3xl">Anytime.</span>
             </h2>
             <p className="mt-4 text-muted-foreground text-base sm:text-lg leading-relaxed">
               Got a question before signing up? Need help with an existing
