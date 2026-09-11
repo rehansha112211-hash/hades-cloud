@@ -1,10 +1,9 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-
 /**
- * Reveal-on-scroll wrapper. Fades + slides up when scrolled into view.
- * Simplified to prevent crashes during rapid scroll (mount/unmount).
+ * Reveal component — simplified to a plain div wrapper.
+ * No IntersectionObserver, no state, no hooks.
+ * CSS animations handle the fade-in.
  */
 export function Reveal({
   children,
@@ -17,47 +16,8 @@ export function Reveal({
   delay?: number;
   as?: React.ElementType;
 }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el || typeof IntersectionObserver === "undefined") {
-      setVisible(true);
-      return;
-    }
-    try {
-      const obs = new IntersectionObserver(
-        function (entries) {
-          for (let i = 0; i < entries.length; i++) {
-            if (entries[i].isIntersecting) {
-              setVisible(true);
-              obs.disconnect();
-              break;
-            }
-          }
-        },
-        { threshold: 0.1 }
-      );
-      obs.observe(el);
-      return function () {
-        try { obs.disconnect(); } catch (e) { /* ignore */ }
-      };
-    } catch (e) {
-      setVisible(true);
-    }
-  }, []);
-
-  const baseClass = visible
-    ? "opacity-100 translate-y-0"
-    : "opacity-0 translate-y-4";
-
   return (
-    <Tag
-      ref={ref}
-      className={(baseClass + " transition-all duration-700 ease-out " + (className || "")).trim()}
-      style={{ transitionDelay: delay + "ms" }}
-    >
+    <Tag className={className || ""} style={delay ? { animationDelay: delay + "ms" } : undefined}>
       {children}
     </Tag>
   );
