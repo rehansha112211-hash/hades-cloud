@@ -12,19 +12,24 @@ import { TestimonialsSection } from "@/components/public-site/testimonials-secti
 import { FaqSection } from "@/components/public-site/faq-section";
 import { ContactSection } from "@/components/public-site/contact-section";
 import { Footer } from "@/components/public-site/footer";
-import { AnimatedStarfield } from "@/components/enhanced/animated-starfield";
 
 export function PublicSite() {
   return (
     <div className="min-h-screen flex flex-col relative">
-      {/* Fixed animated starfield background */}
+      {/* Static CSS gradient background (no canvas — prevents scroll crash) */}
       <div className="fixed inset-0 z-0 pointer-events-none">
-        <AnimatedStarfield density={1.2} className="w-full h-full" />
         <div
           className="absolute inset-0"
           style={{
             background:
-              "radial-gradient(ellipse 60% 50% at 20% 30%, oklch(0.45 0.15 260 / 0.08), transparent 70%), radial-gradient(ellipse 50% 40% at 80% 70%, oklch(0.55 0.18 280 / 0.06), transparent 70%)",
+              "radial-gradient(ellipse 80% 60% at 50% 0%, oklch(0.15 0.05 250 / 0.8), oklch(0.08 0.02 250) 50%, oklch(0.06 0.015 250) 100%)",
+          }}
+        />
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(ellipse 60% 50% at 20% 30%, oklch(0.45 0.15 260 / 0.06), transparent 70%), radial-gradient(ellipse 50% 40% at 80% 70%, oklch(0.55 0.18 280 / 0.04), transparent 70%)",
           }}
         />
       </div>
