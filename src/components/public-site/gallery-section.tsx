@@ -3,13 +3,20 @@
 import { Reveal } from "@/components/brand/reveal";
 import { SectionEyebrow } from "@/components/public-site/why-hades-cloud";
 import { TiltCard } from "@/components/enhanced/tilt-card";
-import { cn } from "@/lib/utils";
 
 /**
- * World Gallery section — Minecraft world showcase with CSS cosmic cards
- * + Steve and Alex character PNGs as decorative elements.
+ * Gallery section — cosmic cards with CSS gradients and CSS star dots.
+ * Simplified to prevent render crashes.
  */
-const COSMIC_CARDS = [
+type CardDef = {
+  title: string;
+  biome: string;
+  span: string;
+  gradient: string;
+  stars: number;
+};
+
+const COSMIC_CARDS: CardDef[] = [
   {
     title: "Deep Space",
     biome: "Galaxy",
@@ -45,15 +52,12 @@ const COSMIC_CARDS = [
     gradient: "radial-gradient(ellipse at 60% 50%, oklch(0.18 0.08 280 / 0.4), oklch(0.08 0.02 250) 70%)",
     stars: 35,
   },
-] as const;
+];
 
 export function GallerySection() {
   return (
     <section id="gallery" className="relative py-20 sm:py-28 overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0 z-0"
-        style={{ background: "radial-gradient(ellipse 60% 50% at 70% 30%, oklch(0.20 0.10 260 / 0.1), transparent 70%)" }}
-      />
+      <div className="absolute inset-0 z-0" style={{ background: "radial-gradient(ellipse 60% 50% at 70% 30%, oklch(0.20 0.10 260 / 0.1), transparent 70%)" }} />
       <div className="absolute inset-0 bg-pixel-grid opacity-15 pointer-events-none" />
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 z-10">
@@ -72,33 +76,30 @@ export function GallerySection() {
           </p>
         </Reveal>
 
-        {/* Bento-style gallery grid */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 auto-rows-[180px] sm:auto-rows-[220px]">
           {COSMIC_CARDS.map((card, i) => (
-            <Reveal key={card.title} delay={i * 80} className={cn("group", card.span)}>
+            <Reveal key={card.title} delay={i * 80} className={"group " + card.span}>
               <TiltCard maxTilt={4} className="h-full">
                 <div className="relative h-full overflow-hidden rounded-2xl border border-border/60 group-hover:border-primary/40 transition-colors">
-                  {/* Cosmic gradient background */}
                   <div className="absolute inset-0" style={{ background: card.gradient }} />
 
-                  {/* CSS star dots */}
                   <div className="absolute inset-0">
                     {Array.from({ length: card.stars }).map((_, si) => {
-                      const left = ((si * 73 + 17) % 100);
-                      const top = ((si * 91 + 31) % 100);
+                      const left = (si * 73 + 17) % 100;
+                      const top = (si * 91 + 31) % 100;
                       const size = 1 + ((si * 13) % 3);
-                      const delay = (si * 0.3) % 4;
+                      const animDelay = (si * 0.3) % 4;
                       return (
                         <span
                           key={si}
                           className="absolute rounded-full bg-white animate-pulse-glow"
                           style={{
-                            left: `${left}%`,
-                            top: `${top}%`,
-                            width: `${size}px`,
-                            height: `${size}px`,
+                            left: left + "%",
+                            top: top + "%",
+                            width: size + "px",
+                            height: size + "px",
                             opacity: 0.4 + ((si % 5) * 0.1),
-                            animationDelay: `${delay}s`,
+                            animationDelay: animDelay + "s",
                             boxShadow: si % 3 === 0 ? "0 0 4px rgba(200,220,255,0.6)" : "none",
                           }}
                         />
@@ -106,12 +107,8 @@ export function GallerySection() {
                     })}
                   </div>
 
-                  {/* Hover glow */}
-                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700"
-                    style={{ background: "radial-gradient(circle at 50% 50%, oklch(0.65 0.20 240 / 0.08), transparent 70%)" }}
-                  />
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700" style={{ background: "radial-gradient(circle at 50% 50%, oklch(0.65 0.20 240 / 0.08), transparent 70%)" }} />
 
-                  {/* Title overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-background/95 via-background/20 to-transparent" />
                   <div className="absolute bottom-0 left-0 right-0 p-4">
                     <p className="text-[10px] font-medium tracking-[0.2em] uppercase text-primary mb-1">
