@@ -4,8 +4,7 @@ import { useEffect, useRef, useState } from "react";
 
 /**
  * Animated count-up hook.
- * Counts from `from` to `to` over `duration` ms when `start` becomes true.
- * Uses requestAnimationFrame with easeOutExpo easing.
+ * CRASH-FIX: guards against unmount during animation, cancels rAF properly.
  */
 export function useCountUp(
   to: number,
@@ -15,8 +14,10 @@ export function useCountUp(
   const [value, setValue] = useState(from);
   const rafRef = useRef<number | null>(null);
   const startedRef = useRef(false);
+  const mountedRef = useRef(true);
 
   useEffect(() => {
+    mountedRef.current = true;
     if (!start || startedRef.current) return;
     startedRef.current = true;
 
@@ -24,12 +25,17 @@ export function useCountUp(
     const startTime = performance.now();
 
     const tick = (now: number) => {
+      if (!mountedRef.current) return;
       const elapsed = now - startTime;
       const progress = Math.min(elapsed / duration, 1);
       const eased = easeOutExpo(progress);
       const current = from + (to - from) * eased;
-      setValue(decimals > 0 ? parseFloat(current.toFixed(decimals)) : Math.floor(current));
-      if (progress < 1) {
+      try {
+        setValue(decimals > 0 ? parseFloat(current.toFixed(decimals)) : Math.floor(current));
+      } catch {
+        setValue(to);
+      }
+      if (progress < 1 && mountedRef.current) {
         rafRef.current = requestAnimationFrame(tick);
       } else {
         setValue(to);
@@ -37,6 +43,7 @@ export function useCountUp(
     };
     rafRef.current = requestAnimationFrame(tick);
     return () => {
+      mountedRef.current = false;
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
     };
   }, [start, to, from, duration, decimals]);
