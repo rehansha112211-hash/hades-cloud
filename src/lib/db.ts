@@ -1,12 +1,6 @@
 import { PrismaClient } from '@prisma/client'
 
-/**
- * Prisma client singleton.
- * On Vercel serverless, we MUST reuse the client across warm invocations
- * to avoid exhausting DB connections. We also ensure the correct
- * DATABASE_URL is used (defaults to /tmp/hades-cloud.db on Vercel).
- */
-const dbUrl = process.env.DATABASE_URL || 'file:/tmp/hades-cloud.db'
+const dbUrl = process.env.DATABASE_URL || 'postgresql://neondb_owner:npg_xNm8DUl3pKWt@ep-wild-mud-b392bodl-pooler.c-4.ap-southeast-1.aws.neon.tech/neondb?sslmode=require'
 
 const globalForPrisma = globalThis as unknown as {
   prisma: PrismaClient | undefined
