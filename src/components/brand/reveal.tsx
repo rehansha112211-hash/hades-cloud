@@ -1,11 +1,10 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { cn } from "@/lib/utils";
 
 /**
- * Wraps children and triggers a fade-in-up animation when they enter the viewport.
- * CRASH-FIX: guards against missing elements, try/catch around observer.
+ * Reveal-on-scroll wrapper. Fades + slides up when scrolled into view.
+ * Simplified to prevent crashes during rapid scroll (mount/unmount).
  */
 export function Reveal({
   children,
@@ -23,44 +22,41 @@ export function Reveal({
 
   useEffect(() => {
     const el = ref.current;
-    if (!el) {
+    if (!el || typeof IntersectionObserver === "undefined") {
       setVisible(true);
       return;
     }
-    if (typeof IntersectionObserver === "undefined") {
-      setVisible(true);
-      return;
-    }
-
     try {
       const obs = new IntersectionObserver(
-        (entries) => {
-          for (const e of entries) {
-            if (e.isIntersecting) {
+        function (entries) {
+          for (let i = 0; i < entries.length; i++) {
+            if (entries[i].isIntersecting) {
               setVisible(true);
               obs.disconnect();
               break;
             }
           }
         },
-        { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
+        { threshold: 0.1 }
       );
       obs.observe(el);
-      return () => obs.disconnect();
-    } catch {
+      return function () {
+        try { obs.disconnect(); } catch (e) { /* ignore */ }
+      };
+    } catch (e) {
       setVisible(true);
     }
   }, []);
 
+  const baseClass = visible
+    ? "opacity-100 translate-y-0"
+    : "opacity-0 translate-y-4";
+
   return (
     <Tag
       ref={ref}
-      className={cn(
-        "transition-all duration-700 ease-out",
-        visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4",
-        className
-      )}
-      style={{ transitionDelay: `${delay}ms` }}
+      className={(baseClass + " transition-all duration-700 ease-out " + (className || "")).trim()}
+      style={{ transitionDelay: delay + "ms" }}
     >
       {children}
     </Tag>
