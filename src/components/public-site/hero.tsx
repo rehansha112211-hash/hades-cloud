@@ -2,7 +2,6 @@
 
 import { ChevronRight, Cloud, Server, Zap, Shield, Globe, Cpu } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { AnimatedCounter } from "@/components/enhanced/animated-counter";
 
 /**
  * Cinematic hero with animated starfield + galaxy gradient background.
@@ -116,9 +115,9 @@ export function Hero() {
           className="mt-16 grid grid-cols-3 gap-4 sm:gap-8 max-w-3xl mx-auto animate-fade-in-up"
           style={{ animationDelay: "1.8s", animationFillMode: "forwards" }}
         >
-          <TrustStat icon={<Server className="size-4" />} value={<AnimatedCounter value={99.9} decimals={1} suffix="%" />} label="Uptime SLA" />
-          <TrustStat icon={<Zap className="size-4" />} value={<><AnimatedCounter value={60} suffix="s" /></>} label="Avg deploy" />
-          <TrustStat icon={<Shield className="size-4" />} value={<><AnimatedCounter value={24} />/<AnimatedCounter value={7} /></>} label="Protected" />
+          <TrustStat icon={<Server className="size-4" />} value="99.9%" label="Uptime SLA" />
+          <TrustStat icon={<Zap className="size-4" />} value="60s" label="Avg deploy" />
+          <TrustStat icon={<Shield className="size-4" />} value="24/7" label="Protected" />
         </div>
 
         {/* Mini stats bar */}
@@ -128,7 +127,7 @@ export function Hero() {
         >
           <span className="inline-flex items-center gap-1.5">
             <Globe className="size-3.5 text-primary" />
-            <AnimatedCounter value={12} /> data centers
+            12 data centers
           </span>
           <span className="text-border">•</span>
           <span className="inline-flex items-center gap-1.5">
@@ -138,7 +137,7 @@ export function Hero() {
           <span className="text-border">•</span>
           <span className="inline-flex items-center gap-1.5">
             <Server className="size-3.5 text-primary" />
-            <AnimatedCounter value={45000} suffix="+" /> servers deployed
+            45,000+ servers deployed
           </span>
         </div>
       </div>
@@ -154,7 +153,7 @@ export function Hero() {
   );
 }
 
-function TrustStat({ icon, value, label }: { icon: React.ReactNode; value: React.ReactNode; label: string }) {
+function TrustStat({ icon, value, label }: { icon: React.ReactNode; value: string; label: string }) {
   return (
     <div className="flex flex-col items-center gap-1 group">
       <div className="flex items-center gap-1.5 text-primary group-hover:scale-110 transition-transform">

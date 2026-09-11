@@ -7,7 +7,6 @@ import { OrderPage } from "@/components/public-site/order-page";
 import { OrderSuccessPage } from "@/components/public-site/order-success-page";
 import { AdminLogin } from "@/components/admin/admin-login";
 import { AdminShell } from "@/components/admin/admin-shell";
-import { ScrollProgressBar } from "@/components/enhanced/scroll-progress-bar";
 
 export default function Home() {
   const { view } = useNav();
@@ -21,15 +20,8 @@ export default function Home() {
     return () => window.removeEventListener("popstate", onPop);
   }, []);
 
-  const showProgress = !hydrated || view.name === "public";
-
   if (!hydrated || view.name === "public") {
-    return (
-      <>
-        {showProgress && <ScrollProgressBar />}
-        <PublicSite />
-      </>
-    );
+    return <PublicSite />;
   }
 
   if (view.name === "order") {
@@ -48,10 +40,5 @@ export default function Home() {
     return <AdminShell />;
   }
 
-  return (
-    <>
-      <ScrollProgressBar />
-      <PublicSite />
-    </>
-  );
+  return <PublicSite />;
 }

@@ -2,7 +2,6 @@
 
 import { Server, Users, Globe, Clock, Zap, ShieldCheck } from "lucide-react";
 import { Reveal } from "@/components/brand/reveal";
-import { AnimatedCounter } from "@/components/enhanced/animated-counter";
 
 /**
  * Metrics / Stats bar — animated counters showing real-feel scale.
@@ -107,7 +106,7 @@ function MetricCard({
         <Icon className="size-5" />
       </div>
       <div className="font-display font-bold text-3xl sm:text-4xl tracking-tight">
-        <AnimatedCounter value={value} decimals={decimals ?? 0} suffix={suffix ?? ""} />
+        {value}{suffix}
       </div>
       <p className="text-[11px] sm:text-xs text-muted-foreground uppercase tracking-wider mt-2 font-sans">
         {label}
