@@ -56,28 +56,6 @@ export function GallerySection() {
       />
       <div className="absolute inset-0 bg-pixel-grid opacity-15 pointer-events-none" />
 
-      {/* Steve & Alex — floating character decorations */}
-      <div className="absolute inset-0 z-[2] pointer-events-none overflow-hidden">
-        {/* Steve — right side */}
-        <div className="absolute top-[10%] right-[3%] hidden lg:block animate-float-block" style={{ "--rot": "8deg" } as React.CSSProperties}>
-          <img
-            src="/images/characters/steve.png"
-            alt="Steve — Minecraft character"
-            className="w-32 h-auto object-contain opacity-40 pixelated"
-            style={{ filter: "drop-shadow(0 12px 28px oklch(0.65 0.20 240 / 30%))" }}
-          />
-        </div>
-        {/* Alex — left side */}
-        <div className="absolute bottom-[15%] left-[3%] hidden lg:block animate-float-block" style={{ "--rot": "-6deg", animationDelay: "1.5s" } as React.CSSProperties}>
-          <img
-            src="/images/characters/alex.png"
-            alt="Alex — Minecraft character"
-            className="w-28 h-auto object-contain opacity-35 pixelated"
-            style={{ filter: "drop-shadow(0 10px 24px oklch(0.55 0.15 260 / 25%))" }}
-          />
-        </div>
-      </div>
-
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 z-10">
         <Reveal className="max-w-2xl mx-auto text-center mb-12">
           <div className="flex justify-center">

@@ -8,8 +8,7 @@ import { MagneticButton } from "@/components/enhanced/magnetic-button";
 import { AnimatedCounter } from "@/components/enhanced/animated-counter";
 
 /**
- * Cinematic hero with pure animated starfield (no images).
- * Stars, nebula clouds, and shooting stars are all canvas-rendered.
+ * Cinematic hero with animated starfield + galaxy gradient background.
  */
 export function Hero() {
   const scrollToPlans = () =>
@@ -22,61 +21,48 @@ export function Hero() {
       id="home"
       className="relative min-h-[100svh] flex items-center justify-center overflow-hidden bg-hades-hero"
     >
-      {/* Layer 1: Dark space base (no image — starfield is canvas-rendered globally) */}
-      <div className="absolute inset-0 z-0 bg-hades-hero" />
-
-      {/* Layer 2: Aurora gradient orbs */}
-      <div className="absolute inset-0 z-[1] overflow-hidden pointer-events-none">
+      {/* Layer 1: Galaxy gradient background — not pure black */}
+      <div className="absolute inset-0 z-0">
+        {/* Deep space gradient with subtle blue glow */}
         <div
-          className="absolute -top-1/4 -left-1/4 w-[600px] h-[600px] rounded-full opacity-40 blur-3xl animate-aurora"
-          style={{ background: "radial-gradient(circle, oklch(0.65 0.20 240 / 0.15), transparent 70%)" }}
+          className="absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(ellipse 100% 80% at 50% 0%, oklch(0.15 0.04 250 / 0.9), oklch(0.08 0.02 250) 60%, oklch(0.06 0.015 250) 100%)",
+          }}
+        />
+        {/* Aurora gradient orbs — give depth and color */}
+        <div
+          className="absolute -top-1/4 -left-1/4 w-[600px] h-[600px] rounded-full opacity-30 blur-3xl animate-aurora"
+          style={{ background: "radial-gradient(circle, oklch(0.50 0.18 260 / 0.3), transparent 70%)" }}
         />
         <div
-          className="absolute top-1/3 -right-1/4 w-[500px] h-[500px] rounded-full opacity-30 blur-3xl animate-aurora"
-          style={{ background: "radial-gradient(circle, oklch(0.55 0.15 260 / 0.12), transparent 70%)", animationDelay: "4s" }}
+          className="absolute top-1/3 -right-1/4 w-[500px] h-[500px] rounded-full opacity-25 blur-3xl animate-aurora"
+          style={{ background: "radial-gradient(circle, oklch(0.55 0.15 240 / 0.25), transparent 70%)", animationDelay: "4s" }}
+        />
+        <div
+          className="absolute -bottom-1/4 left-1/4 w-[550px] h-[550px] rounded-full opacity-20 blur-3xl animate-aurora"
+          style={{ background: "radial-gradient(circle, oklch(0.45 0.12 280 / 0.2), transparent 70%)", animationDelay: "8s" }}
         />
       </div>
 
-      {/* Layer 3: Cursor glow */}
+      {/* Layer 2: Cursor glow */}
       <CursorGlow size={500} color="oklch(0.65 0.20 240 / 0.05)" />
 
-      {/* Layer 4: Dark vignette for readability */}
+      {/* Layer 3: Dark vignette for text readability — center spotlight */}
       <div className="absolute inset-0 z-[2] pointer-events-none">
         <div
           className="absolute inset-0"
           style={{
             background:
-              "radial-gradient(ellipse 70% 60% at 50% 50%, oklch(0.05 0.02 250 / 0.75), transparent 70%)",
+              "radial-gradient(ellipse 70% 60% at 50% 50%, oklch(0.06 0.02 250 / 0.6), transparent 70%)",
           }}
         />
         <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-background to-transparent" />
         <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-background to-transparent" />
       </div>
 
-      {/* Layer 5: Particle stars */}
-      {/* Particle stars handled by global AnimatedStarfield */}
-
-      {/* Layer 5: Steve & Alex — floating character decorations */}
-      <div className="absolute inset-0 z-[3] pointer-events-none overflow-hidden">
-        <div className="absolute top-[12%] right-[5%] hidden lg:block animate-float-block" style={{ "--rot": "10deg" } as React.CSSProperties}>
-          <img
-            src="/images/characters/steve.png"
-            alt="Steve — Minecraft character"
-            className="w-36 h-auto object-contain opacity-45 pixelated"
-            style={{ filter: "drop-shadow(0 16px 40px oklch(0.65 0.20 240 / 35%))" }}
-          />
-        </div>
-        <div className="absolute bottom-[18%] left-[5%] hidden lg:block animate-float-block" style={{ "--rot": "-8deg", animationDelay: "2s" } as React.CSSProperties}>
-          <img
-            src="/images/characters/alex.png"
-            alt="Alex — Minecraft character"
-            className="w-32 h-auto object-contain opacity-40 pixelated"
-            style={{ filter: "drop-shadow(0 14px 32px oklch(0.55 0.15 260 / 30%))" }}
-          />
-        </div>
-      </div>
-
-      {/* Layer 6: Content */}
+      {/* Layer 4: Content */}
       <div className="relative z-10 mx-auto max-w-5xl px-4 sm:px-6 text-center pt-24 pb-20">
         {/* Badge */}
         <div className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/5 backdrop-blur-md px-4 py-1.5 text-sm font-medium text-primary mb-8 animate-fade-in-up glow-emerald">
