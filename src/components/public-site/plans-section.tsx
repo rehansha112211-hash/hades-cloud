@@ -38,16 +38,15 @@ export function PlansSection() {
       id="plans"
       className="relative py-20 sm:py-28 overflow-hidden"
     >
-      {/* Stone block texture atmosphere — real Minecraft image */}
+      {/* Stone block texture atmosphere — VISIBLE Minecraft */}
       <div className="absolute inset-0 z-0">
         <img
-          src="/images/minecraft/stone-block.jpg"
-          alt=""
-          aria-hidden="true"
-          className="w-full h-full object-cover opacity-12 pixelated"
+          src="/images/minecraft/village.jpg"
+          alt="Minecraft village at night"
+          className="w-full h-full object-cover opacity-30"
           loading="lazy"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-background via-background/92 to-background" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/85 via-background/75 to-background" />
       </div>
       {/* Top stone border strip */}
       <div className="absolute top-0 left-0 right-0 h-2 bg-stone-mc opacity-50 pixelated" aria-hidden="true" />

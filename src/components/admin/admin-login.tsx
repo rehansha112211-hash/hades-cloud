@@ -73,16 +73,16 @@ export function AdminLogin() {
 
   return (
     <div className="min-h-screen relative flex items-center justify-center bg-hades-hero px-4 py-12">
-      {/* Minecraft-themed background image (low opacity, decorative) */}
+      {/* Minecraft-themed background image — VISIBLE */}
       <div className="absolute inset-0 z-0">
         <img
-          src="/images/minecraft/login-bg.jpg"
-          alt="Minecraft dark landscape"
-          className="w-full h-full object-cover opacity-15"
+          src="/images/minecraft/hero-epic.jpg"
+          alt="Minecraft epic landscape"
+          className="w-full h-full object-cover opacity-40"
           fetchPriority="high"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/70 to-background" />
-        <div className="absolute inset-0 bg-pixel-grid opacity-30" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/60 to-background/80" />
+        <div className="absolute inset-0 bg-pixel-grid opacity-20" />
       </div>
 
       <ParticleField count={20} />

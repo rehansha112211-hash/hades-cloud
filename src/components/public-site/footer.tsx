@@ -46,16 +46,15 @@ export function Footer() {
 
   return (
     <footer className="relative mt-auto border-t border-border/60 overflow-hidden">
-      {/* Nether-inspired dark atmosphere */}
+      {/* Nether-inspired dark atmosphere — VISIBLE */}
       <div className="absolute inset-0 z-0">
         <img
           src="/images/minecraft/nether-bg.jpg"
-          alt=""
-          aria-hidden="true"
-          className="w-full h-full object-cover opacity-15"
+          alt="Minecraft Nether dimension"
+          className="w-full h-full object-cover opacity-35"
           loading="lazy"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-background via-background/85 to-background" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/70 to-background" />
       </div>
       <div
         className="absolute inset-0 opacity-40 pointer-events-none"

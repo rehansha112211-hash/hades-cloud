@@ -313,3 +313,72 @@ Stage Summary:
 - Minecraft theme preserved through background images only (hero landscape, cave, forest, nether, stone textures, floating grass blocks, creeper, diamond ore)
 - All cinematic interactions preserved (parallax, tilt, glow, counters, live console)
 - 100% lint clean, no console errors, fast loading
+
+---
+Task ID: 6
+Agent: Super Z (main)
+Task: Make Minecraft background photos and theme ACTUALLY VISIBLE throughout the site
+
+Work Log:
+- User feedback: Minecraft photos were barely visible (10-15% opacity). Need them clearly visible.
+- Searched internet for more epic Minecraft images via z-ai image-search:
+  - "Minecraft gameplay screenshot survival world beautiful" → 8 results
+  - "Minecraft village build house night cinematic" → 6 results
+  - "Minecraft epic mountain landscape panorama sunset" → 6 results
+- Downloaded 5 new epic images, optimized with sharp:
+  - hero-epic.jpg (566KB) — 4K Minecraft epic night landscape (official Minecraft screenshot)
+  - village.jpg (143KB) — Minecraft village at night
+  - panorama.jpg (195KB) — Mountain panorama sunset
+  - landscape.jpg (133KB) — Epic CurseForge landscape
+  - survival.jpg (172KB) — Survival world screenshot
+- Total image folder now 2.4MB (19 images)
+- DRAMATICALLY increased background image visibility:
+  - Hero: opacity 35% → 55% (Minecraft scene clearly visible)
+  - Why Hades Cloud (forest): opacity 10% → 30%
+  - Plans (village): opacity 12% → 30%
+  - Control Panel (cave): opacity 15% → 35%
+  - Features (landscape): opacity 12% → 35%
+  - Testimonials (village): opacity 10% → 30%
+  - FAQ (panorama): opacity 8% → 30%
+  - Contact (survival): opacity 10% → 30%
+  - Footer (nether): opacity 15% → 35%
+  - Metrics (landscape): opacity 8% → 25%
+  - Admin Login: opacity 15% → 40%
+- Adjusted gradient overlays to keep text readable:
+  - Used radial gradient dark spot in center (where text sits) instead of full overlay
+  - Top/bottom fade gradients for navbar/footer transitions
+  - from-background/85 via-background/75 to-background (lighter middle, darker edges)
+- Replaced hero background image with epic 4K Minecraft screenshot (hero-epic.jpg)
+- Made floating decorations MUCH more visible:
+  - Grass block right: opacity 50% → 70%, size 28→32
+  - Grass block left: opacity 35% → 60%, size 20→24
+  - Diamond ore: opacity 30% → 60%, size 24→28
+  - Creeper: opacity 25% → 50%, size 20→24
+  - NEW: Items/tools (diamond sword + pickaxe) floating top-left at 50% opacity
+- Added NEW "World Gallery" section (between Features and Testimonials):
+  - Bento-style grid showing 5 real Minecraft gameplay screenshots
+  - Each card has TiltCard 3D hover effect
+  - Titles + biome labels (Mountains, Plains, Extreme Hills, Underground, Forest)
+  - Hover zoom + expand icon
+  - First card spans 2x2 for hero shot
+- Added proper alt text to all images (accessibility + SEO)
+- Lint clean (0 errors)
+- Verified with agent-browser:
+  - Hero: Minecraft epic landscape clearly visible at 55% opacity
+  - All 10 sections show visible Minecraft backgrounds
+  - NEW Gallery section renders with 5 Minecraft gameplay screenshots
+  - 5 floating decorations visible in hero (grass blocks, diamond ore, creeper, tools)
+  - No console errors
+  - Mobile responsive verified at 375px
+  - Admin login page shows visible Minecraft background
+
+Stage Summary:
+- Minecraft photos are now CLEARLY VISIBLE throughout the entire website
+- Hero shows epic 4K Minecraft night landscape at 55% opacity
+- Every section has a distinct visible Minecraft atmosphere (forest/village/cave/landscape/panorama/survival/nether)
+- NEW World Gallery section showcases 5 real Minecraft gameplay screenshots in bento grid
+- 5 floating Minecraft decorations in hero (grass blocks, diamond ore, creeper, tools) at 50-70% opacity
+- Admin login shows visible Minecraft background
+- Text remains readable via radial gradient overlays
+- All images sourced from internet (NO AI generation)
+- 100% lint clean, no console errors

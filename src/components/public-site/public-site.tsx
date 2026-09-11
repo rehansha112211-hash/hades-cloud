@@ -7,6 +7,7 @@ import { MetricsSection } from "@/components/public-site/metrics-section";
 import { PlansSection } from "@/components/public-site/plans-section";
 import { ControlPanelSection } from "@/components/public-site/control-panel-section";
 import { FeaturesSection } from "@/components/public-site/features-section";
+import { GallerySection } from "@/components/public-site/gallery-section";
 import { TestimonialsSection } from "@/components/public-site/testimonials-section";
 import { FaqSection } from "@/components/public-site/faq-section";
 import { ContactSection } from "@/components/public-site/contact-section";
@@ -23,6 +24,7 @@ export function PublicSite() {
         <PlansSection />
         <ControlPanelSection />
         <FeaturesSection />
+        <GallerySection />
         <TestimonialsSection />
         <FaqSection />
         <ContactSection />

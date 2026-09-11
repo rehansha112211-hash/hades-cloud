@@ -38,15 +38,15 @@ const TESTIMONIALS = [
 export function TestimonialsSection() {
   return (
     <section className="relative py-20 sm:py-28 overflow-hidden">
+      {/* Minecraft village atmosphere — VISIBLE */}
       <div className="absolute inset-0 z-0">
         <img
-          src="/images/minecraft/forest-bg.jpg"
-          alt=""
-          aria-hidden="true"
-          className="w-full h-full object-cover opacity-10"
+          src="/images/minecraft/village.jpg"
+          alt="Minecraft village build"
+          className="w-full h-full object-cover opacity-30"
           loading="lazy"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-background via-background/92 to-background" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/85 via-background/75 to-background" />
       </div>
       <div className="absolute inset-0 bg-pixel-grid opacity-15 pointer-events-none" />
 

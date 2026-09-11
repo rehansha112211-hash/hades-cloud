@@ -21,7 +21,7 @@ import { AnimatedCounter } from "@/components/enhanced/animated-counter";
  *  - Particle ember field
  *  - Heavy dark gradient for text contrast
  */
-const HERO_BG = "/images/minecraft/hero-bg.jpg";
+const HERO_BG = "/images/minecraft/hero-epic.jpg";
 
 export function Hero() {
   const scrollToPlans = () =>
@@ -39,7 +39,7 @@ export function Hero() {
         <img
           src={HERO_BG}
           alt="Minecraft dark night landscape with mountains"
-          className="w-full h-full object-cover opacity-35 scale-110"
+          className="w-full h-full object-cover opacity-55 scale-110"
           loading="eager"
           fetchPriority="high"
         />
@@ -64,68 +64,85 @@ export function Hero() {
       {/* ===== Layer 3: Cursor glow ===== */}
       <CursorGlow size={500} color="oklch(0.74 0.18 145 / 0.06)" />
 
-      {/* ===== Layer 4: Dark vignette for readability ===== */}
+      {/* ===== Layer 4: Dark vignette for readability (only where text sits) ===== */}
       <div className="absolute inset-0 z-[2] pointer-events-none">
-        <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/60 to-background" />
-        <div className="absolute inset-0 bg-gradient-to-r from-background/85 via-transparent to-background/85" />
-        <div className="absolute inset-0 bg-pixel-grid opacity-30" />
+        {/* Center radial dark spot for text contrast */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(ellipse 70% 60% at 50% 50%, oklch(0.05 0.02 265 / 0.75), transparent 70%)",
+          }}
+        />
+        {/* Top fade for navbar */}
+        <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-background to-transparent" />
+        {/* Bottom fade */}
+        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-background to-transparent" />
       </div>
 
       {/* ===== Layer 5: Particle embers ===== */}
       <ParticleField count={32} />
 
-      {/* ===== Layer 6: Decorative floating grass blocks + creeper ===== */}
+      {/* ===== Layer 6: Decorative floating grass blocks + creeper — VISIBLE ===== */}
       <div className="absolute inset-0 z-[3] pointer-events-none overflow-hidden">
         {/* Large grass block right */}
         <div
-          className="absolute top-[18%] right-[6%] hidden lg:block animate-float-block"
+          className="absolute top-[15%] right-[4%] hidden lg:block animate-float-block"
           style={{ "--rot": "12deg" } as React.CSSProperties}
         >
           <img
             src="/images/minecraft/block-grass.png"
-            alt=""
-            aria-hidden="true"
-            className="w-28 h-28 object-contain opacity-50 pixelated"
-            style={{ filter: "drop-shadow(0 12px 32px oklch(0.74 0.18 145 / 35%))" }}
+            alt="Minecraft grass block"
+            className="w-32 h-32 object-contain opacity-70 pixelated"
+            style={{ filter: "drop-shadow(0 16px 40px oklch(0.74 0.18 145 / 45%))" }}
           />
         </div>
         {/* Small grass block left */}
         <div
-          className="absolute top-[35%] left-[5%] hidden lg:block animate-float-block"
+          className="absolute top-[40%] left-[3%] hidden lg:block animate-float-block"
           style={{ "--rot": "-15deg", animationDelay: "1.5s" } as React.CSSProperties}
         >
           <img
             src="/images/minecraft/block-grass.png"
-            alt=""
-            aria-hidden="true"
-            className="w-20 h-20 object-contain opacity-35 pixelated"
-            style={{ filter: "drop-shadow(0 8px 20px oklch(0.78 0.16 75 / 30%))" }}
+            alt="Minecraft grass block"
+            className="w-24 h-24 object-contain opacity-60 pixelated"
+            style={{ filter: "drop-shadow(0 12px 28px oklch(0.78 0.16 75 / 35%))" }}
           />
         </div>
         {/* Diamond ore decoration bottom right */}
         <div
-          className="absolute bottom-[20%] right-[8%] hidden xl:block animate-float-block"
+          className="absolute bottom-[22%] right-[6%] hidden xl:block animate-float-block"
           style={{ "--rot": "8deg", animationDelay: "3s" } as React.CSSProperties}
         >
           <img
             src="/images/minecraft/diamond-ore.png"
-            alt=""
-            aria-hidden="true"
-            className="w-24 h-24 object-cover opacity-30 pixelated clip-mc"
-            style={{ filter: "drop-shadow(0 4px 16px oklch(0.7 0.15 220 / 35%))" }}
+            alt="Minecraft diamond ore"
+            className="w-28 h-28 object-cover opacity-60 pixelated clip-mc"
+            style={{ filter: "drop-shadow(0 8px 20px oklch(0.7 0.15 220 / 40%))" }}
           />
         </div>
         {/* Creeper peeking from bottom left */}
         <div
-          className="absolute bottom-[8%] left-[4%] hidden lg:block animate-float-block"
+          className="absolute bottom-[10%] left-[3%] hidden lg:block animate-float-block"
           style={{ "--rot": "-5deg", animationDelay: "2s" } as React.CSSProperties}
         >
           <img
             src="/images/minecraft/creeper.jpg"
-            alt=""
-            aria-hidden="true"
-            className="w-20 h-24 object-cover opacity-25 pixelated clip-mc"
-            style={{ filter: "drop-shadow(0 4px 12px oklch(0.4 0.15 145 / 30%))" }}
+            alt="Minecraft creeper"
+            className="w-24 h-28 object-cover opacity-50 pixelated clip-mc"
+            style={{ filter: "drop-shadow(0 8px 16px oklch(0.4 0.15 145 / 35%))" }}
+          />
+        </div>
+        {/* Items/tools floating top-left */}
+        <div
+          className="absolute top-[20%] left-[8%] hidden xl:block animate-float-block"
+          style={{ "--rot": "20deg", animationDelay: "2.5s" } as React.CSSProperties}
+        >
+          <img
+            src="/images/minecraft/items-tools.png"
+            alt="Minecraft diamond tools"
+            className="w-28 h-28 object-contain opacity-50 pixelated"
+            style={{ filter: "drop-shadow(0 8px 20px oklch(0.7 0.15 220 / 40%))" }}
           />
         </div>
       </div>
