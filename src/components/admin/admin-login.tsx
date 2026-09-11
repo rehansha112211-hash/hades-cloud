@@ -73,17 +73,9 @@ export function AdminLogin() {
 
   return (
     <div className="min-h-screen relative flex items-center justify-center bg-hades-hero px-4 py-12">
-      {/* Minecraft-themed background image — VISIBLE */}
-      <div className="absolute inset-0 z-0">
-        <img
-          src="/images/space/galaxy-hero.jpg"
-          alt="Minecraft epic landscape"
-          className="w-full h-full object-cover opacity-40"
-          fetchPriority="high"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/60 to-background/80" />
-        <div className="absolute inset-0 bg-pixel-grid opacity-20" />
-      </div>
+      {/* Dark space background (starfield handled globally) */}
+      <div className="absolute inset-0 z-0 bg-hades-hero" />
+      <div className="absolute inset-0 bg-pixel-grid opacity-20" />
 
       <ParticleField count={20} />
 

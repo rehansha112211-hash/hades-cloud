@@ -39,21 +39,15 @@ export function PlansSection() {
       id="plans"
       className="relative py-20 sm:py-28 overflow-hidden"
     >
-      {/* Minecraft village atmosphere */}
-      <div className="absolute inset-0 z-0">
-        <img
-          src="/images/space/nebula.jpg"
-          alt="Minecraft village"
-          className="w-full h-full object-cover opacity-25"
-          loading="lazy"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/85 via-background/75 to-background" />
-      </div>
+      {/* Subtle cosmic gradient — no image */}
+      <div className="absolute inset-0 z-0"
+        style={{ background: "radial-gradient(ellipse 50% 40% at 70% 30%, oklch(0.22 0.12 280 / 0.12), transparent 70%)" }}
+      />
       <div
         className="absolute inset-0 opacity-20 pointer-events-none"
         style={{
           backgroundImage:
-            "radial-gradient(circle at 20% 30%, oklch(0.26 0.015 245 / 0.3) 0%, transparent 50%), radial-gradient(circle at 80% 70%, oklch(0.22 0.02 280 / 0.2) 0%, transparent 50%)",
+            "radial-gradient(circle at 20% 30%, oklch(0.26 0.015 250 / 0.3) 0%, transparent 50%), radial-gradient(circle at 80% 70%, oklch(0.22 0.02 280 / 0.2) 0%, transparent 50%)",
         }}
       />
 

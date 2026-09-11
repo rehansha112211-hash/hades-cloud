@@ -63,16 +63,10 @@ export function WhyHadesCloud() {
       id="hosting"
       className="relative py-20 sm:py-28 overflow-hidden"
     >
-      {/* Minecraft forest atmosphere */}
-      <div className="absolute inset-0 z-0">
-        <img
-          src="/images/space/dark-space.jpg"
-          alt="Minecraft dark forest"
-          className="w-full h-full object-cover opacity-25"
-          loading="lazy"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/85 via-background/75 to-background" />
-      </div>
+      {/* Subtle nebula gradient — no image */}
+      <div className="absolute inset-0 z-0"
+        style={{ background: "radial-gradient(ellipse 60% 50% at 30% 40%, oklch(0.20 0.10 260 / 0.15), transparent 70%)" }}
+      />
       <div className="absolute inset-0 bg-pixel-grid opacity-20 pointer-events-none" />
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <Reveal className="max-w-2xl">

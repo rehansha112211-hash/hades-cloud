@@ -2,19 +2,15 @@
 
 import { ChevronRight, Cloud, Server, Zap, Shield, Globe, Cpu } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { ParticleField } from "@/components/brand/particle-field";
 import { AnimatedHeading } from "@/components/enhanced/animated-heading";
-import { ParallaxLayer } from "@/components/enhanced/parallax-layer";
 import { CursorGlow } from "@/components/enhanced/cursor-glow";
 import { MagneticButton } from "@/components/enhanced/magnetic-button";
 import { AnimatedCounter } from "@/components/enhanced/animated-counter";
 
 /**
- * Cinematic space-themed hero.
- * Galaxy/nebula background with parallax, particle stars, aurora orbs.
+ * Cinematic hero with pure animated starfield (no images).
+ * Stars, nebula clouds, and shooting stars are all canvas-rendered.
  */
-const HERO_BG = "/images/space/galaxy-hero.jpg";
-
 export function Hero() {
   const scrollToPlans = () =>
     document.querySelector("#plans")?.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -26,30 +22,18 @@ export function Hero() {
       id="home"
       className="relative min-h-[100svh] flex items-center justify-center overflow-hidden bg-hades-hero"
     >
-      {/* Layer 1: Galaxy background image — subtle, below starfield */}
-      <div className="absolute inset-0 z-0">
-        <img
-          src={HERO_BG}
-          alt="Deep space galaxy with stars and nebula"
-          className="w-full h-full object-cover opacity-35 scale-110"
-          loading="eager"
-          fetchPriority="high"
-        />
-      </div>
+      {/* Layer 1: Dark space base (no image — starfield is canvas-rendered globally) */}
+      <div className="absolute inset-0 z-0 bg-hades-hero" />
 
       {/* Layer 2: Aurora gradient orbs */}
       <div className="absolute inset-0 z-[1] overflow-hidden pointer-events-none">
         <div
           className="absolute -top-1/4 -left-1/4 w-[600px] h-[600px] rounded-full opacity-40 blur-3xl animate-aurora"
-          style={{ background: "radial-gradient(circle, oklch(0.65 0.20 240 / 0.2), transparent 70%)" }}
+          style={{ background: "radial-gradient(circle, oklch(0.65 0.20 240 / 0.15), transparent 70%)" }}
         />
         <div
           className="absolute top-1/3 -right-1/4 w-[500px] h-[500px] rounded-full opacity-30 blur-3xl animate-aurora"
-          style={{ background: "radial-gradient(circle, oklch(0.55 0.15 260 / 0.15), transparent 70%)", animationDelay: "4s" }}
-        />
-        <div
-          className="absolute -bottom-1/4 left-1/4 w-[550px] h-[550px] rounded-full opacity-25 blur-3xl animate-aurora"
-          style={{ background: "radial-gradient(circle, oklch(0.60 0.18 280 / 0.12), transparent 70%)", animationDelay: "8s" }}
+          style={{ background: "radial-gradient(circle, oklch(0.55 0.15 260 / 0.12), transparent 70%)", animationDelay: "4s" }}
         />
       </div>
 
@@ -70,7 +54,7 @@ export function Hero() {
       </div>
 
       {/* Layer 5: Particle stars */}
-      <ParticleField count={32} />
+      {/* Particle stars handled by global AnimatedStarfield */}
 
       {/* Layer 6: Content */}
       <div className="relative z-10 mx-auto max-w-5xl px-4 sm:px-6 text-center pt-24 pb-20">

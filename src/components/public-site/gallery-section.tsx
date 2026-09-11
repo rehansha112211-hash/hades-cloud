@@ -5,36 +5,45 @@ import { SectionEyebrow } from "@/components/public-site/why-hades-cloud";
 import { TiltCard } from "@/components/enhanced/tilt-card";
 import { cn } from "@/lib/utils";
 
-const SCREENSHOTS = [
+/**
+ * Gallery section — cosmic cards with pure CSS gradients (no images).
+ * Each card has a unique space-themed gradient + animated star dots.
+ */
+const COSMIC_CARDS = [
   {
-    src: "/images/space/galaxy-hero.jpg",
     title: "Deep Space",
     biome: "Galaxy",
     span: "lg:col-span-2 lg:row-span-2",
+    gradient: "radial-gradient(ellipse at 30% 40%, oklch(0.25 0.15 260 / 0.6), oklch(0.08 0.02 250) 70%)",
+    stars: 40,
   },
   {
-    src: "/images/space/space-stars.jpg",
     title: "Nebula",
     biome: "Cosmic",
     span: "",
+    gradient: "radial-gradient(ellipse at 70% 30%, oklch(0.30 0.18 280 / 0.5), oklch(0.08 0.02 250) 70%)",
+    stars: 25,
   },
   {
-    src: "/images/space/nebula.jpg",
     title: "Stellar",
     biome: "Interstellar",
     span: "",
+    gradient: "radial-gradient(ellipse at 50% 60%, oklch(0.25 0.12 240 / 0.5), oklch(0.08 0.02 250) 70%)",
+    stars: 20,
   },
   {
-    src: "/images/space/galaxy-wallpaper.jpg",
     title: "Star Field",
     biome: "Stars",
     span: "",
+    gradient: "radial-gradient(ellipse at 20% 70%, oklch(0.22 0.10 200 / 0.5), oklch(0.08 0.02 250) 70%)",
+    stars: 30,
   },
   {
-    src: "/images/space/dark-space.jpg",
     title: "Void",
     biome: "Deep Space",
     span: "lg:col-span-2",
+    gradient: "radial-gradient(ellipse at 60% 50%, oklch(0.18 0.08 280 / 0.4), oklch(0.08 0.02 250) 70%)",
+    stars: 35,
   },
 ] as const;
 
@@ -54,40 +63,60 @@ export function GallerySection() {
             <span className="text-gradient-hades">cosmos.</span>
           </h2>
           <p className="mt-4 text-muted-foreground text-base sm:text-lg leading-relaxed">
-            Stunning deep space imagery from across the universe — galaxies, nebulae, and star fields.
-            From survival nights to massive village builds — your community's
-            next home.
+            Pure CSS-rendered cosmic scenes — galaxies, nebulae, and star fields.
+            Every card is generated in real-time, no images needed.
           </p>
         </Reveal>
 
-        {/* Bento-style gallery grid */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 auto-rows-[180px] sm:auto-rows-[220px]">
-          {SCREENSHOTS.map((shot, i) => (
-            <Reveal key={shot.title} delay={i * 80} className={cn("group", shot.span)}>
+          {COSMIC_CARDS.map((card, i) => (
+            <Reveal key={card.title} delay={i * 80} className={cn("group", card.span)}>
               <TiltCard maxTilt={4} className="h-full">
                 <div className="relative h-full overflow-hidden rounded-2xl border border-border/60 group-hover:border-primary/40 transition-colors">
-                  <img
-                    src={shot.src}
-                    alt={`${shot.title} — ${shot.biome} biome`}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                    loading="lazy"
+                  {/* Cosmic gradient background */}
+                  <div className="absolute inset-0" style={{ background: card.gradient }} />
+
+                  {/* CSS star dots — pseudo-random positions */}
+                  <div className="absolute inset-0">
+                    {Array.from({ length: card.stars }).map((_, si) => {
+                      const left = ((si * 73 + 17) % 100);
+                      const top = ((si * 91 + 31) % 100);
+                      const size = 1 + ((si * 13) % 3);
+                      const delay = (si * 0.3) % 4;
+                      return (
+                        <span
+                          key={si}
+                          className="absolute rounded-full bg-white animate-pulse-glow"
+                          style={{
+                            left: `${left}%`,
+                            top: `${top}%`,
+                            width: `${size}px`,
+                            height: `${size}px`,
+                            opacity: 0.4 + ((si % 5) * 0.1),
+                            animationDelay: `${delay}s`,
+                            boxShadow: si % 3 === 0 ? "0 0 4px rgba(200,220,255,0.6)" : "none",
+                          }}
+                        />
+                      );
+                    })}
+                  </div>
+
+                  {/* Hover zoom glow */}
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700"
+                    style={{ background: "radial-gradient(circle at 50% 50%, oklch(0.65 0.20 240 / 0.08), transparent 70%)" }}
                   />
-                  {/* Gradient overlay */}
+
+                  {/* Gradient overlay for text */}
                   <div className="absolute inset-0 bg-gradient-to-t from-background/95 via-background/20 to-transparent" />
+
                   {/* Title */}
                   <div className="absolute bottom-0 left-0 right-0 p-4">
                     <p className="text-[10px] font-medium tracking-[0.2em] uppercase text-primary mb-1">
-                      {shot.biome}
+                      {card.biome}
                     </p>
                     <h3 className="font-display font-bold text-base sm:text-lg text-foreground">
-                      {shot.title}
+                      {card.title}
                     </h3>
-                  </div>
-                  {/* Hover icon */}
-                  <div className="absolute top-3 right-3 size-8 rounded-full bg-background/60 backdrop-blur-md border border-border/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                    <svg className="size-3.5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
-                    </svg>
                   </div>
                 </div>
               </TiltCard>
