@@ -4,27 +4,41 @@ import { useEffect, useState } from "react";
 
 /**
  * Tracks which section is currently in view, for nav highlighting.
- * Pass an array of section IDs (without #).
+ * CRASH-FIX: guards against missing elements, uses try/catch.
  */
 export function useActiveSection(sectionIds: string[], offset = 100) {
   const [active, setActive] = useState<string>(sectionIds[0] ?? "");
 
   useEffect(() => {
+    let ticking = false;
+
     const onScroll = () => {
-      const scrollPos = window.scrollY + offset + window.innerHeight / 3;
-      let current = sectionIds[0] ?? "";
-      for (const id of sectionIds) {
-        const el = document.getElementById(id);
-        if (el && el.offsetTop <= scrollPos) {
-          current = id;
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        try {
+          const scrollPos = window.scrollY + offset + window.innerHeight / 3;
+          let current = sectionIds[0] ?? "";
+          for (const id of sectionIds) {
+            const el = document.getElementById(id);
+            if (el && el.offsetTop <= scrollPos) {
+              current = id;
+            }
+          }
+          if (current !== active) {
+            setActive(current);
+          }
+        } catch {
+          // ignore — don't crash on scroll
         }
-      }
-      setActive(current);
+        ticking = false;
+      });
     };
+
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
-  }, [sectionIds, offset]);
+  }, [sectionIds, offset, active]);
 
   return active;
 }

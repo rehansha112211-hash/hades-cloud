@@ -5,8 +5,7 @@ import { cn } from "@/lib/utils";
 
 /**
  * Lightweight particle field — small floating "embers" / dust motes.
- * Pure CSS animation, no canvas, no heavy libs.
- * Pause on prefers-reduced-motion.
+ * CRASH-FIX: guards against missing window, try/catch.
  */
 export function ParticleField({
   className,
@@ -18,11 +17,15 @@ export function ParticleField({
   const [enabled, setEnabled] = useState(false);
 
   useEffect(() => {
-    if (
-      typeof window !== "undefined" &&
-      !window.matchMedia("(prefers-reduced-motion: reduce)").matches
-    ) {
-      setEnabled(true);
+    try {
+      if (
+        typeof window !== "undefined" &&
+        !window.matchMedia("(prefers-reduced-motion: reduce)").matches
+      ) {
+        setEnabled(true);
+      }
+    } catch {
+      // ignore
     }
   }, []);
 
@@ -52,11 +55,11 @@ export function ParticleField({
               width: `${size}px`,
               height: `${size}px`,
               background: isAmber
-                ? "oklch(0.78 0.16 75 / 0.7)"
-                : "oklch(0.74 0.18 145 / 0.55)",
+                ? "oklch(0.80 0.08 220 / 0.7)"
+                : "oklch(0.65 0.20 240 / 0.55)",
               boxShadow: isAmber
-                ? "0 0 6px oklch(0.78 0.16 75 / 0.6)"
-                : "0 0 6px oklch(0.74 0.18 145 / 0.5)",
+                ? "0 0 6px oklch(0.80 0.08 220 / 0.6)"
+                : "0 0 6px oklch(0.65 0.20 240 / 0.5)",
               animation: `float-particle ${duration}s linear ${delay}s infinite`,
             }}
           />

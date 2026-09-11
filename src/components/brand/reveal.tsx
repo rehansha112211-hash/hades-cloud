@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 
 /**
  * Wraps children and triggers a fade-in-up animation when they enter the viewport.
- * Lightweight, no deps. One-shot (animates once).
+ * CRASH-FIX: guards against missing elements, try/catch around observer.
  */
 export function Reveal({
   children,
@@ -23,25 +23,33 @@ export function Reveal({
 
   useEffect(() => {
     const el = ref.current;
-    if (!el) return;
+    if (!el) {
+      setVisible(true);
+      return;
+    }
     if (typeof IntersectionObserver === "undefined") {
       setVisible(true);
       return;
     }
-    const obs = new IntersectionObserver(
-      (entries) => {
-        for (const e of entries) {
-          if (e.isIntersecting) {
-            setVisible(true);
-            obs.disconnect();
-            break;
+
+    try {
+      const obs = new IntersectionObserver(
+        (entries) => {
+          for (const e of entries) {
+            if (e.isIntersecting) {
+              setVisible(true);
+              obs.disconnect();
+              break;
+            }
           }
-        }
-      },
-      { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
-    );
-    obs.observe(el);
-    return () => obs.disconnect();
+        },
+        { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
+      );
+      obs.observe(el);
+      return () => obs.disconnect();
+    } catch {
+      setVisible(true);
+    }
   }, []);
 
   return (
