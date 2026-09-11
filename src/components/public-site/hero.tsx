@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { ChevronRight, Cloud, Server, Zap, Shield, Globe, Cpu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -7,8 +8,6 @@ import { Button } from "@/components/ui/button";
  * Cinematic hero with animated starfield + galaxy gradient background.
  */
 export function Hero() {
-  const scrollToPlans = () =>
-    document.querySelector("#plans")?.scrollIntoView({ behavior: "smooth", block: "start" });
   const scrollToFeatures = () =>
     document.querySelector("#features")?.scrollIntoView({ behavior: "smooth", block: "start" });
 
@@ -91,14 +90,13 @@ export function Hero() {
           className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-3 animate-fade-in-up"
           style={{ animationDelay: "1.6s", animationFillMode: "forwards" }}
         >
-          <button
-            onClick={scrollToPlans}
-            className="w-full sm:w-auto h-12 px-8 text-base font-sans font-semibold bg-primary text-primary-foreground hover:bg-primary/90 glow-emerald rounded-xl inline-flex items-center justify-center gap-2 transition-colors"
-          >
-            <Zap className="size-4" />
-            View Plans
-            <ChevronRight className="size-4" />
-          </button>
+          <Link href="/plans">
+            <button className="w-full sm:w-auto h-12 px-8 text-base font-sans font-semibold bg-primary text-primary-foreground hover:bg-primary/90 glow-emerald rounded-xl inline-flex items-center justify-center gap-2 transition-colors">
+              <Zap className="size-4" />
+              Get Started
+              <ChevronRight className="size-4" />
+            </button>
+          </Link>
           <Button
             size="lg"
             variant="outline"

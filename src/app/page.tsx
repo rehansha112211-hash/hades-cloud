@@ -2,9 +2,11 @@
 
 import { useEffect, useState } from "react";
 import { useNav, initNavFromUrl } from "@/stores/nav-store";
-import { PublicSite } from "@/components/public-site/public-site";
-import { OrderPage } from "@/components/public-site/order-page";
-import { OrderSuccessPage } from "@/components/public-site/order-success-page";
+import { SiteLayout } from "@/components/shared/site-layout";
+import { Hero } from "@/components/public-site/hero";
+import { FeaturesSection } from "@/components/public-site/features-section";
+import { ControlPanelSection } from "@/components/public-site/control-panel-section";
+import { FaqSection } from "@/components/public-site/faq-section";
 import { AdminLogin } from "@/components/admin/admin-login";
 import { AdminShell } from "@/components/admin/admin-shell";
 
@@ -21,24 +23,24 @@ export default function Home() {
   }, []);
 
   if (!hydrated || view.name === "public") {
-    return <PublicSite />;
+    return (
+      <SiteLayout activePage="/">
+        <Hero />
+        <FeaturesSection />
+        <ControlPanelSection />
+        <FaqSection />
+      </SiteLayout>
+    );
   }
 
-  if (view.name === "order") {
-    return <OrderPage planId={view.planId} />;
-  }
-
-  if (view.name === "order-success") {
-    return <OrderSuccessPage orderNumber={view.orderNumber} />;
-  }
-
-  if (view.name === "login") {
-    return <AdminLogin />;
-  }
-
-  if (view.name === "admin") {
-    return <AdminShell />;
-  }
-
-  return <PublicSite />;
+  if (view.name === "login") return <AdminLogin />;
+  if (view.name === "admin") return <AdminShell />;
+  return (
+    <SiteLayout activePage="/">
+      <Hero />
+      <FeaturesSection />
+      <ControlPanelSection />
+      <FaqSection />
+    </SiteLayout>
+  );
 }
