@@ -17,10 +17,9 @@ import { AnimatedStarfield } from "@/components/enhanced/animated-starfield";
 export function PublicSite() {
   return (
     <div className="min-h-screen flex flex-col relative">
-      {/* Fixed animated starfield background — behind everything */}
+      {/* Fixed animated starfield background */}
       <div className="fixed inset-0 z-0 pointer-events-none">
         <AnimatedStarfield density={1.2} className="w-full h-full" />
-        {/* Subtle nebula glow overlay */}
         <div
           className="absolute inset-0"
           style={{

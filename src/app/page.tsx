@@ -8,6 +8,7 @@ import { OrderSuccessPage } from "@/components/public-site/order-success-page";
 import { AdminLogin } from "@/components/admin/admin-login";
 import { AdminShell } from "@/components/admin/admin-shell";
 import { ScrollProgressBar } from "@/components/enhanced/scroll-progress-bar";
+import { ErrorBoundary } from "@/components/enhanced/error-boundary";
 
 export default function Home() {
   const { view } = useNav();
@@ -21,39 +22,53 @@ export default function Home() {
     return () => window.removeEventListener("popstate", onPop);
   }, []);
 
-  // Show scroll progress only on public site
   const showProgress = !hydrated || view.name === "public";
 
-  // SSR-safe: render public site initially (matches server output)
   if (!hydrated || view.name === "public") {
     return (
-      <>
+      <ErrorBoundary>
         {showProgress && <ScrollProgressBar />}
         <PublicSite />
-      </>
+      </ErrorBoundary>
     );
   }
 
   if (view.name === "order") {
-    return <OrderPage planId={view.planId} />;
+    return (
+      <ErrorBoundary>
+        <OrderPage planId={view.planId} />
+      </ErrorBoundary>
+    );
   }
 
   if (view.name === "order-success") {
-    return <OrderSuccessPage orderNumber={view.orderNumber} />;
+    return (
+      <ErrorBoundary>
+        <OrderSuccessPage orderNumber={view.orderNumber} />
+      </ErrorBoundary>
+    );
   }
 
   if (view.name === "login") {
-    return <AdminLogin />;
+    return (
+      <ErrorBoundary>
+        <AdminLogin />
+      </ErrorBoundary>
+    );
   }
 
   if (view.name === "admin") {
-    return <AdminShell />;
+    return (
+      <ErrorBoundary>
+        <AdminShell />
+      </ErrorBoundary>
+    );
   }
 
   return (
-    <>
+    <ErrorBoundary>
       <ScrollProgressBar />
       <PublicSite />
-    </>
+    </ErrorBoundary>
   );
 }
