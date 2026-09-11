@@ -45,68 +45,67 @@
   --radius-xl: calc(var(--radius) + 4px);
 }
 
-/* ===== HADES CLOUD — Dark Minecraft Glass Theme ===== */
-/* Always-on dark mode. Background matches deep night sky (#050816). */
+/* ===== HADES CLOUD — Dark Blue / Black / White Space Theme ===== */
 :root {
   --radius: 0.75rem;
 
-  /* Deep Minecraft night background — matches reference #050816 */
-  --background: oklch(0.13 0.02 265);
+  /* Deep dark blue-black background */
+  --background: oklch(0.08 0.02 250);
   --foreground: oklch(0.98 0.005 240);
 
-  /* Glass cards — semi-transparent with subtle warm tint */
-  --card: oklch(0.18 0.012 245 / 0.72);
-  --card-foreground: oklch(0.96 0.005 240);
+  /* Glass cards — semi-transparent dark blue */
+  --card: oklch(0.12 0.015 250 / 0.75);
+  --card-foreground: oklch(0.98 0.005 240);
 
-  --popover: oklch(0.16 0.012 245 / 0.95);
-  --popover-foreground: oklch(0.96 0.005 240);
+  --popover: oklch(0.10 0.015 250 / 0.95);
+  --popover-foreground: oklch(0.98 0.005 240);
 
-  /* Brand primary — emerald green (Minecraft grass / netherite glow) */
-  --primary: oklch(0.74 0.18 145);
-  --primary-foreground: oklch(0.12 0.02 240);
+  /* Brand primary — cool electric blue */
+  --primary: oklch(0.65 0.20 240);
+  --primary-foreground: oklch(0.10 0.02 250);
 
-  /* Secondary — muted slate for non-primary actions */
-  --secondary: oklch(0.26 0.015 245 / 0.6);
+  /* Secondary — muted slate blue */
+  --secondary: oklch(0.22 0.02 250 / 0.6);
   --secondary-foreground: oklch(0.92 0.005 240);
 
-  --muted: oklch(0.22 0.012 245 / 0.6);
-  --muted-foreground: oklch(0.68 0.01 245);
+  --muted: oklch(0.18 0.015 250 / 0.6);
+  --muted-foreground: oklch(0.65 0.01 250);
 
-  /* Accent — warm amber (gold / diamond gem glow) */
-  --accent: oklch(0.78 0.16 75);
-  --accent-foreground: oklch(0.13 0.02 245);
+  /* Accent — bright white-blue */
+  --accent: oklch(0.80 0.08 220);
+  --accent-foreground: oklch(0.10 0.02 250);
 
-  --destructive: oklch(0.62 0.22 25);
+  --destructive: oklch(0.60 0.22 25);
   --destructive-foreground: oklch(0.98 0.005 240);
 
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 12%);
-  --ring: oklch(0.74 0.18 145 / 50%);
+  --ring: oklch(0.65 0.20 240 / 50%);
 
-  /* Chart palette */
-  --chart-1: oklch(0.74 0.18 145); /* emerald */
-  --chart-2: oklch(0.78 0.16 75);  /* amber */
-  --chart-3: oklch(0.65 0.22 280); /* amethyst */
-  --chart-4: oklch(0.62 0.22 25);  /* redstone */
-  --chart-5: oklch(0.7 0.15 220);  /* diamond */
+  /* Chart palette — blues */
+  --chart-1: oklch(0.65 0.20 240); /* electric blue */
+  --chart-2: oklch(0.80 0.08 220); /* light blue */
+  --chart-3: oklch(0.55 0.15 260); /* deep blue */
+  --chart-4: oklch(0.75 0.10 200); /* cyan */
+  --chart-5: oklch(0.60 0.18 280); /* purple */
 
   /* Sidebar (admin panel) */
-  --sidebar: oklch(0.15 0.012 245 / 0.95);
-  --sidebar-foreground: oklch(0.96 0.005 240);
-  --sidebar-primary: oklch(0.74 0.18 145);
-  --sidebar-primary-foreground: oklch(0.12 0.02 240);
-  --sidebar-accent: oklch(0.22 0.015 245 / 0.7);
-  --sidebar-accent-foreground: oklch(0.96 0.005 240);
-  --sidebar-border: oklch(1 0 0 / 8%);
-  --sidebar-ring: oklch(0.74 0.18 145 / 50%);
+  --sidebar: oklch(0.10 0.015 250 / 0.95);
+  --sidebar-foreground: oklch(0.98 0.005 240);
+  --sidebar-primary: oklch(0.65 0.20 240);
+  --sidebar-primary-foreground: oklch(0.10 0.02 250);
+  --sidebar-accent: oklch(0.22 0.02 250 / 0.7);
+  --sidebar-accent-foreground: oklch(0.98 0.005 240);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.65 0.20 240 / 50%);
 
-  /* Custom: HADES CLOUD accent tokens */
-  --hades-emerald: oklch(0.74 0.18 145);
-  --hades-amber: oklch(0.78 0.16 75);
-  --hades-redstone: oklch(0.62 0.22 25);
-  --hades-diamond: oklch(0.82 0.13 220);
-  --hades-glow-emerald: 0 0 32px oklch(0.74 0.18 145 / 30%);
-  --hades-glow-amber: 0 0 32px oklch(0.78 0.16 75 / 30%);
+  /* Custom: HADES CLOUD accent tokens — blue/space theme */
+  --hades-blue: oklch(0.65 0.20 240);
+  --hades-light-blue: oklch(0.80 0.08 220);
+  --hades-deep-blue: oklch(0.45 0.18 260);
+  --hades-cyan: oklch(0.75 0.10 200);
+  --hades-glow-blue: 0 0 32px oklch(0.65 0.20 240 / 30%);
+  --hades-glow-light: 0 0 32px oklch(0.80 0.08 220 / 25%);
 }
 
 /* We don't define .dark because the site is always dark. */
@@ -128,8 +127,8 @@
     -moz-osx-font-smoothing: grayscale;
     background-color: var(--background);
     background-image:
-      radial-gradient(ellipse 80% 60% at 50% -10%, oklch(0.74 0.18 145 / 8%), transparent 60%),
-      radial-gradient(ellipse 60% 50% at 100% 0%, oklch(0.78 0.16 75 / 6%), transparent 60%);
+      radial-gradient(ellipse 80% 60% at 50% -10%, oklch(0.65 0.20 240 / 6%), transparent 60%),
+      radial-gradient(ellipse 60% 50% at 100% 0%, oklch(0.55 0.15 260 / 4%), transparent 60%);
     background-attachment: fixed;
   }
 
@@ -182,20 +181,20 @@
     border: 1px solid oklch(1 0 0 / 8%);
   }
 
-  /* Glow shadows */
+  /* Glow shadows — blue theme */
   .glow-emerald {
-    box-shadow: 0 0 24px oklch(0.74 0.18 145 / 25%), 0 0 1px oklch(0.74 0.18 145 / 40%);
+    box-shadow: 0 0 24px oklch(0.65 0.20 240 / 25%), 0 0 1px oklch(0.65 0.20 240 / 40%);
   }
   .glow-amber {
-    box-shadow: 0 0 24px oklch(0.78 0.16 75 / 25%), 0 0 1px oklch(0.78 0.16 75 / 40%);
+    box-shadow: 0 0 24px oklch(0.80 0.08 220 / 20%), 0 0 1px oklch(0.80 0.08 220 / 35%);
   }
   .glow-soft {
     box-shadow: 0 8px 40px oklch(0 0 0 / 30%), 0 0 0 1px oklch(1 0 0 / 5%);
   }
 
-  /* Text gradient (emerald -> amber) */
+  /* Text gradient (blue -> light blue) */
   .text-gradient-hades {
-    background: linear-gradient(135deg, oklch(0.85 0.18 145) 0%, oklch(0.85 0.16 75) 100%);
+    background: linear-gradient(135deg, oklch(0.75 0.15 240) 0%, oklch(0.90 0.05 220) 100%);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -209,13 +208,13 @@
     background-size: 32px 32px;
   }
 
-  /* Animated subtle gradient (for hero) */
+  /* Animated subtle gradient (for hero) — deep space blue */
   .bg-hades-hero {
     background:
-      radial-gradient(ellipse 90% 70% at 50% 0%, oklch(0.74 0.18 145 / 18%), transparent 55%),
-      radial-gradient(ellipse 70% 50% at 100% 30%, oklch(0.78 0.16 75 / 12%), transparent 60%),
-      radial-gradient(ellipse 60% 50% at 0% 70%, oklch(0.65 0.22 280 / 10%), transparent 60%),
-      linear-gradient(180deg, oklch(0.10 0.012 245) 0%, oklch(0.13 0.012 245) 60%, oklch(0.08 0.012 245) 100%);
+      radial-gradient(ellipse 90% 70% at 50% 0%, oklch(0.65 0.20 240 / 12%), transparent 55%),
+      radial-gradient(ellipse 70% 50% at 100% 30%, oklch(0.55 0.15 260 / 8%), transparent 60%),
+      radial-gradient(ellipse 60% 50% at 0% 70%, oklch(0.60 0.18 280 / 6%), transparent 60%),
+      linear-gradient(180deg, oklch(0.06 0.02 250) 0%, oklch(0.08 0.02 250) 60%, oklch(0.05 0.02 250) 100%);
   }
 
   /* Block hover lift */
@@ -434,13 +433,13 @@
 
   /* Dirt block texture background — tiled */
   .bg-dirt {
-    background-image: url("/images/minecraft/dirt-block.jpg");
+    background-image: url("/images/space/dark-space.jpg");
     background-size: 256px 256px;
     background-repeat: repeat;
   }
   /* Stone block texture background — tiled */
   .bg-stone-mc {
-    background-image: url("/images/minecraft/stone-block.jpg");
+    background-image: url("/images/space/galaxy-wallpaper.jpg");
     background-size: 256px 256px;
     background-repeat: repeat;
   }

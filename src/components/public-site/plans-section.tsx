@@ -42,7 +42,7 @@ export function PlansSection() {
       {/* Minecraft village atmosphere */}
       <div className="absolute inset-0 z-0">
         <img
-          src="/images/minecraft/village.jpg"
+          src="/images/space/nebula.jpg"
           alt="Minecraft village"
           className="w-full h-full object-cover opacity-25"
           loading="lazy"

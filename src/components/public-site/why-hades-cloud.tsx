@@ -66,7 +66,7 @@ export function WhyHadesCloud() {
       {/* Minecraft forest atmosphere */}
       <div className="absolute inset-0 z-0">
         <img
-          src="/images/minecraft/forest-bg.jpg"
+          src="/images/space/dark-space.jpg"
           alt="Minecraft dark forest"
           className="w-full h-full object-cover opacity-25"
           loading="lazy"

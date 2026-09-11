@@ -10,18 +10,10 @@ import { MagneticButton } from "@/components/enhanced/magnetic-button";
 import { AnimatedCounter } from "@/components/enhanced/animated-counter";
 
 /**
- * Cinematic Minecraft-themed hero.
- *
- * Layered atmosphere:
- *  - Real Minecraft night landscape image (locally stored)
- *  - Aurora gradient orbs that drift slowly
- *  - Parallax mouse-follow layer on the image
- *  - Cursor glow that follows the pointer
- *  - Animated floating grass blocks (decorative)
- *  - Particle ember field
- *  - Heavy dark gradient for text contrast
+ * Cinematic space-themed hero.
+ * Galaxy/nebula background with parallax, particle stars, aurora orbs.
  */
-const HERO_BG = "/images/minecraft/hero-epic.jpg";
+const HERO_BG = "/images/space/galaxy-hero.jpg";
 
 export function Hero() {
   const scrollToPlans = () =>
@@ -34,120 +26,53 @@ export function Hero() {
       id="home"
       className="relative min-h-[100svh] flex items-center justify-center overflow-hidden bg-hades-hero"
     >
-      {/* ===== Layer 1: Background image with parallax ===== */}
+      {/* Layer 1: Galaxy background with parallax */}
       <ParallaxLayer depth={0.04} className="absolute inset-0 z-0">
         <img
           src={HERO_BG}
-          alt="Minecraft dark night landscape with mountains"
-          className="w-full h-full object-cover opacity-55 scale-110"
+          alt="Deep space galaxy with stars and nebula"
+          className="w-full h-full object-cover opacity-50 scale-110"
           loading="eager"
           fetchPriority="high"
         />
       </ParallaxLayer>
 
-      {/* ===== Layer 2: Aurora gradient orbs ===== */}
+      {/* Layer 2: Aurora gradient orbs */}
       <div className="absolute inset-0 z-[1] overflow-hidden pointer-events-none">
         <div
-          className="absolute -top-1/4 -left-1/4 w-[600px] h-[600px] rounded-full opacity-60 blur-3xl animate-aurora"
-          style={{ background: "radial-gradient(circle, oklch(0.74 0.18 145 / 0.25), transparent 70%)" }}
+          className="absolute -top-1/4 -left-1/4 w-[600px] h-[600px] rounded-full opacity-40 blur-3xl animate-aurora"
+          style={{ background: "radial-gradient(circle, oklch(0.65 0.20 240 / 0.2), transparent 70%)" }}
         />
         <div
-          className="absolute top-1/3 -right-1/4 w-[500px] h-[500px] rounded-full opacity-50 blur-3xl animate-aurora"
-          style={{ background: "radial-gradient(circle, oklch(0.78 0.16 75 / 0.2), transparent 70%)", animationDelay: "4s" }}
+          className="absolute top-1/3 -right-1/4 w-[500px] h-[500px] rounded-full opacity-30 blur-3xl animate-aurora"
+          style={{ background: "radial-gradient(circle, oklch(0.55 0.15 260 / 0.15), transparent 70%)", animationDelay: "4s" }}
         />
         <div
-          className="absolute -bottom-1/4 left-1/4 w-[550px] h-[550px] rounded-full opacity-40 blur-3xl animate-aurora"
-          style={{ background: "radial-gradient(circle, oklch(0.65 0.22 280 / 0.18), transparent 70%)", animationDelay: "8s" }}
+          className="absolute -bottom-1/4 left-1/4 w-[550px] h-[550px] rounded-full opacity-25 blur-3xl animate-aurora"
+          style={{ background: "radial-gradient(circle, oklch(0.60 0.18 280 / 0.12), transparent 70%)", animationDelay: "8s" }}
         />
       </div>
 
-      {/* ===== Layer 3: Cursor glow ===== */}
-      <CursorGlow size={500} color="oklch(0.74 0.18 145 / 0.06)" />
+      {/* Layer 3: Cursor glow */}
+      <CursorGlow size={500} color="oklch(0.65 0.20 240 / 0.05)" />
 
-      {/* ===== Layer 4: Dark vignette for readability (only where text sits) ===== */}
+      {/* Layer 4: Dark vignette for readability */}
       <div className="absolute inset-0 z-[2] pointer-events-none">
-        {/* Center radial dark spot for text contrast */}
         <div
           className="absolute inset-0"
           style={{
             background:
-              "radial-gradient(ellipse 70% 60% at 50% 50%, oklch(0.05 0.02 265 / 0.75), transparent 70%)",
+              "radial-gradient(ellipse 70% 60% at 50% 50%, oklch(0.05 0.02 250 / 0.75), transparent 70%)",
           }}
         />
-        {/* Top fade for navbar */}
         <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-background to-transparent" />
-        {/* Bottom fade */}
         <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-background to-transparent" />
       </div>
 
-      {/* ===== Layer 5: Particle embers ===== */}
+      {/* Layer 5: Particle stars */}
       <ParticleField count={32} />
 
-      {/* ===== Layer 6: Decorative floating grass blocks + creeper — VISIBLE ===== */}
-      <div className="absolute inset-0 z-[3] pointer-events-none overflow-hidden">
-        {/* Large grass block right */}
-        <div
-          className="absolute top-[15%] right-[4%] hidden lg:block animate-float-block"
-          style={{ "--rot": "12deg" } as React.CSSProperties}
-        >
-          <img
-            src="/images/minecraft/block-grass.png"
-            alt="Minecraft grass block"
-            className="w-32 h-32 object-contain opacity-70 pixelated"
-            style={{ filter: "drop-shadow(0 16px 40px oklch(0.74 0.18 145 / 45%))" }}
-          />
-        </div>
-        {/* Small grass block left */}
-        <div
-          className="absolute top-[40%] left-[3%] hidden lg:block animate-float-block"
-          style={{ "--rot": "-15deg", animationDelay: "1.5s" } as React.CSSProperties}
-        >
-          <img
-            src="/images/minecraft/block-grass.png"
-            alt="Minecraft grass block"
-            className="w-24 h-24 object-contain opacity-60 pixelated"
-            style={{ filter: "drop-shadow(0 12px 28px oklch(0.78 0.16 75 / 35%))" }}
-          />
-        </div>
-        {/* Diamond ore decoration bottom right */}
-        <div
-          className="absolute bottom-[22%] right-[6%] hidden xl:block animate-float-block"
-          style={{ "--rot": "8deg", animationDelay: "3s" } as React.CSSProperties}
-        >
-          <img
-            src="/images/minecraft/diamond-ore.png"
-            alt="Minecraft diamond ore"
-            className="w-28 h-28 object-cover opacity-60 pixelated clip-mc"
-            style={{ filter: "drop-shadow(0 8px 20px oklch(0.7 0.15 220 / 40%))" }}
-          />
-        </div>
-        {/* Creeper peeking from bottom left */}
-        <div
-          className="absolute bottom-[10%] left-[3%] hidden lg:block animate-float-block"
-          style={{ "--rot": "-5deg", animationDelay: "2s" } as React.CSSProperties}
-        >
-          <img
-            src="/images/minecraft/creeper.jpg"
-            alt="Minecraft creeper"
-            className="w-24 h-28 object-cover opacity-50 pixelated clip-mc"
-            style={{ filter: "drop-shadow(0 8px 16px oklch(0.4 0.15 145 / 35%))" }}
-          />
-        </div>
-        {/* Items/tools floating top-left */}
-        <div
-          className="absolute top-[20%] left-[8%] hidden xl:block animate-float-block"
-          style={{ "--rot": "20deg", animationDelay: "2.5s" } as React.CSSProperties}
-        >
-          <img
-            src="/images/minecraft/items-tools.png"
-            alt="Minecraft diamond tools"
-            className="w-28 h-28 object-contain opacity-50 pixelated"
-            style={{ filter: "drop-shadow(0 8px 20px oklch(0.7 0.15 220 / 40%))" }}
-          />
-        </div>
-      </div>
-
-      {/* ===== Layer 7: Content ===== */}
+      {/* Layer 6: Content */}
       <div className="relative z-10 mx-auto max-w-5xl px-4 sm:px-6 text-center pt-24 pb-20">
         {/* Badge */}
         <div className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/5 backdrop-blur-md px-4 py-1.5 text-sm font-medium text-primary mb-8 animate-fade-in-up glow-emerald">
@@ -159,7 +84,7 @@ export function Hero() {
           <span className="text-primary/40">→</span>
         </div>
 
-        {/* Headline — Poppins display font, word-by-word reveal */}
+        {/* Headline */}
         <h1 className="font-display text-4xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tight leading-[1.05]">
           <AnimatedHeading
             text="POWER YOUR WORLD."
@@ -211,29 +136,17 @@ export function Hero() {
           </Button>
         </div>
 
-        {/* Trust strip with animated counters */}
+        {/* Trust strip */}
         <div
           className="mt-16 grid grid-cols-3 gap-4 sm:gap-8 max-w-3xl mx-auto animate-fade-in-up"
           style={{ animationDelay: "1.8s", animationFillMode: "forwards" }}
         >
-          <TrustStat
-            icon={<Server className="size-4" />}
-            value={<AnimatedCounter value={99.9} decimals={1} suffix="%" />}
-            label="Uptime SLA"
-          />
-          <TrustStat
-            icon={<Zap className="size-4" />}
-            value={<><AnimatedCounter value={60} suffix="s" /></>}
-            label="Avg deploy"
-          />
-          <TrustStat
-            icon={<Shield className="size-4" />}
-            value={<><AnimatedCounter value={24} />/<AnimatedCounter value={7} /></>}
-            label="Protected"
-          />
+          <TrustStat icon={<Server className="size-4" />} value={<AnimatedCounter value={99.9} decimals={1} suffix="%" />} label="Uptime SLA" />
+          <TrustStat icon={<Zap className="size-4" />} value={<><AnimatedCounter value={60} suffix="s" /></>} label="Avg deploy" />
+          <TrustStat icon={<Shield className="size-4" />} value={<><AnimatedCounter value={24} />/<AnimatedCounter value={7} /></>} label="Protected" />
         </div>
 
-        {/* Bottom mini stats bar */}
+        {/* Mini stats bar */}
         <div
           className="mt-12 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-muted-foreground animate-fade-in-up font-sans"
           style={{ animationDelay: "2s", animationFillMode: "forwards" }}
@@ -255,9 +168,6 @@ export function Hero() {
         </div>
       </div>
 
-      {/* Dirt block texture strip at bottom — Minecraft ground */}
-      <div className="absolute bottom-0 left-0 right-0 h-3 bg-dirt opacity-30 z-[4] pixelated" aria-hidden="true" />
-
       {/* Scroll cue */}
       <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 hidden sm:flex flex-col items-center gap-2 text-muted-foreground/70 animate-fade-in-up" style={{ animationDelay: "2.2s", animationFillMode: "forwards" }}>
         <span className="text-[10px] tracking-[0.3em] uppercase">Scroll</span>
@@ -269,24 +179,14 @@ export function Hero() {
   );
 }
 
-function TrustStat({
-  icon,
-  value,
-  label,
-}: {
-  icon: React.ReactNode;
-  value: React.ReactNode;
-  label: string;
-}) {
+function TrustStat({ icon, value, label }: { icon: React.ReactNode; value: React.ReactNode; label: string }) {
   return (
     <div className="flex flex-col items-center gap-1 group">
       <div className="flex items-center gap-1.5 text-primary group-hover:scale-110 transition-transform">
         {icon}
         <span className="font-display font-bold text-2xl sm:text-3xl">{value}</span>
       </div>
-      <span className="text-xs sm:text-sm text-muted-foreground uppercase tracking-wider font-sans">
-        {label}
-      </span>
+      <span className="text-xs sm:text-sm text-muted-foreground uppercase tracking-wider font-sans">{label}</span>
     </div>
   );
 }

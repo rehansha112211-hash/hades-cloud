@@ -11,14 +11,14 @@ import { useEffect, useRef, useState } from "react";
  * Images are loaded lazily by the browser via CSS background-image.
  */
 const SECTION_BG_MAP: Array<{ id: string; src: string }> = [
-  { id: "home", src: "/images/minecraft/hero-epic.jpg" },
-  { id: "hosting", src: "/images/minecraft/forest-bg.jpg" },
-  { id: "plans", src: "/images/minecraft/village.jpg" },
-  { id: "panel", src: "/images/minecraft/cave-bg.jpg" },
-  { id: "features", src: "/images/minecraft/landscape.jpg" },
-  { id: "gallery", src: "/images/minecraft/survival.jpg" },
-  { id: "faq", src: "/images/minecraft/panorama.jpg" },
-  { id: "contact", src: "/images/minecraft/hero-bg-2.jpg" },
+  { id: "home", src: "/images/space/galaxy-hero.jpg" },
+  { id: "hosting", src: "/images/space/dark-space.jpg" },
+  { id: "plans", src: "/images/space/nebula.jpg" },
+  { id: "panel", src: "/images/space/space-stars.jpg" },
+  { id: "features", src: "/images/space/galaxy-wallpaper.jpg" },
+  { id: "gallery", src: "/images/space/dark-space.jpg" },
+  { id: "faq", src: "/images/space/nebula.jpg" },
+  { id: "contact", src: "/images/space/space-stars.jpg" },
 ];
 
 export function ScrollBackgroundChanger() {

@@ -76,7 +76,7 @@ export function AdminLogin() {
       {/* Minecraft-themed background image — VISIBLE */}
       <div className="absolute inset-0 z-0">
         <img
-          src="/images/minecraft/hero-epic.jpg"
+          src="/images/space/galaxy-hero.jpg"
           alt="Minecraft epic landscape"
           className="w-full h-full object-cover opacity-40"
           fetchPriority="high"

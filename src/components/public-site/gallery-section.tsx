@@ -7,33 +7,33 @@ import { cn } from "@/lib/utils";
 
 const SCREENSHOTS = [
   {
-    src: "/images/minecraft/hero-epic.jpg",
-    title: "Night Survival",
-    biome: "Mountains",
+    src: "/images/space/galaxy-hero.jpg",
+    title: "Deep Space",
+    biome: "Galaxy",
     span: "lg:col-span-2 lg:row-span-2",
   },
   {
-    src: "/images/minecraft/village.jpg",
-    title: "Village Build",
-    biome: "Plains",
+    src: "/images/space/space-stars.jpg",
+    title: "Nebula",
+    biome: "Cosmic",
     span: "",
   },
   {
-    src: "/images/minecraft/panorama.jpg",
-    title: "Mountain Panorama",
-    biome: "Extreme Hills",
+    src: "/images/space/nebula.jpg",
+    title: "Stellar",
+    biome: "Interstellar",
     span: "",
   },
   {
-    src: "/images/minecraft/cave-bg.jpg",
-    title: "Deep Cave System",
-    biome: "Underground",
+    src: "/images/space/galaxy-wallpaper.jpg",
+    title: "Star Field",
+    biome: "Stars",
     span: "",
   },
   {
-    src: "/images/minecraft/forest-bg.jpg",
-    title: "Dark Forest",
-    biome: "Forest",
+    src: "/images/space/dark-space.jpg",
+    title: "Void",
+    biome: "Deep Space",
     span: "lg:col-span-2",
   },
 ] as const;
@@ -46,15 +46,15 @@ export function GallerySection() {
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <Reveal className="max-w-2xl mx-auto text-center mb-12">
           <div className="flex justify-center">
-            <SectionEyebrow>World Gallery</SectionEyebrow>
+            <SectionEyebrow>Space Gallery</SectionEyebrow>
           </div>
           <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mt-4 leading-tight">
-            Worlds your players
+            Explore the
             <br />
-            <span className="text-gradient-hades">will build.</span>
+            <span className="text-gradient-hades">cosmos.</span>
           </h2>
           <p className="mt-4 text-muted-foreground text-base sm:text-lg leading-relaxed">
-            Real Minecraft worlds running on Hades Cloud infrastructure.
+            Stunning deep space imagery from across the universe — galaxies, nebulae, and star fields.
             From survival nights to massive village builds — your community's
             next home.
           </p>
@@ -97,7 +97,7 @@ export function GallerySection() {
 
         <Reveal delay={200} className="mt-10 text-center">
           <p className="text-sm text-muted-foreground">
-            Every world runs on dedicated Ryzen 9 hardware with NVMe storage.
+            Every server runs on dedicated Ryzen 9 hardware with NVMe storage.
             <span className="text-primary font-medium"> Your world, your rules.</span>
           </p>
         </Reveal>
