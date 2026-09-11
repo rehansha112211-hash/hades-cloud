@@ -1,0 +1,102 @@
+// HADES CLOUD — Prisma schema
+// SQLite (development) — swap DATABASE_URL to PostgreSQL/MySQL for production
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model AdminUser {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  name         String
+  passwordHash String
+  role         String   @default("ADMIN") // ADMIN | OWNER
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@index([email])
+}
+
+model Category {
+  id        String   @id @default(cuid())
+  name      String   @unique
+  slug      String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  plans     Plan[]
+
+  @@index([slug])
+}
+
+model Plan {
+  id          String   @id @default(cuid())
+  name        String
+  categoryId  String
+  category    Category @relation(fields: [categoryId], references: [id], onDelete: Restrict)
+  price       Float
+  duration    String   // "1 Month", "3 Months", "6 Months", "12 Months"
+  ram         String   // "8 GB"
+  storage     String   // "180 GB"
+  storageType String   // "NVMe", "SSD", "HDD"
+  cpu         String   // "6 vCPU"
+  processor   String   // "AMD Ryzen"
+  isVisible   Boolean  @default(true)
+  sortOrder    Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  orders      Order[]
+
+  @@index([categoryId])
+  @@index([isVisible])
+}
+
+model Customer {
+  id        String   @id @default(cuid())
+  name      String
+  email     String   @unique
+  phone     String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  orders    Order[]
+
+  @@index([email])
+}
+
+model Order {
+  id           String   @id @default(cuid())
+  orderNumber  String   @unique
+  customerId   String
+  customer     Customer @relation(fields: [customerId], references: [id], onDelete: Cascade)
+  planId       String
+  plan         Plan     @relation(fields: [planId], references: [id], onDelete: Restrict)
+  amount       Float
+  status       String   @default("PENDING_PAYMENT") // PENDING_PAYMENT | AWAITING_PAYMENT | PAID | FAILED | CANCELLED | REFUNDED
+  customerNote String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@index([customerId])
+  @@index([planId])
+  @@index([status])
+}
+
+model Faq {
+  id        String   @id @default(cuid())
+  question  String
+  answer    String
+  sortOrder Int      @default(0)
+  isVisible Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Setting {
+  id    String @id @default(cuid())
+  key   String @unique
+  value String
+}
