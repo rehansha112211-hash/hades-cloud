@@ -443,6 +443,7 @@ function PlanFormModal({
   const [storageType, setStorageType] = useState("NVMe");
   const [cpu, setCpu] = useState("");
   const [processor, setProcessor] = useState("");
+  const [planType, setPlanType] = useState("performance");
   const [isVisible, setIsVisible] = useState(true);
   const [saving, setSaving] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -459,6 +460,7 @@ function PlanFormModal({
       setStorageType(plan.storageType);
       setCpu(plan.cpu);
       setProcessor(plan.processor);
+      setPlanType((plan as AdminPlan & { planType?: string }).planType || "performance");
       setIsVisible(plan.isVisible);
     } else {
       setName("");
@@ -470,6 +472,7 @@ function PlanFormModal({
       setStorageType("NVMe");
       setCpu("");
       setProcessor("");
+      setPlanType("performance");
       setIsVisible(true);
     }
     setErrors({});
@@ -505,6 +508,7 @@ function PlanFormModal({
       storageType: storageType.trim(),
       cpu: cpu.trim(),
       processor: processor.trim(),
+      planType,
       isVisible,
     };
     const res = plan
@@ -610,6 +614,20 @@ function PlanFormModal({
                   <SelectItem value="NVMe">NVMe</SelectItem>
                   <SelectItem value="SSD">SSD</SelectItem>
                   <SelectItem value="HDD">HDD</SelectItem>
+                </SelectContent>
+              </Select>
+            </Field>
+
+            <Field label="Plan Type" required>
+              <Select value={planType} onValueChange={setPlanType}>
+                <SelectTrigger className="bg-foreground/5 border-border">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="budget">Budget</SelectItem>
+                  <SelectItem value="performance">Performance</SelectItem>
+                  <SelectItem value="bot">Bot Hosting</SelectItem>
+                  <SelectItem value="vps">VPS</SelectItem>
                 </SelectContent>
               </Select>
             </Field>

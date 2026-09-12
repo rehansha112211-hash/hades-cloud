@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ChevronRight, Wallet, Cpu, Bot } from "lucide-react";
+import { ChevronRight, Wallet, Cpu, Bot, Server } from "lucide-react";
 import { SiteLayout } from "@/components/shared/site-layout";
 
 const PLAN_TYPES = [
@@ -28,6 +28,14 @@ const PLAN_TYPES = [
     href: "/plans/bot-hosting",
     color: "text-primary",
     bgColor: "bg-primary/10 border-primary/30",
+  },
+  {
+    title: "VPS Plans",
+    description: "Virtual Private Servers with full root access, dedicated resources, and complete control. Perfect for hosting multiple services and applications.",
+    icon: Server,
+    href: "/plans/vps",
+    color: "text-accent",
+    bgColor: "bg-accent/10 border-accent/30",
   },
 ];
 

@@ -1,38 +1,31 @@
 import { NextResponse } from "next/server";
 import { db } from "@/lib/db";
+import { flattenPlan } from "@/lib/plan-serializer";
 
 /**
  * GET /api/public/plans
  * Returns all VISIBLE plans for the public website.
- * Hidden plans are excluded. Categories are joined for the UI.
+ * Optional ?type=budget|performance|bot|vps filter.
  */
-export async function GET() {
+export async function GET(req: Request) {
   try {
+    const url = new URL(req.url);
+    const planType = url.searchParams.get("type");
+
+    const where: { isVisible: boolean; planType?: string } = { isVisible: true };
+    if (planType && ["budget", "performance", "bot", "vps"].includes(planType)) {
+      where.planType = planType;
+    }
+
     const plans = await db.plan.findMany({
-      where: { isVisible: true },
+      where,
       include: { category: true },
       orderBy: [{ sortOrder: "asc" }, { price: "asc" }],
     });
 
-    const payload = plans.map((p) => ({
-      id: p.id,
-      name: p.name,
-      category: p.category.name,
-      price: p.price,
-      duration: p.duration,
-      ram: p.ram,
-      storage: p.storage,
-      storageType: p.storageType,
-      cpu: p.cpu,
-      processor: p.processor,
-    }));
-
-    return NextResponse.json({ plans: payload });
+    return NextResponse.json({ plans: plans.map(flattenPlan) });
   } catch (err) {
     console.error("[public/plans] error:", err);
-    return NextResponse.json(
-      { error: "Failed to load plans" },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: "Failed to load plans" }, { status: 500 });
   }
 }

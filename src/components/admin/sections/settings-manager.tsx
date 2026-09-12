@@ -139,6 +139,9 @@ export function SettingsManager() {
         </div>
       </form>
 
+      {/* Password Reset */}
+      <PasswordResetSection />
+
       {/* Integration status */}
       <div className="glass-card rounded-xl p-6">
         <h3 className="font-display font-bold text-base mb-1">
@@ -204,6 +207,96 @@ export function SettingsManager() {
           </div>
         </div>
       </div>
+    </div>
+  );
+}
+
+function PasswordResetSection() {
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [resetting, setResetting] = useState(false);
+
+  const onReset = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!newPassword || !confirmPassword) {
+      toast.error("Please fill in both fields");
+      return;
+    }
+    if (newPassword !== confirmPassword) {
+      toast.error("Passwords do not match");
+      return;
+    }
+    if (newPassword.length < 8) {
+      toast.error("Password must be at least 8 characters");
+      return;
+    }
+    setResetting(true);
+    try {
+      const res = await fetch("/api/admin/reset-password", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ newPassword }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        toast.success("Password reset successfully! Use new password on next login.");
+        setNewPassword("");
+        setConfirmPassword("");
+      } else {
+        toast.error(data.error || "Failed to reset password");
+      }
+    } catch {
+      toast.error("Failed to reset password");
+    }
+    setResetting(false);
+  };
+
+  return (
+    <div className="glass-card rounded-xl p-6">
+      <h3 className="font-display font-bold text-base mb-1 flex items-center gap-2">
+        <KeyRound className="size-4 text-primary" />
+        Reset Admin Password
+      </h3>
+      <p className="text-xs text-muted-foreground mb-5">
+        Set a new password for the admin account. The new password will be required on next login.
+      </p>
+      <form onSubmit={onReset} className="space-y-4">
+        <div className="space-y-2">
+          <Label className="text-xs uppercase tracking-wider">New Password</Label>
+          <Input
+            type="password"
+            value={newPassword}
+            onChange={(e) => setNewPassword(e.target.value)}
+            placeholder="Enter new password"
+            maxLength={128}
+            className="bg-foreground/5 border-border"
+            required
+          />
+        </div>
+        <div className="space-y-2">
+          <Label className="text-xs uppercase tracking-wider">Confirm Password</Label>
+          <Input
+            type="password"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+            placeholder="Confirm new password"
+            maxLength={128}
+            className="bg-foreground/5 border-border"
+            required
+          />
+        </div>
+        <Button
+          type="submit"
+          disabled={resetting}
+          className="bg-primary text-primary-foreground hover:bg-primary/90"
+        >
+          {resetting ? (
+            <><Loader2 className="size-4 animate-spin" /> Resetting...</>
+          ) : (
+            <><KeyRound className="size-4" /> Reset Password</>
+          )}
+        </Button>
+      </form>
     </div>
   );
 }

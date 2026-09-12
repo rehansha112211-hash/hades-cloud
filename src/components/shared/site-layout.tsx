@@ -16,6 +16,7 @@ const NAV_LINKS = [
   { label: "Budget Plans", href: "/plans/budget" },
   { label: "Performance Plans", href: "/plans/performance" },
   { label: "Bot Hosting", href: "/plans/bot-hosting" },
+  { label: "VPS Plans", href: "/plans/vps" },
   { label: "FAQ", href: "/faq" },
 ];
 
@@ -123,6 +124,7 @@ function SiteFooter() {
               <li><Link href="/plans/budget" className="text-sm text-muted-foreground hover:text-primary transition-colors">Budget Plans</Link></li>
               <li><Link href="/plans/performance" className="text-sm text-muted-foreground hover:text-primary transition-colors">Performance Plans</Link></li>
               <li><Link href="/plans/bot-hosting" className="text-sm text-muted-foreground hover:text-primary transition-colors">Bot Hosting</Link></li>
+              <li><Link href="/plans/vps" className="text-sm text-muted-foreground hover:text-primary transition-colors">VPS Plans</Link></li>
             </ul>
           </div>
           <div>

@@ -29,13 +29,19 @@ export function PlansListPage({
       const res = await api.getPublicPlans();
       if (!alive) return;
       if (res.ok) {
-        // Filter plans by planType (budget: price<=99, performance: price>99, bot: none yet)
         if (planType === "budget") {
           setPlans(res.data.plans.filter((p) => p.price <= 99));
         } else if (planType === "performance") {
           setPlans(res.data.plans.filter((p) => p.price > 99));
         } else {
-          setPlans([]); // bot hosting — no plans yet
+          // For "bot" and "vps" — fetch from API with planType filter
+          try {
+            const typeRes = await fetch("/api/public/plans?type=" + planType);
+            const typeData = await typeRes.json();
+            setPlans(typeData.plans || []);
+          } catch {
+            setPlans([]);
+          }
         }
       } else {
         setPlans([]);

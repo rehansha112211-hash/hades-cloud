@@ -69,6 +69,7 @@ async function POST(req: NextRequest) {
         storageType: data.storageType,
         cpu: data.cpu,
         processor: data.processor,
+        planType: (data as { planType?: string }).planType || "performance",
         isVisible: data.isVisible ?? true,
         sortOrder: data.sortOrder ?? 0,
       },

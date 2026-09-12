@@ -20,6 +20,7 @@ export function flattenPlan(
     storageType: plan.storageType,
     cpu: plan.cpu,
     processor: plan.processor,
+    planType: (plan as { planType?: string }).planType || "performance",
     isVisible: plan.isVisible,
     sortOrder: plan.sortOrder,
     createdAt: plan.createdAt,

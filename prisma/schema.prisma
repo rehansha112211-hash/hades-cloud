@@ -45,7 +45,7 @@ model Plan {
   storageType String   // "NVMe", "SSD", "HDD"
   cpu         String   // "6 vCPU"
   processor   String   // "AMD Ryzen"
-  planType    String   @default("performance") // "budget" | "performance" | "bot"
+  planType    String   @default("performance") // "budget" | "performance" | "bot" | "vps"
   isVisible   Boolean  @default(true)
   sortOrder    Int      @default(0)
   createdAt   DateTime @default(now())
