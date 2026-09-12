@@ -34,13 +34,6 @@ export function Hero() {
           style={{ background: "radial-gradient(circle, oklch(0.50 0.15 150 / 0.3), transparent 70%)" }} />
         <div className="absolute top-1/3 -right-1/4 w-[500px] h-[500px] rounded-full opacity-15 blur-3xl animate-aurora"
           style={{ background: "radial-gradient(circle, oklch(0.55 0.15 240 / 0.25), transparent 70%)", animationDelay: "4s" }} />
-        {/* Floating Minecraft blocks */}
-        <div className="absolute top-[10%] right-[5%] animate-float-block" style={{ "--rot": "12deg" } as React.CSSProperties}>
-          <img src="/images/minecraft/block-grass.png" alt="" className="w-28 h-28 object-contain opacity-50 pixelated" style={{ filter: "drop-shadow(0 12px 32px oklch(0.50 0.15 150 / 35%))" }} />
-        </div>
-        <div className="absolute bottom-[18%] left-[5%] animate-float-block" style={{ "--rot": "-8deg", animationDelay: "2s" } as React.CSSProperties}>
-          <img src="/images/minecraft/diamond-ore.png" alt="" className="w-24 h-24 object-cover opacity-40 pixelated" style={{ filter: "drop-shadow(0 10px 24px oklch(0.7 0.15 220 / 35%))" }} />
-        </div>
         {/* Dark vignette for readability */}
         <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse 70% 60% at 50% 50%, oklch(0.05 0.02 250 / 0.5), transparent 70%)" }} />
         <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-background to-transparent" />
@@ -97,7 +90,7 @@ export function Hero() {
           style={{ animationDelay: "1.6s", animationFillMode: "forwards" }}
         >
           <Link href="/plans">
-            <button className="w-full sm:w-auto h-12 px-8 text-base font-sans font-semibold bg-primary text-primary-foreground hover:bg-primary/90 glow-emerald rounded-xl inline-flex items-center justify-center gap-2 transition-colors">
+            <button className="w-full sm:w-auto h-12 px-8 text-base font-sans font-semibold bg-primary text-primary-foreground hover:bg-primary/90 glow-emerald btn-glow rounded-xl inline-flex items-center justify-center gap-2 transition-colors">
               <Zap className="size-4" />
               Get Started
               <ChevronRight className="size-4" />

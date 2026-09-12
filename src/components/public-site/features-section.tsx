@@ -70,7 +70,7 @@ const STRIP = [
 
 export function FeaturesSection() {
   return (
-    <section id="features" className="relative py-20 sm:py-28 overflow-hidden">
+    <section id="features" className="relative py-20 sm:py-28 overflow-hidden section-fade">
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <Reveal className="max-w-2xl mx-auto text-center">
           <div className="flex justify-center">

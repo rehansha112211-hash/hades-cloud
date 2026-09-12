@@ -80,7 +80,7 @@ export function FaqSection() {
   }, []);
 
   return (
-    <section id="faq" className="relative py-20 sm:py-28 overflow-hidden">
+    <section id="faq" className="relative py-20 sm:py-28 overflow-hidden section-fade">
       <div className="absolute inset-0 bg-pixel-grid opacity-15 pointer-events-none" />
 
       <div className="relative mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">

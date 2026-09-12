@@ -29,7 +29,7 @@ export function ControlPanelSection() {
   return (
     <section
       id="panel"
-      className="relative py-20 sm:py-28 overflow-hidden"
+      className="relative py-20 sm:py-28 overflow-hidden section-fade"
     >
       {/* Subtle purple glow for panel section */}
       <div

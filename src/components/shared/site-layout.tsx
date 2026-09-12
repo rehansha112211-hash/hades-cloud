@@ -2,13 +2,12 @@
 
 import { type ReactNode } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Menu, X, LogIn, Zap } from "lucide-react";
 import { useState, useEffect } from "react";
 import { BrandLogo } from "@/components/brand/brand-logo";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-
-import { MinecraftBackground } from "@/components/shared/minecraft-background";
 
 const NAV_LINKS = [
   { label: "Home", href: "/" },
@@ -23,6 +22,7 @@ const NAV_LINKS = [
 export function SiteLayout({ children, activePage }: { children: ReactNode; activePage?: string }) {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -30,9 +30,14 @@ export function SiteLayout({ children, activePage }: { children: ReactNode; acti
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Scroll to top on page change
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
   return (
     <div className="min-h-screen flex flex-col relative">
-      {/* Video background — autoplay, muted, loop on ALL pages */}
+      {/* Video background — plays on ALL pages */}
       <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
         <video
           autoPlay
@@ -45,13 +50,12 @@ export function SiteLayout({ children, activePage }: { children: ReactNode; acti
         >
           <source src="/videos/bg.mp4" type="video/mp4" />
         </video>
-        {/* Dark overlay for text readability */}
         <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse 80% 60% at 50% 0%, oklch(0.06 0.02 250 / 0.85), oklch(0.04 0.01 250 / 0.92) 100%)" }} />
-        {/* Subtle blue + green glow */}
         <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse 50% 40% at 20% 30%, oklch(0.45 0.15 150 / 0.04), transparent 70%), radial-gradient(ellipse 40% 35% at 80% 70%, oklch(0.55 0.15 240 / 0.03), transparent 70%)" }} />
       </div>
 
       <div className="relative z-10 flex flex-col flex-1">
+        {/* Navbar */}
         <header className={cn("fixed top-0 left-0 right-0 z-50 transition-all duration-300", scrolled ? "bg-background/70 backdrop-blur-xl border-b border-border/60" : "bg-transparent")}>
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <nav className="flex items-center justify-between h-16 lg:h-18">
@@ -70,19 +74,30 @@ export function SiteLayout({ children, activePage }: { children: ReactNode; acti
               <button type="button" onClick={() => setOpen((o) => !o)} className="lg:hidden p-2 rounded-md hover:bg-foreground/5" aria-label="Menu">{open ? <X className="size-5" /> : <Menu className="size-5" />}</button>
             </nav>
           </div>
-          {open && (
-            <div className="lg:hidden border-t border-border/60 bg-background/95 backdrop-blur-xl">
-              <div className="mx-auto max-w-7xl px-4 py-4 space-y-1">
-                {NAV_LINKS.map((l) => (<Link key={l.href} href={l.href} onClick={() => setOpen(false)} className="block px-3 py-2.5 rounded-md text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-foreground/5">{l.label}</Link>))}
-                <div className="pt-3 grid grid-cols-2 gap-2">
-                  <Link href="/?view=login" onClick={() => setOpen(false)}><Button variant="outline" size="sm" className="w-full"><LogIn className="size-4" /> Login</Button></Link>
-                  <Link href="/plans" onClick={() => setOpen(false)}><Button size="sm" className="w-full bg-primary text-primary-foreground glow-emerald"><Zap className="size-4" /> Get Started</Button></Link>
-                </div>
+          {/* Mobile menu with slide animation */}
+          <div className={cn("lg:hidden overflow-hidden transition-all duration-300 ease-out border-t border-border/60 bg-background/95 backdrop-blur-xl", open ? "max-h-96 opacity-100" : "max-h-0 opacity-0")}>
+            <div className="mx-auto max-w-7xl px-4 py-4 space-y-1">
+              {NAV_LINKS.map((l, i) => (
+                <Link key={l.href} href={l.href} onClick={() => setOpen(false)} className="block px-3 py-2.5 rounded-md text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-foreground/5 transition-colors" style={{ animation: open ? "nav-item-slide 0.3s ease-out forwards" : "none", animationDelay: (i * 50) + "ms", opacity: open ? 1 : 0 }}>
+                  {l.label}
+                </Link>
+              ))}
+              <div className="pt-3 grid grid-cols-2 gap-2">
+                <Link href="/?view=login" onClick={() => setOpen(false)}><Button variant="outline" size="sm" className="w-full"><LogIn className="size-4" /> Login</Button></Link>
+                <Link href="/plans" onClick={() => setOpen(false)}><Button size="sm" className="w-full bg-primary text-primary-foreground glow-emerald"><Zap className="size-4" /> Get Started</Button></Link>
               </div>
             </div>
-          )}
+          </div>
         </header>
-        <main className="flex-1 pt-16">{children}</main>
+
+        {/* Page content with page transition animation */}
+        <main className="flex-1 pt-16">
+          <div key={pathname} className="page-transition">
+            {children}
+          </div>
+        </main>
+
+        {/* Footer */}
         <SiteFooter />
       </div>
     </div>

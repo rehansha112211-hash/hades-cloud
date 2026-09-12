@@ -56,7 +56,7 @@ const COSMIC_CARDS: CardDef[] = [
 
 export function GallerySection() {
   return (
-    <section id="gallery" className="relative py-20 sm:py-28 overflow-hidden">
+    <section id="gallery" className="relative py-20 sm:py-28 overflow-hidden section-fade">
       <div className="absolute inset-0 z-0" style={{ background: "radial-gradient(ellipse 60% 50% at 70% 30%, oklch(0.20 0.10 260 / 0.1), transparent 70%)" }} />
       <div className="absolute inset-0 bg-pixel-grid opacity-15 pointer-events-none" />
 

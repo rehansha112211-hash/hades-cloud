@@ -61,7 +61,7 @@ export function WhyHadesCloud() {
   return (
     <section
       id="hosting"
-      className="relative py-20 sm:py-28 overflow-hidden"
+      className="relative py-20 sm:py-28 overflow-hidden section-fade"
     >
       {/* Subtle nebula gradient — no image */}
       <div className="absolute inset-0 z-0"
@@ -71,7 +71,7 @@ export function WhyHadesCloud() {
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <Reveal className="max-w-2xl">
           <SectionEyebrow>Why Hades Cloud</SectionEyebrow>
-          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mt-4 leading-tight">
+          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mt-4 leading-tight heading-slide">
             Built for serious servers,
             <br />
             <span className="text-gradient-hades">tuned for players.</span>

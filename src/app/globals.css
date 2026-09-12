@@ -532,3 +532,77 @@
   from { opacity: 0; transform: translateX(-20px); }
   to { opacity: 1; transform: translateX(0); }
 }
+
+/* ===== PAGE TRANSITION + SMOOTH ANIMATIONS ===== */
+
+/* Page transition — when navigating between pages */
+@keyframes page-transition {
+  from { opacity: 0; transform: translateY(15px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+.page-transition {
+  animation: page-transition 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Nav item slide-in for mobile menu */
+@keyframes nav-item-slide {
+  from { opacity: 0; transform: translateX(-15px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* Staggered card entrance */
+@keyframes card-enter {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.card-enter {
+  animation: card-enter 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+  opacity: 0;
+}
+.card-enter-1 { animation-delay: 0.1s; }
+.card-enter-2 { animation-delay: 0.2s; }
+.card-enter-3 { animation-delay: 0.3s; }
+.card-enter-4 { animation-delay: 0.4s; }
+.card-enter-5 { animation-delay: 0.5s; }
+.card-enter-6 { animation-delay: 0.6s; }
+
+/* Heading slide-in */
+@keyframes heading-slide {
+  from { opacity: 0; transform: translateY(-15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.heading-slide {
+  animation: heading-slide 0.5s ease-out both;
+}
+
+/* Button hover glow */
+.btn-glow {
+  transition: all 0.2s ease;
+}
+.btn-glow:hover {
+  box-shadow: 0 0 20px oklch(0.65 0.20 240 / 40%);
+  transform: translateY(-1px);
+}
+.btn-glow:active {
+  transform: translateY(0) scale(0.97);
+}
+
+/* Smooth card hover lift */
+.hover-lift-smooth {
+  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), 
+              box-shadow 0.3s ease,
+              border-color 0.3s ease;
+}
+.hover-lift-smooth:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.35);
+}
+
+/* Section fade-in (CSS-only, no IntersectionObserver) */
+@keyframes section-fade {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.section-fade {
+  animation: section-fade 0.6s ease-out both;
+}

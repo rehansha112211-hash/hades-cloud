@@ -53,7 +53,7 @@ export default function PlansPage() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {PLAN_TYPES.map((plan) => (
             <Link key={plan.href} href={plan.href} className="group">
-              <div className="glass-card rounded-2xl p-6 h-full flex flex-col hover:border-primary/40 transition-all hover-lift">
+              <div className="glass-card rounded-2xl p-6 h-full flex flex-col hover:border-primary/40 transition-all hover-lift-smooth card-enter card-enter-">
                 <div className={`inline-flex items-center justify-center size-14 rounded-xl border mb-5 ${plan.bgColor} ${plan.color}`}>
                   <plan.icon className="size-6" />
                 </div>
