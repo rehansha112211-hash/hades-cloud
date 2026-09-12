@@ -8,6 +8,8 @@ import { BrandLogo } from "@/components/brand/brand-logo";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
+import { MinecraftBackground } from "@/components/shared/minecraft-background";
+
 const NAV_LINKS = [
   { label: "Home", href: "/" },
   { label: "Features", href: "/features" },
@@ -30,24 +32,8 @@ export function SiteLayout({ children, activePage }: { children: ReactNode; acti
 
   return (
     <div className="min-h-screen flex flex-col relative">
-      {/* Fixed video background — plays on all pages */}
-      <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="auto"
-          className="absolute inset-0 w-full h-full object-cover"
-          style={{ opacity: 0.3 }}
-        >
-          <source src="/videos/bg.mp4" type="video/mp4" />
-        </video>
-        {/* Dark overlay for readability */}
-        <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse 80% 60% at 50% 0%, oklch(0.08 0.02 250 / 0.85), oklch(0.06 0.015 250 / 0.92) 100%)" }} />
-        {/* Subtle blue glow */}
-        <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse 60% 50% at 20% 30%, oklch(0.45 0.15 260 / 0.06), transparent 70%), radial-gradient(ellipse 50% 40% at 80% 70%, oklch(0.55 0.18 280 / 0.04), transparent 70%)" }} />
-      </div>
+      {/* Minecraft animated background — floating blocks + particles */}
+      <MinecraftBackground />
 
       <div className="relative z-10 flex flex-col flex-1">
         <header className={cn("fixed top-0 left-0 right-0 z-50 transition-all duration-300", scrolled ? "bg-background/70 backdrop-blur-xl border-b border-border/60" : "bg-transparent")}>
