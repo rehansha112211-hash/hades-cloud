@@ -80,7 +80,7 @@ export const metadata: Metadata = {
     description:
       "Power your world without limits. High-performance Minecraft hosting with NVMe storage, DDoS protection and instant deployment.",
   },
-  icons: { icon: "/favicon.svg" },
+  icons: { icon: "/images/brand/logo.png" },
   category: "technology",
 };
 
