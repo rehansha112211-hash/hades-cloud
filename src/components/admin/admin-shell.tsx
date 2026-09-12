@@ -17,6 +17,7 @@ import {
   CreditCard,
   ChevronRight,
   ShieldCheck,
+  FileText,
 } from "lucide-react";
 import { BrandLogo } from "@/components/brand/brand-logo";
 import { Button } from "@/components/ui/button";
@@ -31,6 +32,7 @@ import { CategoriesManager } from "@/components/admin/sections/categories-manage
 import { OrdersManager } from "@/components/admin/sections/orders-manager";
 import { CustomersManager } from "@/components/admin/sections/customers-manager";
 import { SettingsManager } from "@/components/admin/sections/settings-manager";
+import { LegalManager } from "@/components/admin/sections/legal-manager";
 import { ComingSoon } from "@/components/admin/sections/coming-soon";
 
 const NAV: Array<{
@@ -45,6 +47,7 @@ const NAV: Array<{
   { id: "orders", label: "Orders", icon: ShoppingCart, group: "main" },
   { id: "customers", label: "Customers", icon: Users, group: "main" },
   { id: "settings", label: "Settings", icon: Settings, group: "main" },
+  { id: "legal", label: "Legal Pages", icon: FileText, group: "main" },
   { id: "servers", label: "Servers", icon: Server, group: "future" },
   { id: "billing", label: "Billing", icon: CreditCard, group: "future" },
   { id: "invoices", label: "Invoices", icon: Receipt, group: "future" },
@@ -57,6 +60,7 @@ const SECTION_TITLES: Record<AdminSection, { title: string; subtitle: string }> 
   orders: { title: "Orders", subtitle: "All customer orders and their status" },
   customers: { title: "Customers", subtitle: "Customer accounts and order history" },
   settings: { title: "Settings", subtitle: "Public site settings and integration status" },
+  legal: { title: "Legal Pages", subtitle: "Edit Terms, Privacy Policy, and Refund Policy" },
   servers: { title: "Servers", subtitle: "Minecraft server provisioning" },
   billing: { title: "Billing", subtitle: "Payment gateway and billing rules" },
   invoices: { title: "Invoices", subtitle: "Generated invoices and tax records" },
@@ -208,6 +212,7 @@ export function AdminShell() {
           {section === "orders" && <OrdersManager />}
           {section === "customers" && <CustomersManager />}
           {section === "settings" && <SettingsManager />}
+          {section === "legal" && <LegalManager />}
           {section === "servers" && (
             <ComingSoon
               icon={Server}

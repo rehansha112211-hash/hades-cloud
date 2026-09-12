@@ -16,31 +16,32 @@ export function Hero() {
       id="home"
       className="relative min-h-[100svh] flex items-center justify-center overflow-hidden bg-hades-hero"
     >
-      {/* Layer 1: Minecraft animated gradient background */}
+      {/* Layer 1: Minecraft video background */}
       <div className="absolute inset-0 z-0">
-        {/* Minecraft night sky gradient */}
-        <div className="absolute inset-0" style={{
-          background: "radial-gradient(ellipse 100% 80% at 50% 0%, oklch(0.15 0.04 250 / 0.9), oklch(0.08 0.02 250) 60%, oklch(0.06 0.015 250) 100%)",
-        }} />
-        {/* Aurora glow — emerald + blue */}
-        <div className="absolute -top-1/4 -left-1/4 w-[600px] h-[600px] rounded-full opacity-25 blur-3xl animate-aurora"
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="auto"
+          className="absolute inset-0 w-full h-full object-cover"
+          style={{ opacity: 0.35 }}
+        >
+          <source src="/videos/bg.mp4" type="video/mp4" />
+        </video>
+        {/* Aurora glow */}
+        <div className="absolute -top-1/4 -left-1/4 w-[600px] h-[600px] rounded-full opacity-20 blur-3xl animate-aurora"
           style={{ background: "radial-gradient(circle, oklch(0.50 0.15 150 / 0.3), transparent 70%)" }} />
-        <div className="absolute top-1/3 -right-1/4 w-[500px] h-[500px] rounded-full opacity-20 blur-3xl animate-aurora"
+        <div className="absolute top-1/3 -right-1/4 w-[500px] h-[500px] rounded-full opacity-15 blur-3xl animate-aurora"
           style={{ background: "radial-gradient(circle, oklch(0.55 0.15 240 / 0.25), transparent 70%)", animationDelay: "4s" }} />
-        {/* Floating Minecraft blocks in hero — more visible */}
+        {/* Floating Minecraft blocks */}
         <div className="absolute top-[10%] right-[5%] animate-float-block" style={{ "--rot": "12deg" } as React.CSSProperties}>
           <img src="/images/minecraft/block-grass.png" alt="" className="w-28 h-28 object-contain opacity-50 pixelated" style={{ filter: "drop-shadow(0 12px 32px oklch(0.50 0.15 150 / 35%))" }} />
         </div>
-        <div className="absolute top-[35%] left-[3%] animate-float-block" style={{ "--rot": "-15deg", animationDelay: "1.5s" } as React.CSSProperties}>
-          <img src="/images/minecraft/block-grass.png" alt="" className="w-24 h-24 object-contain opacity-40 pixelated" style={{ filter: "drop-shadow(0 10px 24px oklch(0.55 0.15 240 / 30%))" }} />
+        <div className="absolute bottom-[18%] left-[5%] animate-float-block" style={{ "--rot": "-8deg", animationDelay: "2s" } as React.CSSProperties}>
+          <img src="/images/minecraft/diamond-ore.png" alt="" className="w-24 h-24 object-cover opacity-40 pixelated" style={{ filter: "drop-shadow(0 10px 24px oklch(0.7 0.15 220 / 35%))" }} />
         </div>
-        <div className="absolute bottom-[20%] right-[6%] animate-float-block" style={{ "--rot": "8deg", animationDelay: "3s" } as React.CSSProperties}>
-          <img src="/images/minecraft/diamond-ore.png" alt="" className="w-24 h-24 object-cover opacity-45 pixelated" style={{ filter: "drop-shadow(0 8px 20px oklch(0.7 0.15 220 / 40%))" }} />
-        </div>
-        <div className="absolute bottom-[12%] left-[5%] animate-float-block" style={{ "--rot": "-5deg", animationDelay: "2s" } as React.CSSProperties}>
-          <img src="/images/minecraft/dirt-block.jpg" alt="" className="w-20 h-20 object-cover opacity-35 pixelated" style={{ filter: "drop-shadow(0 8px 16px oklch(0.4 0.15 150 / 30%))" }} />
-        </div>
-        {/* Dark vignette */}
+        {/* Dark vignette for readability */}
         <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse 70% 60% at 50% 50%, oklch(0.05 0.02 250 / 0.5), transparent 70%)" }} />
         <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-background to-transparent" />
         <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-background to-transparent" />

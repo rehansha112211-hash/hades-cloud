@@ -32,8 +32,24 @@ export function SiteLayout({ children, activePage }: { children: ReactNode; acti
 
   return (
     <div className="min-h-screen flex flex-col relative">
-      {/* Minecraft animated background — floating blocks + particles */}
-      <MinecraftBackground />
+      {/* Video background — autoplay, muted, loop on ALL pages */}
+      <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="auto"
+          className="absolute inset-0 w-full h-full object-cover"
+          style={{ opacity: 0.25 }}
+        >
+          <source src="/videos/bg.mp4" type="video/mp4" />
+        </video>
+        {/* Dark overlay for text readability */}
+        <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse 80% 60% at 50% 0%, oklch(0.06 0.02 250 / 0.85), oklch(0.04 0.01 250 / 0.92) 100%)" }} />
+        {/* Subtle blue + green glow */}
+        <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse 50% 40% at 20% 30%, oklch(0.45 0.15 150 / 0.04), transparent 70%), radial-gradient(ellipse 40% 35% at 80% 70%, oklch(0.55 0.15 240 / 0.03), transparent 70%)" }} />
+      </div>
 
       <div className="relative z-10 flex flex-col flex-1">
         <header className={cn("fixed top-0 left-0 right-0 z-50 transition-all duration-300", scrolled ? "bg-background/70 backdrop-blur-xl border-b border-border/60" : "bg-transparent")}>
@@ -100,6 +116,9 @@ function SiteFooter() {
               <li><Link href="/features" className="text-sm text-muted-foreground hover:text-primary transition-colors">Features</Link></li>
               <li><Link href="/panel" className="text-sm text-muted-foreground hover:text-primary transition-colors">Panel</Link></li>
               <li><Link href="/faq" className="text-sm text-muted-foreground hover:text-primary transition-colors">FAQ</Link></li>
+              <li><Link href="/terms" className="text-sm text-muted-foreground hover:text-primary transition-colors">Terms & Conditions</Link></li>
+              <li><Link href="/privacy" className="text-sm text-muted-foreground hover:text-primary transition-colors">Privacy Policy</Link></li>
+              <li><Link href="/refund" className="text-sm text-muted-foreground hover:text-primary transition-colors">Refund Policy</Link></li>
             </ul>
           </div>
           <div>

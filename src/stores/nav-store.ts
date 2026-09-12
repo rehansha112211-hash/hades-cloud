@@ -16,6 +16,7 @@ export type AdminSection =
   | "orders"
   | "customers"
   | "settings"
+  | "legal"
   | "servers"
   | "billing"
   | "invoices";
